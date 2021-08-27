@@ -10,5 +10,5 @@ data class Review(
 
     val comment: String,
 
-    val created_at: String
+    val createdAt: String
 )
