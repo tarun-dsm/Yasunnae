@@ -1,6 +1,6 @@
 package com.semicolon.domain.entity
 
-data class ProfilePost(
+data class ProfilePostEntity(
 
     val id: Int,
 

@@ -1,6 +1,6 @@
 package com.semicolon.domain.entity
 
-data class Application(
+data class ApplicationEntity(
 
     val id: Int,
 

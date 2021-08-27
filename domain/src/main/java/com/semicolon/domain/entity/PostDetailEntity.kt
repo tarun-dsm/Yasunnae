@@ -1,6 +1,6 @@
 package com.semicolon.domain.entity
 
-data class PostDetail(
+data class PostDetailEntity(
 
     val nickname: String,
 

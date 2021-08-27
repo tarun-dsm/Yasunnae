@@ -1,6 +1,6 @@
 package com.semicolon.domain.entity
 
-data class Post(
+data class PostEntity(
 
     val id: Int,
 

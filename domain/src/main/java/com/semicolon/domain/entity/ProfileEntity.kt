@@ -1,6 +1,6 @@
 package com.semicolon.domain.entity
 
-data class Profile(
+data class ProfileEntity(
 
     val nickname: String,
 

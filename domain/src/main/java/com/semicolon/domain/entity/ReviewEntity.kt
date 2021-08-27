@@ -1,6 +1,6 @@
 package com.semicolon.domain.entity
 
-data class Review(
+data class ReviewEntity(
 
     val id: Int,
 
