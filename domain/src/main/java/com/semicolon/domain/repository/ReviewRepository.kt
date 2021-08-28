@@ -1,12 +1,13 @@
 package com.semicolon.domain.repository
 
+import com.semicolon.domain.param.ReviewParam
 import io.reactivex.Completable
 
 interface ReviewRepository {
 
-    fun writeReview(id: Int, grade: Double, comment: String): Completable
+    fun writeReview(reviewParam: ReviewParam): Completable
 
     fun deleteReview(id: Int): Completable
 
-    fun editReview(id: Int, grade: Double, comment: String): Completable
+    fun editReview(reviewParam: ReviewParam): Completable
 }

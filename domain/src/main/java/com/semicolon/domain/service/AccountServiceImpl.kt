@@ -3,6 +3,7 @@ package com.semicolon.domain.service
 import com.semicolon.domain.base.ErrorHandler
 import com.semicolon.domain.base.Resource
 import com.semicolon.domain.base.toSingleResource
+import com.semicolon.domain.param.CoordinateParam
 import com.semicolon.domain.param.RegisterAccountParam
 import com.semicolon.domain.repository.AccountRepository
 import io.reactivex.Single
@@ -21,6 +22,6 @@ class AccountServiceImpl(
     override fun checkNicknameDuplication(nickname: String): Single<Resource<Unit>> =
         accountRepository.checkNicknameDuplication(nickname).toSingleResource(errorHandler)
 
-    override fun saveCoordinate(longitude: Double, latitude: Double): Single<Resource<Unit>> =
-        accountRepository.saveCoordinate(longitude, latitude).toSingleResource(errorHandler)
+    override fun saveCoordinate(coordinateParam: CoordinateParam): Single<Resource<Unit>> =
+        accountRepository.saveCoordinate(coordinateParam).toSingleResource(errorHandler)
 }
