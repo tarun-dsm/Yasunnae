@@ -1,6 +1,7 @@
 package com.semicolon.domain.service
 
 import com.semicolon.domain.base.Resource
+import com.semicolon.domain.param.CoordinateParam
 import com.semicolon.domain.param.RegisterAccountParam
 import io.reactivex.Single
 
@@ -12,5 +13,5 @@ interface AccountService {
 
     fun checkNicknameDuplication(nickname: String): Single<Resource<Unit>>
 
-    fun saveCoordinate(longitude: Double, latitude: Double): Single<Resource<Unit>>
+    fun saveCoordinate(coordinateParam: CoordinateParam): Single<Resource<Unit>>
 }

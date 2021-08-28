@@ -1,5 +1,6 @@
 package com.semicolon.domain.repository
 
+import com.semicolon.domain.param.CoordinateParam
 import com.semicolon.domain.param.RegisterAccountParam
 import io.reactivex.Completable
 
@@ -11,5 +12,5 @@ interface AccountRepository {
 
     fun checkNicknameDuplication(nickname: String): Completable
 
-    fun saveCoordinate(longitude: Double, latitude: Double): Completable
+    fun saveCoordinate(coordinateParam: CoordinateParam): Completable
 }
