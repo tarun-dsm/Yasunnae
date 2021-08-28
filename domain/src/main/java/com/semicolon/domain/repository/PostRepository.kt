@@ -3,6 +3,7 @@ package com.semicolon.domain.repository
 import com.semicolon.domain.entity.PostApplicationEntity
 import com.semicolon.domain.entity.PostDetailEntity
 import com.semicolon.domain.entity.PostEntity
+import com.semicolon.domain.param.FixedPostParam
 import com.semicolon.domain.param.PostImageParam
 import com.semicolon.domain.param.PostParam
 import io.reactivex.Completable
@@ -17,7 +18,7 @@ interface PostRepository {
 
     fun getPostList(): Single<List<PostEntity>>
 
-    fun fixPost(id:Int, postParam: PostParam): Single<Int>
+    fun fixPost(fixedPostParam: FixedPostParam): Single<Int>
 
     fun deletePost(id: Int): Completable
 
