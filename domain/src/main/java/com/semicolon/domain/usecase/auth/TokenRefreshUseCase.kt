@@ -5,7 +5,7 @@ import com.semicolon.domain.base.UseCase
 import com.semicolon.domain.service.AuthService
 import io.reactivex.Single
 
-class TokenRefreshUseCase9(
+class TokenRefreshUseCase(
     private val authService: AuthService
 ) : UseCase<Unit, Resource<Unit>>() {
 
