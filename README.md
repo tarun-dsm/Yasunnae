@@ -76,5 +76,11 @@ data class ExampleResponse(
 - 네트워트 상태 노출 막기
   - 만약 네트워크 오류를 제어하기 위해 domain계층으로 Http 상태코드 등을 끌고오게 된다면 domain계층은 오염됩니다
   만약 기존에 Http통신을 하던 기능이 Room과 같은 로컬 저장소를 이용하는 방식으로 바뀌게 되면 기존에 Http 상태코드를 알고 사용하던 domain 레이어가 세부사항의 변경때문에 영향을 받기 때문입니다.
-  - 따라서 [구글 앱 아키텍처 가이드 부록: 네트워크 상태 노출](https://developer.android.com/jetpack/guide?hl=ko#addendum)을 
+  - 따라서 [구글 앱 아키텍처 가이드 부록: 네트워크 상태 노출](https://developer.android.com/jetpack/guide?hl=ko#addendum), [송진우님의 Medium 블로그](https://songjinwoo.medium.com/clean-architecture-errorhandling-in-android-2-c3034d580529)를 
 참고하여 데이터와 그 데이터의 상태를 캡슐화 하여 domain계층이 위의 상황처럼 오염되는 일을 방지하고자 합니다
+
+<br>
+
+## Exception Handling
+
+- 갑작스러운 앱의 종료 현상을 방지하기 위해 [Ted Park님의 Medium 블로그](https://medium.com/prnd/아름답게-앱-오류-처리하기-8bf9a46df515)를 참고하여 Exception 등에 유연하게 대하여 사용자의 불편을 줄일 것 입니다
