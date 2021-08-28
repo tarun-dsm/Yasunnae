@@ -17,7 +17,7 @@ data class RegisterAccountParam(
     val experience: String
 )
 
-sealed class Sex(val type: String) {
-    object MALE : Sex("MALE")
-    object FEMALE : Sex("FEMALE")
+enum class Sex{
+    MALE,
+    FEMALE
 }
