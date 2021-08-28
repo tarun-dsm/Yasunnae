@@ -1,5 +1,6 @@
 package com.semicolon.domain.repository
 
+import com.semicolon.domain.entity.PostApplicationEntity
 import com.semicolon.domain.entity.PostDetailEntity
 import com.semicolon.domain.entity.PostEntity
 import com.semicolon.domain.param.PostParam
@@ -20,4 +21,6 @@ interface PostRepository {
     fun deletePost(id: Int): Completable
 
     fun getPostDetail(id: Int): Single<PostDetailEntity>
+
+    fun getPostApplication(id: Int): Single<List<PostApplicationEntity>>
 }
