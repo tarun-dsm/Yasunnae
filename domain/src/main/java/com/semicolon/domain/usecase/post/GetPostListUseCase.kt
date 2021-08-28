@@ -10,6 +10,6 @@ class GetPostListUseCase(
     private val postService: PostService
 ) : UseCase<Unit, Resource<List<PostEntity>>>() {
 
-    override fun interact(data: Unit): Single<Resource<List<PostEntity>>> =
+    override fun interact(data: Unit?): Single<Resource<List<PostEntity>>> =
         postService.getPostList()
 }

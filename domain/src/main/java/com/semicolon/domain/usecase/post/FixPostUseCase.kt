@@ -10,6 +10,6 @@ class FixPostUseCase(
     private val postService: PostService
 ) : UseCase<FixedPostParam, Resource<Int>>() {
 
-    override fun interact(data: FixedPostParam): Single<Resource<Int>> =
-        postService.fixPost(data)
+    override fun interact(data: FixedPostParam?): Single<Resource<Int>> =
+        postService.fixPost(data!!)
 }

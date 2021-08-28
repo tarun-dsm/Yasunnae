@@ -10,6 +10,6 @@ class GetPostApplicationUseCase(
     private val postService: PostService
 ) : UseCase<Int, Resource<List<PostApplicationEntity>>>() {
 
-    override fun interact(data: Int): Single<Resource<List<PostApplicationEntity>>> =
-        postService.getPostApplication(data)
+    override fun interact(data: Int?): Single<Resource<List<PostApplicationEntity>>> =
+        postService.getPostApplication(data!!)
 }

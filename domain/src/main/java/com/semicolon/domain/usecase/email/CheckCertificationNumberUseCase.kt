@@ -10,6 +10,6 @@ class CheckCertificationNumberUseCase(
     private val emailService: EmailService
 ) : UseCase<EmailCertificationParam, Resource<Unit>>() {
 
-    override fun interact(data: EmailCertificationParam): Single<Resource<Unit>> =
-        emailService.checkCertificationNumber(data)
+    override fun interact(data: EmailCertificationParam?): Single<Resource<Unit>> =
+        emailService.checkCertificationNumber(data!!)
 }

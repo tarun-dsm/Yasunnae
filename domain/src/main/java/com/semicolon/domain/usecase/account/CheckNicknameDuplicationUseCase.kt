@@ -9,6 +9,6 @@ class CheckNicknameDuplicationUseCase(
     private val accountService: AccountService
 ) : UseCase<String, Resource<Unit>>() {
 
-    override fun interact(data: String): Single<Resource<Unit>> =
-        accountService.checkNicknameDuplication(data)
+    override fun interact(data: String?): Single<Resource<Unit>> =
+        accountService.checkNicknameDuplication(data!!)
 }

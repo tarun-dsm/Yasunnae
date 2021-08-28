@@ -10,6 +10,6 @@ class LoginUseCase(
     private val authService: AuthService
 ) : UseCase<LoginParam, Resource<Unit>>() {
 
-    override fun interact(data: LoginParam): Single<Resource<Unit>> =
-        authService.login(data)
+    override fun interact(data: LoginParam?): Single<Resource<Unit>> =
+        authService.login(data!!)
 }

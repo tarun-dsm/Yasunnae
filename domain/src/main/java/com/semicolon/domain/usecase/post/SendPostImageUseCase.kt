@@ -10,6 +10,6 @@ class SendPostImageUseCase(
     private val postService: PostService
 ) : UseCase<PostImageParam, Resource<Unit>>() {
 
-    override fun interact(data: PostImageParam): Single<Resource<Unit>> =
-        postService.sendPostImage(data)
+    override fun interact(data: PostImageParam?): Single<Resource<Unit>> =
+        postService.sendPostImage(data!!)
 }

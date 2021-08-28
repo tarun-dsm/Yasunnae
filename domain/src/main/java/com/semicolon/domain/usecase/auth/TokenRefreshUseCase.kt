@@ -9,6 +9,6 @@ class TokenRefreshUseCase(
     private val authService: AuthService
 ) : UseCase<Unit, Resource<Unit>>() {
 
-    override fun interact(data: Unit): Single<Resource<Unit>> =
+    override fun interact(data: Unit?): Single<Resource<Unit>> =
         authService.tokenRefresh()
 }

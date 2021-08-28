@@ -9,6 +9,6 @@ class SendCertificationMailUseCase(
     private val emailService: EmailService
 ) : UseCase<String, Resource<Unit>>() {
 
-    override fun interact(data: String): Single<Resource<Unit>> =
-        emailService.sendCertificationMail(data)
+    override fun interact(data: String?): Single<Resource<Unit>> =
+        emailService.sendCertificationMail(data!!)
 }

@@ -9,6 +9,6 @@ class DeletePostUseCase(
     private val postService: PostService
 ) : UseCase<Int, Resource<Unit>>() {
 
-    override fun interact(data: Int): Single<Resource<Unit>> =
-        postService.deletePost(data)
+    override fun interact(data: Int?): Single<Resource<Unit>> =
+        postService.deletePost(data!!)
 }

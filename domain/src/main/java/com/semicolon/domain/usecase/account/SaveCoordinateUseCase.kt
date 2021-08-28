@@ -10,6 +10,6 @@ class SaveCoordinateUseCase(
     private val accountService: AccountService
 ) : UseCase<CoordinateParam, Resource<Unit>>() {
 
-    override fun interact(data: CoordinateParam): Single<Resource<Unit>> =
-        accountService.saveCoordinate(data)
+    override fun interact(data: CoordinateParam?): Single<Resource<Unit>> =
+        accountService.saveCoordinate(data!!)
 }

@@ -10,6 +10,6 @@ class RegisterAccountUseCase(
     private val accountService: AccountService
 ): UseCase<RegisterAccountParam, Resource<Unit>>() {
 
-    override fun interact(data: RegisterAccountParam): Single<Resource<Unit>> =
-        accountService.registerAccount(data)
+    override fun interact(data: RegisterAccountParam?): Single<Resource<Unit>> =
+        accountService.registerAccount(data!!)
 }

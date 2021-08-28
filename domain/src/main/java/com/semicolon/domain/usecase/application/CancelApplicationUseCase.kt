@@ -8,6 +8,7 @@ import io.reactivex.Single
 class CancelApplicationUseCase(
     private val applicationService: ApplicationService
 ) : UseCase<Int, Resource<Unit>>() {
-    override fun interact(data: Int): Single<Resource<Unit>> =
-        applicationService.cancelApplication(data)
+
+    override fun interact(data: Int?): Single<Resource<Unit>> =
+        applicationService.cancelApplication(data!!)
 }

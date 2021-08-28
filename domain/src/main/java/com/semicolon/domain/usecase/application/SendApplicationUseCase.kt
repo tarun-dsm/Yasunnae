@@ -9,6 +9,6 @@ class SendApplicationUseCase(
     private val applicationService: ApplicationService
 ) : UseCase<Int, Resource<Unit>>() {
 
-    override fun interact(data: Int): Single<Resource<Unit>> =
-        applicationService.sendApplication(data)
+    override fun interact(data: Int?): Single<Resource<Unit>> =
+        applicationService.sendApplication(data!!)
 }

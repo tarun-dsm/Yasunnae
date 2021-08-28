@@ -10,6 +10,6 @@ class WritePostUseCase(
     private val postService: PostService
 ) : UseCase<PostParam, Resource<Int>>() {
 
-    override fun interact(data: PostParam): Single<Resource<Int>> =
-        postService.writePost(data)
+    override fun interact(data: PostParam?): Single<Resource<Int>> =
+        postService.writePost(data!!)
 }

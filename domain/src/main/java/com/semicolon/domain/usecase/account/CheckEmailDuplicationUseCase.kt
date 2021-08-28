@@ -9,6 +9,6 @@ class CheckEmailDuplicationUseCase(
     private val accountService: AccountService
 ) : UseCase<String, Resource<Unit>>() {
 
-    override fun interact(data: String): Single<Resource<Unit>> =
-        accountService.checkEmailDuplication(data)
+    override fun interact(data: String?): Single<Resource<Unit>> =
+        accountService.checkEmailDuplication(data!!)
 }

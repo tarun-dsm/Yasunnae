@@ -10,6 +10,6 @@ class GetMyApplicationListUseCase(
     private val applicationService: ApplicationService
 ) : UseCase<Unit, Resource<List<ApplicationEntity>>>() {
 
-    override fun interact(data: Unit): Single<Resource<List<ApplicationEntity>>> =
+    override fun interact(data: Unit?): Single<Resource<List<ApplicationEntity>>> =
         applicationService.getMyApplicationList()
 }
