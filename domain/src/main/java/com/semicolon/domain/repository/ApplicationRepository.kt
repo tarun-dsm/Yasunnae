@@ -12,5 +12,5 @@ interface ApplicationRepository {
 
     fun acceptApplication(id: Int): Completable
 
-    fun getMyApplicationList(id: Int): Single<List<ApplicationEntity>>
+    fun getMyApplicationList(): Single<List<ApplicationEntity>>
 }
