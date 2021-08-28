@@ -1,10 +1,11 @@
 package com.semicolon.domain.repository
 
+import com.semicolon.domain.param.LoginParam
 import io.reactivex.Completable
 
 interface AuthRepository {
 
-    fun login(email: String, password: String): Completable
+    fun login(loginParam: LoginParam): Completable
 
     fun tokenRefresh(): Completable
 }
