@@ -1,6 +1,6 @@
 package com.semicolon.domain.param
 
-data class AccountRegisterParam(
+data class RegisterAccountParam(
 
     val email: String,
 
