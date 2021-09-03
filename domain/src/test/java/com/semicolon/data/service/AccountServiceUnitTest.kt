@@ -5,6 +5,7 @@ import com.semicolon.domain.base.ErrorHandler
 import com.semicolon.domain.base.Resource
 import com.semicolon.domain.param.CoordinateParam
 import com.semicolon.domain.param.RegisterAccountParam
+import com.semicolon.domain.param.ReportParam
 import com.semicolon.domain.param.Sex
 import com.semicolon.domain.repository.AccountRepository
 import com.semicolon.domain.service.AccountService
@@ -155,5 +156,33 @@ class AccountServiceUnitTest {
 
         accountService.saveCoordinate(coordinateParam).test()
             .assertValue(Resource.error(errorMessage))
+    }
+
+    @Test
+    fun reportUserSuccessTest() {
+        val reportParam = ReportParam(1234, "He is bad guy")
+
+        `when`(accountRepository.reportUser(reportParam))
+            .thenReturn(Completable.complete())
+
+        accountService.reportUser(reportParam).test()
+            .assertValue(Resource.success(Unit))
+    }
+
+    @Test
+    fun reportUserFailTest() {
+        val exception = Exception()
+        val errorMessage = Error.FORBIDDEN
+        val reportParam = ReportParam(1234, "He is bad guy")
+
+        `when`(accountRepository.reportUser(reportParam))
+            .thenReturn(Completable.error(exception))
+
+        `when`(errorHandler.handle(exception))
+            .thenReturn(errorMessage)
+
+        accountService.reportUser(reportParam).test()
+            .assertValue(Resource.error(errorMessage))
+
     }
 }
