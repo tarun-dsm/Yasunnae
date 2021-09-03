@@ -5,6 +5,7 @@ import com.semicolon.domain.base.Resource
 import com.semicolon.domain.base.toSingleResource
 import com.semicolon.domain.param.CoordinateParam
 import com.semicolon.domain.param.RegisterAccountParam
+import com.semicolon.domain.param.ReportParam
 import com.semicolon.domain.repository.AccountRepository
 import io.reactivex.Single
 
@@ -24,4 +25,7 @@ class AccountServiceImpl(
 
     override fun saveCoordinate(coordinateParam: CoordinateParam): Single<Resource<Unit>> =
         accountRepository.saveCoordinate(coordinateParam).toSingleResource(errorHandler)
+
+    override fun reportUser(reportParam: ReportParam): Single<Resource<Unit>> =
+        accountRepository.reportUser(reportParam).toSingleResource(errorHandler)
 }
