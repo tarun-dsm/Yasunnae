@@ -4,7 +4,7 @@ data class PostApplicationEntity(
 
     val applicationId: Int,
 
-    val applicant_id: Int,
+    val applicantId: Int,
 
     val applicationDate: String,
 
