@@ -3,12 +3,10 @@ package com.semicolon.data.usecase
 import com.semicolon.domain.base.Resource
 import com.semicolon.domain.param.CoordinateParam
 import com.semicolon.domain.param.RegisterAccountParam
+import com.semicolon.domain.param.ReportParam
 import com.semicolon.domain.param.Sex
 import com.semicolon.domain.service.AccountService
-import com.semicolon.domain.usecase.account.CheckEmailDuplicationUseCase
-import com.semicolon.domain.usecase.account.CheckNicknameDuplicationUseCase
-import com.semicolon.domain.usecase.account.RegisterAccountUseCase
-import com.semicolon.domain.usecase.account.SaveCoordinateUseCase
+import com.semicolon.domain.usecase.account.*
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
@@ -25,6 +23,7 @@ class AccountUseCasesUnitTest {
     private lateinit var checkNicknameDuplicationUseCase: CheckNicknameDuplicationUseCase
     private lateinit var registerAccountUseCase: RegisterAccountUseCase
     private lateinit var saveCoordinateUseCase: SaveCoordinateUseCase
+    private lateinit var reportUserUseCase: ReportUserUseCase
 
     @Before
     fun init() {
@@ -33,6 +32,7 @@ class AccountUseCasesUnitTest {
         checkNicknameDuplicationUseCase = CheckNicknameDuplicationUseCase(accountService)
         registerAccountUseCase = RegisterAccountUseCase(accountService)
         saveCoordinateUseCase = SaveCoordinateUseCase(accountService)
+        reportUserUseCase = ReportUserUseCase(accountService)
     }
 
     @Test
@@ -84,6 +84,17 @@ class AccountUseCasesUnitTest {
             .thenReturn(Single.just(Resource.success(Unit)))
 
         saveCoordinateUseCase.interact(coordinateParam).test()
+            .assertValue(Resource.success(Unit))
+    }
+
+    @Test
+    fun reportUserTest() {
+        val reportParam = ReportParam(1234, "He is bad guy")
+
+        `when`(accountService.reportUser(reportParam))
+            .thenReturn(Single.just(Resource.success(Unit)))
+
+        reportUserUseCase.interact(reportParam).test()
             .assertValue(Resource.success(Unit))
     }
 }
