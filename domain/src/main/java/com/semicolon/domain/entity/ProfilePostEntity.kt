@@ -10,5 +10,9 @@ data class ProfilePostEntity(
 
     val nickname: String,
 
-    val firstImagePath: String
+    val firstImagePath: String,
+
+    val protector_id: String,
+
+    val protector_nickname: String
 )
