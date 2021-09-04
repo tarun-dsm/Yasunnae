@@ -17,7 +17,6 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
-import java.io.File
 import java.lang.Exception
 
 class PostServiceUnitTest {
@@ -40,7 +39,7 @@ class PostServiceUnitTest {
     fun sendPostImageSuccessTest() {
         val postImageParam = PostImageParam(
             1234,
-            File("yeah")
+            ArrayList()
         )
 
         `when`(postRepository.sendPostImage(postImageParam))
@@ -56,7 +55,7 @@ class PostServiceUnitTest {
         val errorMessage = Error.UNAUTHORIZED
         val postImageParam = PostImageParam(
             1234,
-            File("yeah")
+            ArrayList()
         )
 
         `when`(postRepository.sendPostImage(postImageParam))
