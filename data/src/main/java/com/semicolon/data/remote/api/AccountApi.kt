@@ -1,9 +1,9 @@
 package com.semicolon.data.remote.api
 
 import com.semicolon.data.remote.request.CoordinateRequest
+import com.semicolon.data.remote.request.RegisterAccountRequest
 import com.semicolon.data.remote.request.ReportRequest
 import com.semicolon.data.remote.response.TokenResponse
-import com.semicolon.domain.param.RegisterAccountParam
 import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.*
@@ -12,7 +12,7 @@ interface AccountApi {
 
     @POST("account")
     fun registerAccount(
-        registerAccountParam: RegisterAccountParam
+        registerAccountRequest: RegisterAccountRequest
     ): Single<TokenResponse>
 
     @GET("account/email/{email}")
