@@ -13,7 +13,6 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
-import java.io.File
 
 class PostUseCasesUnitTest {
 
@@ -132,7 +131,7 @@ class PostUseCasesUnitTest {
     fun sendPostImageTest() {
         val postImageParam = PostImageParam(
             1234,
-            File("yeah")
+            ArrayList()
         )
 
         `when`(postService.sendPostImage(postImageParam))

@@ -6,5 +6,5 @@ data class PostImageParam(
 
     val id: Int,
 
-    val image: File
+    val images: List<File>
 )
