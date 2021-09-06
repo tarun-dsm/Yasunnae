@@ -10,8 +10,5 @@ fun File.toMultipart(): MultipartBody.Part {
     return MultipartBody.Part.createFormData("files", this.name, fileBody)
 }
 
-fun List<File>.toMultipartList(): List<MultipartBody.Part> {
-    val multipartList = ArrayList<MultipartBody.Part>()
-    this.forEach { multipartList.add(it.toMultipart()) }
-    return multipartList
-}
+fun List<File>.toMultipartList(): List<MultipartBody.Part> =
+    this.map { it.toMultipart() }
