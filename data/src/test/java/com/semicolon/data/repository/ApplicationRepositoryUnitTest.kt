@@ -2,6 +2,7 @@ package com.semicolon.data.repository
 
 import com.semicolon.data.datasource.ApplicationDataSource
 import com.semicolon.data.remote.response.MyApplicationResponse
+import com.semicolon.data.remote.response.toEntity
 import com.semicolon.domain.repository.ApplicationRepository
 import io.reactivex.Completable
 import io.reactivex.Single
@@ -104,7 +105,7 @@ class ApplicationRepositoryUnitTest {
             .thenReturn(Single.just(myApplicationResponse))
 
         applicationRepository.getMyApplicationList().test()
-            .assertValue(ArrayList())
+            .assertValue(myApplicationResponse.myApplication.map { it.toEntity() })
     }
 
     @Test

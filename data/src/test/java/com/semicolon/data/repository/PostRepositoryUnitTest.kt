@@ -103,11 +103,15 @@ class PostRepositoryUnitTest {
 
     @Test
     fun getPostListSuccessTest() {
+        val postListResponse = PostListResponse(
+            ArrayList()
+        )
+
         `when`(postDataSource.getPostList())
-            .thenReturn(Single.just(PostListResponse(ArrayList())))
+            .thenReturn(Single.just(postListResponse))
 
         postRepository.getPostList().test()
-            .assertValue(ArrayList())
+            .assertValue(postListResponse.posts.map { it.toEntity() })
     }
 
     @Test
@@ -241,12 +245,15 @@ class PostRepositoryUnitTest {
     @Test
     fun getPostApplicationSuccessTest() {
         val id = 1234
+        val postApplicationResponse = PostApplicationResponse(
+            ArrayList()
+        )
 
         `when`(postDataSource.getPostApplication(id))
-            .thenReturn(Single.just(PostApplicationResponse(ArrayList())))
+            .thenReturn(Single.just(postApplicationResponse))
 
         postRepository.getPostApplication(id).test()
-            .assertValue(ArrayList())
+            .assertValue(postApplicationResponse.applications.map { it.toEntity() })
     }
 
     @Test
