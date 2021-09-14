@@ -14,6 +14,9 @@
         android:theme="@style/Theme.Yasunnae"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.coordinate.CoordinateActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
