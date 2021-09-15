@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_coordinate.xml" value="0.20652173913043478" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.28055555555555556" />
+        <entry key="app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.28055555555555556" />
+        <entry key="app/src/main/res/drawable/shape_radius_big_button.xml" value="0.30185185185185187" />
+        <entry key="app/src/main/res/layout/activity_coordinate.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1503623188405797" />
       </map>
     </option>
