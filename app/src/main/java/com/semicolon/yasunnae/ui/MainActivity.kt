@@ -1,7 +1,8 @@
-package com.semicolon.yasunnae
+package com.semicolon.yasunnae.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.semicolon.yasunnae.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
