@@ -20,7 +20,7 @@ class CoordinateViewModel @Inject constructor(
 
     val successEvent = SingleLiveEvent<Unit>()
     val badRequestEvent = SingleLiveEvent<Unit>()
-    val unauthorizedEvent = SingleLiveEvent<Unit>()
+    val retryEvent = SingleLiveEvent<Unit>()
     val needToLoginEvent = SingleLiveEvent<Unit>()
     val unknownErrorEvent = SingleLiveEvent<Unit>()
 
@@ -36,7 +36,7 @@ class CoordinateViewModel @Inject constructor(
                         Error.BAD_REQUEST -> badRequestEvent.call()
                         Error.UNAUTHORIZED -> {
                             tokenRefresh()
-                            unauthorizedEvent.call()
+                            retryEvent.call()
                         }
                         else -> unknownErrorEvent.call()
                     }
