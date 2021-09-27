@@ -5,6 +5,8 @@ import com.semicolon.domain.base.Error
 import com.semicolon.domain.base.Resource
 import com.semicolon.domain.base.ResourceStatus
 import com.semicolon.domain.entity.PostApplicationEntity
+import com.semicolon.domain.usecase.application.AcceptApplicationUseCase
+import com.semicolon.domain.usecase.application.CancelApplicationUseCase
 import com.semicolon.domain.usecase.auth.TokenRefreshUseCase
 import com.semicolon.domain.usecase.post.GetPostApplicationUseCase
 import com.semicolon.yasunnae.base.BaseViewModel
@@ -14,15 +16,18 @@ import javax.inject.Inject
 
 class PostApplicationsViewModel @Inject constructor(
     private val getPostApplicationUseCase: GetPostApplicationUseCase,
+    private val acceptApplicationUseCase: AcceptApplicationUseCase,
     private val tokenRefreshUseCase: TokenRefreshUseCase
 ) : BaseViewModel() {
 
     val postApplicationsLiveData = MutableLiveData<List<PostApplicationEntity>>()
-    val badRequestEvent = SingleLiveEvent<Unit>()
-    val retryEvent = SingleLiveEvent<Unit>()
+    val retryGetPostApplicationEvent = SingleLiveEvent<Unit>()
     val needToLoginEvent = SingleLiveEvent<Unit>()
-    val notFoundEvent = SingleLiveEvent<Unit>()
+    val postNotFoundEvent = SingleLiveEvent<Unit>()
     val unknownErrorEvent = SingleLiveEvent<Unit>()
+    val acceptApplicationSuccessEvent = SingleLiveEvent<Int>()
+    val retryAcceptApplicationEvent = SingleLiveEvent<Unit>()
+    val applicationNotFoundEvent = SingleLiveEvent<Unit>()
 
     fun getPostApplication(id: Int) {
         val result = getPostApplicationUseCase.interact(id)
@@ -31,12 +36,35 @@ class PostApplicationsViewModel @Inject constructor(
                 when (t.status) {
                     ResourceStatus.SUCCESS -> postApplicationsLiveData.value = t.data!!
                     ResourceStatus.ERROR -> when (t.message) {
-                        Error.BAD_REQUEST -> badRequestEvent.call()
                         Error.UNAUTHORIZED -> {
                             tokenRefresh()
-                            retryEvent.call()
+                            retryGetPostApplicationEvent.call()
                         }
-                        Error.NOT_FOUND -> notFoundEvent.call()
+                        Error.NOT_FOUND -> postNotFoundEvent.call()
+                        else -> unknownErrorEvent.call()
+                    }
+                }
+            }
+
+            override fun onError(e: Throwable) {
+                unknownErrorEvent.call()
+            }
+        }
+        observeSingle(result, observer)
+    }
+
+    private fun acceptApplication(id: Int) {
+        val result = acceptApplicationUseCase.interact(id)
+        val observer = object : DisposableSingleObserver<Resource<Unit>>() {
+            override fun onSuccess(t: Resource<Unit>) {
+                when (t.status) {
+                    ResourceStatus.SUCCESS -> acceptApplicationSuccessEvent.setValue(id)
+                    ResourceStatus.ERROR -> when (t.message) {
+                        Error.UNAUTHORIZED -> {
+                            tokenRefresh()
+                            retryAcceptApplicationEvent.call()
+                        }
+                        Error.NOT_FOUND -> applicationNotFoundEvent.call()
                         else -> unknownErrorEvent.call()
                     }
                 }
