@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Yasunnae">
         <activity
+            android:name=".Profile.MyProfile"
+            android:exported="true" />
+        <activity
+            android:name=".Profile.Application"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
