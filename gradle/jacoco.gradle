@@ -1,0 +1,61 @@
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = '0.8.7'
+}
+
+def flavor = project.ext.has('pFlavor') ? project.ext.pFlavor : ''
+def dependsOnTask = "test${flavor.capitalize()}DebugUnitTest"
+
+task generateCodeCoverageReports(type: JacocoReport, dependsOn: dependsOnTask) {
+    group = "Reporting"
+    description = "Generate Jaoco Coverage Reports"
+
+    def reportDirPath = "$buildDir/reports/codeCoverage"
+
+    reports {
+        html.enabled true
+        xml.enabled true
+
+        html.destination file("$reportDirPath/${project.name}")
+        xml.destination file("$reportDirPath/${project.name}.xml")
+    }
+
+    def fileFilter =
+            [
+                    '**/R.class',
+                    '**/R$*.class',
+                    '**/BuildConfig.*',
+                    '**/Manifest*.*',
+                    'com/android/**/*.class'
+            ]
+
+    def javaClassDirPath = "$project.buildDir/intermediates/javac/debug/classes"
+    def kotlinClassDirPath = "$project.buildDir/tmp/kotlin-classes/debug"
+    def coverageExecutionDataPath = "${buildDir}/jacoco/testDebugUnitTest.exec"
+
+    if (!flavor.isEmpty()) {
+        javaClassDirPath = "$project.buildDir/intermediates/javac/${flavor}Debug/classes"
+        kotlinClassDirPath = "$project.buildDir/tmp/kotlin-classes/${flavor}Debug"
+        coverageExecutionDataPath = "${buildDir}/jacoco/test${flavor.capitalize()}DebugUnitTest.exec"
+    }
+
+    def mainJavaSrcPath = "$project.projectDir/src/main/java"
+    def mainKotlinSrcPath = "$project.projectDir/src/main/kotlin"
+
+    sourceDirectories.from = files([mainJavaSrcPath, mainKotlinSrcPath])
+    classDirectories.from = fileTree(
+            dir: javaClassDirPath,
+            excludes: fileFilter
+    ) + fileTree(
+            dir: kotlinClassDirPath,
+            excludes: fileFilter
+    )
+    executionData.from = file(coverageExecutionDataPath)
+}
+
+tasks.all { task ->
+    if (task.name.equals(dependsOnTask)) {
+        task.finalizedBy generateCodeCoverageReports
+    }
+}
