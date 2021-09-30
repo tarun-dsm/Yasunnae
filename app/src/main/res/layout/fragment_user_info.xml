@@ -28,7 +28,7 @@
         android:layout_marginTop="24dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:stepSize="0.5"></RatingBar>
+        android:stepSize="0.5" />
 
     <TextView
         android:id="@+id/starnum_tv"

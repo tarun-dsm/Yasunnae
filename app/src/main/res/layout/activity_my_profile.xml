@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
         android:layout_marginTop="50dp"
-        android:text="안녕하세요~"
+        android:text="@string/hello"
         android:fontFamily="@font/notosanskr_medium"
         android:textColor="#000"
         android:textSize="20dp"
