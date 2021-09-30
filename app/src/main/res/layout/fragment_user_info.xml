@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FCECDD"
+    tools:context=".Profile.user_info">
+
+
+    <TextView
+        android:id="@+id/starscore_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/notosanskr_regular"
+        android:textColor="#000"
+        android:textSize="10dp"
+        android:text="별점" />
+
+    <RatingBar
+        android:id="@+id/star_rbar"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="24dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:stepSize="0.5"></RatingBar>
+
+    <TextView
+        android:id="@+id/starnum_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/notosanskr_regular"
+        android:textColor="#000"
+        android:textSize="10dp"
+        android:text="0.00" />
+
+    <TextView
+        android:id="@+id/grade_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="215dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/notosanskr_regular"
+        android:textColor="#000"
+        android:textSize="10dp"
+        android:text="등급" />
+
+    <TextView
+        android:id="@+id/gradename_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/notosanskr_regular"
+        android:textColor="#000"
+        android:textSize="10dp"
+        android:text="등급 이름 예정" />
+
+    <TextView
+        android:id="@+id/gender_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="55dp"
+        android:fontFamily="@font/notosanskr_regular"
+        android:textColor="#000"
+        android:textSize="10dp"
+        android:text="성별" />
+
+    <TextView
+        android:id="@+id/genderfm_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="55dp"
+        android:fontFamily="@font/notosanskr_regular"
+        android:textColor="#000"
+        android:textSize="10dp"
+        android:text="남여" />
+
+    <TextView
+        android:id="@+id/age_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="215dp"
+        android:layout_marginTop="55dp"
+        android:fontFamily="@font/notosanskr_regular"
+        android:textColor="#000"
+        android:textSize="10dp"
+        android:text="나이" />
+
+    <TextView
+        android:id="@+id/agenum_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="55dp"
+        android:fontFamily="@font/notosanskr_regular"
+        android:textColor="#000"
+        android:textSize="10dp"
+        android:text="100" />
+
+    <TextView
+        android:id="@+id/area_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="86dp"
+        android:fontFamily="@font/notosanskr_regular"
+        android:textColor="#000"
+        android:textSize="10dp"
+        android:text="지역" />
+
+    <TextView
+        android:id="@+id/areaname_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="86dp"
+        android:fontFamily="@font/notosanskr_regular"
+        android:textColor="#000"
+        android:textSize="10dp"
+        android:text="목성" />
+
+    <ImageView
+        android:id="@+id/place_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/place"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="86dp"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+
+</FrameLayout>
