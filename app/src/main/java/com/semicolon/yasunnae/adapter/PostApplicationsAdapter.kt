@@ -18,11 +18,11 @@ class PostApplicationsAdapter(
 ) : RecyclerView.Adapter<PostApplicationsAdapter.ViewHolder>() {
 
     interface OnItemClickListener {
-        fun onItemClick(v: View, position: Int)
+        fun onItemClick(applicantId: Int)
     }
 
     interface OnAcceptClickListener {
-        fun onAcceptClick(position: Int)
+        fun onAcceptClick(applicationId: Int)
     }
 
     var postApplications = ArrayList<PostApplicationEntity>()
@@ -49,11 +49,11 @@ class PostApplicationsAdapter(
 
         init {
             itemView.setOnClickListener {
-                onItemClickListener.onItemClick(it, adapterPosition)
+                onItemClickListener.onItemClick(postApplications[adapterPosition].applicantId)
             }
 
             itemPostApplication.btnAcceptApplication.setOnClickListener {
-                onAcceptClickListener.onAcceptClick(adapterPosition)
+                onAcceptClickListener.onAcceptClick(postApplications[adapterPosition].applicationId)
             }
         }
     }
