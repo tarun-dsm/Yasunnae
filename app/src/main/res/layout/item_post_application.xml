@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.semicolon.yasunnae.R" />
+
+        <import type="com.semicolon.yasunnae.util.UtilExtFuncKt" />
+
+        <variable
+            name="application"
+            type="com.semicolon.domain.entity.PostApplicationEntity" />
+
+        <variable
+            name="context"
+            type="android.content.Context" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <TextView
+            android:id="@+id/tv_applicant_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="@{application.applicantNickname}"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_applicant_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@{application.administrationDivision}"
+            android:textColor="@color/gray_text"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/tv_applicant_name"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/tv_date_post_application"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:text="@{UtilExtFuncKt.toPrettyDate(application.applicationDate)}"
+            android:textColor="@color/gray_text"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/btn_accept_application"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/btn_accept_application"
+            android:layout_width="50dp"
+            android:layout_height="21dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/selector_radius_small_button"
+            android:enabled="false"
+            android:gravity="center"
+            android:text="@{application.accepted? context.getString(R.string.accept_complete):context.getString(R.string.accept)}"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SmallSp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/disabled_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
