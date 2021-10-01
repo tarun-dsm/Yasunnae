@@ -53,7 +53,7 @@ class PostApplicationsViewModel @Inject constructor(
         observeSingle(result, observer)
     }
 
-    private fun acceptApplication(id: Int) {
+    fun acceptApplication(id: Int) {
         val result = acceptApplicationUseCase.interact(id)
         val observer = object : DisposableSingleObserver<Resource<Unit>>() {
             override fun onSuccess(t: Resource<Unit>) {
