@@ -6,7 +6,6 @@ import com.semicolon.domain.base.Resource
 import com.semicolon.domain.base.ResourceStatus
 import com.semicolon.domain.entity.PostApplicationEntity
 import com.semicolon.domain.usecase.application.AcceptApplicationUseCase
-import com.semicolon.domain.usecase.application.CancelApplicationUseCase
 import com.semicolon.domain.usecase.auth.TokenRefreshUseCase
 import com.semicolon.domain.usecase.post.GetPostApplicationUseCase
 import com.semicolon.yasunnae.base.BaseViewModel
