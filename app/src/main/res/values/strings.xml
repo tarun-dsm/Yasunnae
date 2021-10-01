@@ -14,4 +14,8 @@
     <string name="go_to_post">게시글 보기</string>
     <string name="accept">수락</string>
     <string name="accept_complete">수락완료</string>
+    <string name="try_it_later">잠시 후 다시 시도해주세요</string>
+    <string name="accept_success">수락되었습니다</string>
+    <string name="application_not_found">신청을 찾을 수 없습니다</string>
+    <string name="post_not_found">게시물을 찾을 수 없습니다</string>
 </resources>
