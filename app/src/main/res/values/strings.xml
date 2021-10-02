@@ -29,6 +29,9 @@
     <string name="go_verify_location">위치인증 하러가기</string>
     <string name="dont_you_verified_location">아직 위치인증을 하지 않으셨나요?</string>
     <string name="empty_post_list">게시물이 아무것도 낫띵 없어용</string>
+    <string name="need_to_verify_location">위치인증을 하고 모든 서바스를 이용해보세요!</string>
+    <string name="go_verify">위치인증 하기</string>
+    <string name="do_it_later">나중에 할래요</string>
     <string name="mammal">포유류</string>
     <string name="bird">조류</string>
     <string name="reptiles">파충류</string>
