@@ -2,6 +2,7 @@ package com.semicolon.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 import com.semicolon.domain.entity.PostDetailEntity
+import com.semicolon.domain.enum.toAnimalType
 
 data class PostDetailResponse(
 
@@ -60,7 +61,10 @@ data class PetDetail(
     val petSex: String,
 
     @SerializedName("file_paths")
-    val filePaths: List<String>
+    val filePaths: List<String>,
+
+    @SerializedName("animal_type")
+    val animalType: String
 )
 
 fun PostDetailResponse.toEntity() = PostDetailEntity(
@@ -81,6 +85,7 @@ fun PostDetailResponse.toEntity() = PostDetailEntity(
         petName = this.pet.petName,
         petSpecies = this.pet.petSpecies,
         petSex = this.pet.petSex,
-        filePaths = this.pet.filePaths
+        filePaths = this.pet.filePaths,
+        animalType = this.pet.animalType.toAnimalType()
     )
 )
