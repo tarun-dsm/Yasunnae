@@ -12,12 +12,14 @@
         <entry key="app/src/main/res/drawable/selector_bnv_icon.xml" value="0.2574074074074074" />
         <entry key="app/src/main/res/drawable/selector_radius_small_button.xml" value="0.375" />
         <entry key="app/src/main/res/drawable/shape_radius_big_button.xml" value="0.30185185185185187" />
+        <entry key="app/src/main/res/drawable/shape_radius_category.xml" value="0.2574074074074074" />
         <entry key="app/src/main/res/drawable/shape_radius_small_button.xml" value="0.21851851851851853" />
         <entry key="app/src/main/res/layout/activity_coordinate.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_my_profile.xml" value="0.19927536231884058" />
         <entry key="app/src/main/res/layout/activity_post_applications.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_post_detail.xml" value="0.19927536231884058" />
+        <entry key="app/src/main/res/layout/fragment_post_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_post_application.xml" value="0.2587786259541985" />
         <entry key="app/src/main/res/menu/menu_bnv.xml" value="0.2947916666666667" />
       </map>
