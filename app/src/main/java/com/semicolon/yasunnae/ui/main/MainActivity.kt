@@ -1,4 +1,4 @@
-package com.semicolon.yasunnae.ui
+package com.semicolon.yasunnae.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
