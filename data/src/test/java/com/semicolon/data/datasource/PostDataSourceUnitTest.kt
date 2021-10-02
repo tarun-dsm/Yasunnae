@@ -5,6 +5,7 @@ import com.semicolon.data.local.TokenStorage
 import com.semicolon.data.remote.api.PostApi
 import com.semicolon.data.remote.request.toRequestParam
 import com.semicolon.data.remote.response.*
+import com.semicolon.domain.enum.AnimalType
 import com.semicolon.domain.param.FixedPostParam
 import com.semicolon.domain.param.PostImageParam
 import com.semicolon.domain.param.PostParam
@@ -90,6 +91,7 @@ class PostDataSourceUnitTest {
             "Tom",
             "Cat",
             "남",
+            AnimalType.MAMMAL
         )
 
         `when`(postApi.writePost(token, postParam.toRequestParam()))
@@ -111,6 +113,7 @@ class PostDataSourceUnitTest {
             "Tom",
             "Cat",
             "남",
+            AnimalType.MAMMAL
         )
         val exception = Exception()
 
@@ -160,7 +163,8 @@ class PostDataSourceUnitTest {
                 "010-0000-0000",
                 "Tom",
                 "Cat",
-                "여"
+                "여",
+                AnimalType.MAMMAL
             )
         )
 
@@ -185,7 +189,8 @@ class PostDataSourceUnitTest {
                 "010-0000-0000",
                 "Tom",
                 "Cat",
-                "여"
+                "여",
+                AnimalType.MAMMAL
             )
         )
         val exception = Exception()
@@ -241,7 +246,8 @@ class PostDataSourceUnitTest {
                 "Tom",
                 "Cat",
                 "남",
-                ArrayList()
+                ArrayList(),
+                "MAMMAL"
             )
         )
 

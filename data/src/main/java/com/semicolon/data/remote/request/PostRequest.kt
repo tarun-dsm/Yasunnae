@@ -1,6 +1,7 @@
 package com.semicolon.data.remote.request
 
 import com.google.gson.annotations.SerializedName
+import com.semicolon.domain.enum.AnimalType
 import com.semicolon.domain.param.PostParam
 
 data class PostRequest(
@@ -30,7 +31,10 @@ data class PostRequest(
     val petSpecies: String,
 
     @SerializedName("pet_sex")
-    val petSex: String
+    val petSex: String,
+
+    @SerializedName("animal_type")
+    val animalType: String
 )
 
 fun PostParam.toRequestParam() = PostRequest(
@@ -42,5 +46,6 @@ fun PostParam.toRequestParam() = PostRequest(
     contactInfo = this.contactInfo,
     petName = this.petName,
     petSpecies = this.petSpecies,
-    petSex = this.petSex
+    petSex = this.petSex,
+    animalType = this.animalType.toString()
 )

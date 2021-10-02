@@ -1,5 +1,7 @@
 package com.semicolon.domain.entity
 
+import com.semicolon.domain.enum.AnimalType
+
 data class PostEntity(
 
     val id: Int,
@@ -12,5 +14,7 @@ data class PostEntity(
 
     val protectionStartDate: String,
 
-    val protectionEndDate: String
+    val protectionEndDate: String,
+
+    val animalType: AnimalType
 )

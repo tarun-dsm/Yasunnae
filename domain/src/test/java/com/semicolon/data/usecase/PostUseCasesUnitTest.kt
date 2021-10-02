@@ -2,6 +2,7 @@ package com.semicolon.data.usecase
 
 import com.semicolon.domain.base.Resource
 import com.semicolon.domain.entity.PostDetailEntity
+import com.semicolon.domain.enum.AnimalType
 import com.semicolon.domain.param.FixedPostParam
 import com.semicolon.domain.param.PostImageParam
 import com.semicolon.domain.param.PostParam
@@ -64,7 +65,8 @@ class PostUseCasesUnitTest {
                 "010-0000-0000",
                 "Tom",
                 "Cat",
-                "여"
+                "여",
+                AnimalType.MAMMAL
             )
         )
 
@@ -107,7 +109,8 @@ class PostUseCasesUnitTest {
                 "Tom",
                 "Cat",
                 "남",
-                ArrayList()
+                ArrayList(),
+                AnimalType.MAMMAL
             )
         )
 
@@ -154,6 +157,7 @@ class PostUseCasesUnitTest {
             "Tom",
             "Cat",
             "남",
+            AnimalType.MAMMAL
         )
 
         `when`(postService.writePost(postParam))

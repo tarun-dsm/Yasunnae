@@ -2,6 +2,8 @@ package com.semicolon.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 import com.semicolon.domain.entity.PostEntity
+import com.semicolon.domain.enum.AnimalType
+import com.semicolon.domain.enum.toAnimalType
 
 data class PostListResponse(
 
@@ -27,7 +29,10 @@ data class Post(
     val protectionStartDate: String,
 
     @SerializedName("protection_end_date")
-    val protectionEndDate: String
+    val protectionEndDate: String,
+
+    @SerializedName("animal_type")
+    val animalType: String
 )
 
 fun Post.toEntity() = PostEntity(
@@ -36,5 +41,6 @@ fun Post.toEntity() = PostEntity(
     firstImagePath = this.firstImagePath,
     administrationDivision = this.administrationDivision,
     protectionStartDate = this.protectionStartDate,
-    protectionEndDate = this.protectionEndDate
+    protectionEndDate = this.protectionEndDate,
+    animalType = this.animalType.toAnimalType()
 )
