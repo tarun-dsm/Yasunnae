@@ -20,6 +20,7 @@ class PostListViewModel(
 ) : BaseViewModel() {
 
     val isLocationVerifiedLiveData = MutableLiveData<Boolean>()
+    val userLocationLiveData = MutableLiveData<String>()
     val postListLiveDate = MutableLiveData<List<PostEntity>>()
     val retryEvent = SingleLiveEvent<Unit>()
     val needToLoginEvent = SingleLiveEvent<Unit>()
@@ -30,8 +31,10 @@ class PostListViewModel(
         val observer = object : DisposableSingleObserver<Resource<ProfileEntity>>() {
             override fun onSuccess(t: Resource<ProfileEntity>) {
                 when (t.status) {
-                    ResourceStatus.SUCCESS ->
+                    ResourceStatus.SUCCESS -> {
                         isLocationVerifiedLiveData.value = t.data!!.locationConfirm
+                        userLocationLiveData.value = t.data!!.administrationDivision
+                    }
                     ResourceStatus.ERROR -> when (t.message) {
                         Error.UNAUTHORIZED -> {
                             tokenRefresh()
