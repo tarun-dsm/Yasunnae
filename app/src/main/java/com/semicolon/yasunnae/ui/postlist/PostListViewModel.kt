@@ -19,7 +19,7 @@ class PostListViewModel(
     private val tokenRefreshUseCase: TokenRefreshUseCase
 ) : BaseViewModel() {
 
-    val isLocationVerifiedLiveData = MutableLiveData<Boolean>()
+    val isLocationVerifiedLiveData = SingleLiveEvent<Boolean>()
     val userLocationLiveData = MutableLiveData<String>()
     val postListLiveDate = MutableLiveData<List<PostEntity>>()
     val retryEvent = SingleLiveEvent<Unit>()
@@ -32,7 +32,7 @@ class PostListViewModel(
             override fun onSuccess(t: Resource<ProfileEntity>) {
                 when (t.status) {
                     ResourceStatus.SUCCESS -> {
-                        isLocationVerifiedLiveData.value = t.data!!.locationConfirm
+                        isLocationVerifiedLiveData.setValue(t.data!!.locationConfirm)
                         userLocationLiveData.value = t.data!!.administrationDivision
                     }
                     ResourceStatus.ERROR -> when (t.message) {
