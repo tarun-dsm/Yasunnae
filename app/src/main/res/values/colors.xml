@@ -14,4 +14,5 @@
     <color name="red_orange">#FFFF6701</color>
     <color name="disabled_gray">#FFC4C4C4</color>
     <color name="gray_text">#FF747474</color>
+    <color name="disabled_bnv_icon">#FF3E3E3E</color>
 </resources>
