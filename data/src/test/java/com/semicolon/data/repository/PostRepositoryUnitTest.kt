@@ -2,6 +2,7 @@ package com.semicolon.data.repository
 
 import com.semicolon.data.datasource.PostDataSource
 import com.semicolon.data.remote.response.*
+import com.semicolon.domain.enum.AnimalType
 import com.semicolon.domain.param.FixedPostParam
 import com.semicolon.domain.param.PostImageParam
 import com.semicolon.domain.param.PostParam
@@ -70,6 +71,7 @@ class PostRepositoryUnitTest {
             "Tom",
             "Cat",
             "남",
+            AnimalType.MAMMAL
         )
 
         `when`(postDataSource.writePost(postParam))
@@ -91,6 +93,7 @@ class PostRepositoryUnitTest {
             "Tom",
             "Cat",
             "남",
+            AnimalType.MAMMAL
         )
         val exception = Exception()
 
@@ -139,7 +142,8 @@ class PostRepositoryUnitTest {
                 "010-0000-0000",
                 "Tom",
                 "Cat",
-                "여"
+                "여",
+                AnimalType.MAMMAL
             )
         )
 
@@ -163,7 +167,8 @@ class PostRepositoryUnitTest {
                 "010-0000-0000",
                 "Tom",
                 "Cat",
-                "여"
+                "여",
+                AnimalType.MAMMAL
             )
         )
         val exception = Exception()
@@ -219,7 +224,8 @@ class PostRepositoryUnitTest {
                 "Tom",
                 "Cat",
                 "남",
-                ArrayList()
+                ArrayList(),
+                "MAMMAL"
             )
         )
 
