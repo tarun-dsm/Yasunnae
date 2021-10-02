@@ -19,5 +19,5 @@ interface AuthApi {
     @PATCH("auth")
     fun tokenRefresh(
         @Header("X-Refresh-Token") token: String
-    ): Single<AccessTokenResponse>
+    ): Single<TokenResponse>
 }
