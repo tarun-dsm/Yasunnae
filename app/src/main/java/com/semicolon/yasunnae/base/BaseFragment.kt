@@ -27,10 +27,13 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = this
+        observe()
         init()
     }
 
     abstract fun init()
+
+    abstract fun observe()
 
     protected fun makeToast(msg: String) =
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
