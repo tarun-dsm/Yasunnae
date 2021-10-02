@@ -70,7 +70,7 @@ class AuthDataSourceUnitTest {
         val refreshToken = "jkl.mno.pqr"
 
         `when`(authApi.tokenRefresh(refreshToken))
-            .thenReturn(Single.just(AccessTokenResponse(accessToken)))
+            .thenReturn(Single.just(TokenResponse(accessToken, refreshToken)))
 
         `when`(tokenStorage.getRefreshToken())
             .thenReturn(refreshToken)
@@ -78,7 +78,7 @@ class AuthDataSourceUnitTest {
         authDataSource.tokenRefresh().test()
             .assertComplete()
 
-        verify(tokenStorage).saveAccessToken(accessToken)
+        verify(tokenStorage).saveToken(accessToken, refreshToken)
     }
 
     @Test
