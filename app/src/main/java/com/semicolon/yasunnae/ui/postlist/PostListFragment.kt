@@ -1,60 +1,88 @@
 package com.semicolon.yasunnae.ui.postlist
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
+import android.content.Intent
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import com.semicolon.domain.enum.AnimalType
 import com.semicolon.yasunnae.R
+import com.semicolon.yasunnae.adapter.PostListAdapter
+import com.semicolon.yasunnae.base.BaseFragment
+import com.semicolon.yasunnae.databinding.FragmentPostListBinding
+import com.semicolon.yasunnae.ui.coordinate.CoordinateActivity
+import com.semicolon.yasunnae.ui.dialog.NeedToVerifyLocationDialog
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class PostListFragment : BaseFragment<FragmentPostListBinding>() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [PostListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class PostListFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    override val layoutResId: Int
+        get() = R.layout.fragment_post_list
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private val postListViewModel: PostListViewModel by viewModels()
+    private val postListAdapter = PostListAdapter(object : PostListAdapter.OnItemClickListener {
+        override fun onItemClick(postId: Int) {
+            TODO("게시물 상세 페이지로 이동")
+        }
+    })
+
+    override fun init() {
+        binding.rvPostList.adapter = postListAdapter
+        binding.btnGoVerifyLocation.setOnClickListener {
+            startVerifyLocationActivity()
+        }
+        binding.rgAnimalCategories.setOnCheckedChangeListener { group, checkedId ->
+            if (checkedId == group.checkedRadioButtonId) {
+                group.clearCheck()
+                postListAdapter.resetCategory()
+            } else when (checkedId) {
+                R.id.rb_mammal -> setCategory(AnimalType.MAMMAL)
+                R.id.rb_bird -> setCategory(AnimalType.BIRD)
+                R.id.rb_reptiles -> setCategory(AnimalType.REPTILES)
+                R.id.rb_amphibians -> setCategory(AnimalType.AMPHIBIANS)
+                R.id.rb_fish -> setCategory(AnimalType.FISH)
+                R.id.rb_arthropods -> setCategory(AnimalType.ARTHROPODS)
+                else -> setCategory(AnimalType.WRONG_TYPE)
+            }
+        }
+        postListViewModel.isLocationVerified()
+        postListViewModel.getPostList()
+    }
+
+    override fun observe() {
+        postListViewModel.isLocationVerifiedLiveData.observe(this) {
+            NeedToVerifyLocationDialog(requireContext()) {
+                startVerifyLocationActivity()
+            }.callDialog()
+        }
+        postListViewModel.postListLiveDate.observe(this) {
+            postListAdapter.setList(it)
+        }
+        postListViewModel.retryEvent.observe(this) {
+            makeToast(getString(R.string.try_it_later))
+        }
+        postListViewModel.needToLoginEvent.observe(this) {
+            TODO("로그인 창으로 이동")
+        }
+        postListViewModel.unknownErrorEvent.observe(this) {
+            makeToast(getString(R.string.unknown_error))
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_post_list, container, false)
+    private fun setCategory(category: AnimalType) {
+        isListEmpty(!postListAdapter.setCategory(category))
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment PostListFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            PostListFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun isListEmpty(isEmpty: Boolean) {
+        if (isEmpty) {
+            binding.rvPostList.visibility = View.INVISIBLE
+            binding.clEmptyPostList.visibility = View.VISIBLE
+        } else {
+            binding.rvPostList.visibility = View.VISIBLE
+            binding.clEmptyPostList.visibility = View.INVISIBLE
+        }
     }
+
+    private fun startVerifyLocationActivity() {
+        val intent = Intent(context, CoordinateActivity::class.java)
+        startActivity(intent)
+    }
+
 }
