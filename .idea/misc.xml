@@ -10,6 +10,7 @@
         <entry key="app/src/main/res/drawable/ic_my_applications.xml" value="0.20925925925925926" />
         <entry key="app/src/main/res/drawable/ic_my_profile.xml" value="0.20925925925925926" />
         <entry key="app/src/main/res/drawable/selector_bnv_icon.xml" value="0.2574074074074074" />
+        <entry key="app/src/main/res/drawable/selector_radius_big_button.xml" value="0.2574074074074074" />
         <entry key="app/src/main/res/drawable/selector_radius_small_button.xml" value="0.375" />
         <entry key="app/src/main/res/drawable/shape_radius_banner.xml" value="0.2574074074074074" />
         <entry key="app/src/main/res/drawable/shape_radius_big_button.xml" value="0.30185185185185187" />
