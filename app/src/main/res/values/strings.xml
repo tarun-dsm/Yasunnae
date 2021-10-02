@@ -25,5 +25,16 @@
     <string name="my_applications">신청목</string>록
     <string name="my_profile">마이페이지</string>
 
+    <string name="new_post">최신 게시물</string>
+    <string name="go_verify_location">위치인증 하러가기</string>
+    <string name="dont_you_verified_location">아직 위치인증을 하지 않으셨나요?</string>
+    <string name="empty_post_list">게시물이 아무것도 낫띵 없어용</string>
+    <string name="mammal">포유류</string>
+    <string name="bird">조류</string>
+    <string name="reptiles">파충류</string>
+    <string name="amphibians">양서류</string>
+    <string name="fish">어류</string>
+    <string name="arthropods">절지동물</string>
+
     <string name="hello">안녕하세요~</string>
 </resources>
