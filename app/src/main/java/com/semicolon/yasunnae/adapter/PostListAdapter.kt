@@ -1,5 +1,6 @@
 package com.semicolon.yasunnae.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,17 +37,21 @@ class PostListAdapter(
         postList.size
 
     fun setList(postList: List<PostEntity>) {
-        this.postList = ArrayList(postList)
+        this.totalPostList = ArrayList(postList)
         resetCategory()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun resetCategory(): Boolean {
         postList = totalPostList
+        this.notifyDataSetChanged()
         return postList.isNotEmpty()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setCategory(category: AnimalType): Boolean {
         postList = ArrayList(totalPostList.filter { it.animalType == category })
+        notifyDataSetChanged()
         return postList.isNotEmpty()
     }
 
