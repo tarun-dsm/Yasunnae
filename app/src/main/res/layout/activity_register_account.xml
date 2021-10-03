@@ -3,20 +3,577 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.registeraccount.RegisterAccountActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:id="@+id/cl_app_bar_register_account"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <ImageView
+                android:id="@+id/iv_back_arrow_register_account"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintBottom_toBottomOf="@id/tv_title_register_account"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_title_register_account"
+                app:tint="@color/black"
+                tools:ignore="ContentDescription" />
 
+            <TextView
+                android:id="@+id/tv_title_register_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/register_account"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@id/iv_back_arrow_register_account"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_app_bar_register_account">
 
-    </ScrollView>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="40dp">
+
+                <TextView
+                    android:id="@+id/tv_email_register_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/email"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_email_register_account"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shape_radius_dialog"
+                    android:backgroundTint="@color/ivory"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_email_register_account">
+
+                    <EditText
+                        android:id="@+id/et_email_register_account"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/email"
+                        android:importantForAutofill="no"
+                        android:inputType="textEmailAddress"
+                        android:paddingHorizontal="15dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/red_orange"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@id/btn_check_duplicate_email"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/btn_check_duplicate_email"
+                        android:layout_width="42dp"
+                        android:layout_height="23dp"
+                        android:layout_marginEnd="15dp"
+                        android:background="@drawable/selector_radius_small_button"
+                        android:gravity="center"
+                        android:text="@string/duplicate"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tv_duplicate_email_warning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/duplicate_email"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="12sp"
+                    android:visibility="invisible"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_email_register_account" />
+
+                <TextView
+                    android:id="@+id/tv_email_verify_register_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:text="@string/email_verify"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_email_register_account" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_email_verify_register_account"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shape_radius_dialog"
+                    android:backgroundTint="@color/ivory"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_email_verify_register_account">
+
+                    <EditText
+                        android:id="@+id/et_email_verify_register_account"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/input_verify_number"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:paddingHorizontal="15dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/red_orange"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@id/btn_email_verify_register_account"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="TextFields" />
+
+                    <TextView
+                        android:id="@+id/btn_email_verify_register_account"
+                        android:layout_width="42dp"
+                        android:layout_height="23dp"
+                        android:layout_marginEnd="15dp"
+                        android:background="@drawable/selector_radius_small_button"
+                        android:gravity="center"
+                        android:text="@string/ok"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tv_incorrect_verify_number_warning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/incorrect_verify_number"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="12sp"
+                    android:visibility="invisible"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_email_verify_register_account" />
+
+                <TextView
+                    android:id="@+id/tv_password_register_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:text="@string/password"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_email_verify_register_account" />
+
+                <EditText
+                    android:id="@+id/et_password_register_account"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shape_radius_dialog"
+                    android:backgroundTint="@color/ivory"
+                    android:hint="@string/password"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:paddingHorizontal="15dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/red_orange"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_password_register_account" />
+
+                <TextView
+                    android:id="@+id/tv_check_password_register_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:text="@string/check_password"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_password_register_account" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_check_password_register_account"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shape_radius_dialog"
+                    android:backgroundTint="@color/ivory"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_check_password_register_account">
+
+                    <EditText
+                        android:id="@+id/et_check_password_register_account"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/password"
+                        android:importantForAutofill="no"
+                        android:inputType="textPassword"
+                        android:paddingHorizontal="15dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/red_orange"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@id/btn_check_password_register_account"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/btn_check_password_register_account"
+                        android:layout_width="42dp"
+                        android:layout_height="23dp"
+                        android:layout_marginEnd="15dp"
+                        android:background="@drawable/selector_radius_small_button"
+                        android:gravity="center"
+                        android:text="@string/ok"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tv_different_password_warning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/different_password"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="12sp"
+                    android:visibility="invisible"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_check_password_register_account" />
+
+                <TextView
+                    android:id="@+id/tv_nickname_register_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:text="@string/nickname"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_check_password_register_account" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_nickname_register_account"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shape_radius_dialog"
+                    android:backgroundTint="@color/ivory"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_nickname_register_account">
+
+                    <EditText
+                        android:id="@+id/et_nickname_register_account"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/nickname"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:paddingHorizontal="15dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/red_orange"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@id/btn_check_duplicate_nickname"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/btn_check_duplicate_nickname"
+                        android:layout_width="42dp"
+                        android:layout_height="23dp"
+                        android:layout_marginEnd="15dp"
+                        android:background="@drawable/selector_radius_small_button"
+                        android:gravity="center"
+                        android:text="@string/duplicate"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tv_duplicate_nickname_warning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/duplicate_nickname"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="12sp"
+                    android:visibility="invisible"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_nickname_register_account" />
+
+                <TextView
+                    android:id="@+id/tv_gender_register_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:text="@string/gender"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_nickname_register_account" />
+
+                <RadioGroup
+                    android:id="@+id/rg_gender_register_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_gender_register_account">
+
+                    <RadioButton
+                        android:id="@+id/rb_male_register_account"
+                        android:layout_width="58dp"
+                        android:layout_height="20dp"
+                        android:buttonTint="@color/red_orange"
+                        android:checked="true"
+                        android:layoutDirection="rtl"
+                        android:text="@string/male"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/rb_female_register_account"
+                        android:layout_width="58dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:buttonTint="@color/red_orange"
+                        android:layoutDirection="rtl"
+                        android:text="@string/female"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/tv_age_register_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:text="@string/age"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_gender_register_account"
+                    app:layout_constraintLeft_toRightOf="@id/rg_gender_register_account"
+                    app:layout_constraintTop_toTopOf="@id/tv_gender_register_account" />
+
+                <EditText
+                    android:id="@+id/et_age_register_account"
+                    android:layout_width="50dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/shape_radius_banner"
+                    android:backgroundTint="@color/ivory"
+                    android:hint="@string/zero_zero"
+                    android:importantForAutofill="no"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:paddingHorizontal="10dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/red_orange"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/rg_gender_register_account"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_age_register_account"
+                    app:layout_constraintTop_toTopOf="@id/rg_gender_register_account" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/age_unit"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@id/et_age_register_account"
+                    app:layout_constraintLeft_toRightOf="@id/et_age_register_account"
+                    app:layout_constraintTop_toTopOf="@id/et_age_register_account" />
+
+                <TextView
+                    android:id="@+id/tv_please_input_age_warning"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/please_input_age"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="12sp"
+                    android:visibility="invisible"
+                    app:layout_constraintLeft_toLeftOf="@id/et_age_register_account"
+                    app:layout_constraintTop_toBottomOf="@id/et_age_register_account" />
+
+                <TextView
+                    android:id="@+id/tv_have_ever_raised_pet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:text="@string/have_ever_raised_pet"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rg_gender_register_account" />
+
+                <RadioGroup
+                    android:id="@+id/rg_have_ever_raised_pet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_have_ever_raised_pet">
+
+                    <RadioButton
+                        android:id="@+id/rb_yes_register_account"
+                        android:layout_width="50dp"
+                        android:layout_height="20dp"
+                        android:buttonTint="@color/red_orange"
+                        android:checked="true"
+                        android:layoutDirection="rtl"
+                        android:text="@string/yes"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/rb_no_register_account"
+                        android:layout_width="75dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="30dp"
+                        android:buttonTint="@color/red_orange"
+                        android:layoutDirection="rtl"
+                        android:text="@string/no"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/tv_experience_register_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:text="@string/experience"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/rg_have_ever_raised_pet" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_experience_register_account"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shape_radius_dialog"
+                    android:backgroundTint="@color/ivory"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_experience_register_account">
+
+                    <EditText
+                        android:id="@+id/et_experience_register_account"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="left"
+                        android:hint="@string/input_experience"
+                        android:importantForAutofill="no"
+                        android:inputType="none"
+                        android:padding="15dp"
+                        android:textColorHint="@color/red_orange"
+                        android:textSize="14sp"
+                        app:layout_constraintHeight_min="100dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="RtlHardcoded" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="@color/gray_text"
+                        android:textSize="10sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/et_experience_register_account"
+                        tools:ignore="SmallSp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/btn_register_account"
+                    android:layout_width="0dp"
+                    android:layout_height="42dp"
+                    android:layout_marginVertical="35dp"
+                    android:background="@drawable/selector_radius_big_button"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:text="@string/complete_register_account"
+                    android:textColor="@color/selector_color_big_button"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_experience_register_account" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </layout>
