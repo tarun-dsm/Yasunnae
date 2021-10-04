@@ -39,6 +39,33 @@
     <string name="fish">어류</string>
     <string name="arthropods">절지동물</string>
 
+    <string name="register_account">회원가입</string>
+    <string name="complete_register_account">회원가입 완료</string>
+    <string name="email">이메일</string>
+    <string name="email_verify">이메일 인증</string>
+    <string name="input_verify_number">인증번호를 입력해주세요</string>
+    <string name="password">비밀번호</string>
+    <string name="check_password">비밀번호 확인</string>
+    <string name="nickname">닉네임</string>
+    <string name="gender">성별</string>
+    <string name="male">남자</string>
+    <string name="female">여자</string>
+    <string name="age">나이</string>
+    <string name="age_unit">세</string>
+    <string name="have_ever_raised_pet">반려동물을 키워본 적이 있나요?</string>
+    <string name="yes">예</string>
+    <string name="no">아니오</string>
+    <string name="experience">경험</string>
+    <string name="input_experience">반려동물을 키운 경험에 대해 설명할 사항이 있으면 작성해주세요</string>
+    <string name="duplicate">중복</string>
+    <string name="ok">확인</string>
+    <string name="zero_zero">00</string>
+    <string name="duplicate_email">중복되는 이메일입니다.</string>
+    <string name="incorrect_verify_number">인증번호가 올바르지 않습니다.</string>
+    <string name="different_password">비밀번호가 다릅니다.</string>
+    <string name="duplicate_nickname">중복되는 닉네임입니다.</string>
+    <string name="please_input_age">나이를 입력해주세요.</string>
+
     <string name="hello">안녕하세요~</string>
     <string name="prompt_email">이메일</string>
     <string name="prompt_password">비밀번호</string>
