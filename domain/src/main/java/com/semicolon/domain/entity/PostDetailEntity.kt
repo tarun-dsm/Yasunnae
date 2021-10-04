@@ -1,5 +1,7 @@
 package com.semicolon.domain.entity
 
+import com.semicolon.domain.enum.AnimalType
+
 data class PostDetailEntity(
 
     val nickname: String,
@@ -9,7 +11,7 @@ data class PostDetailEntity(
     val post: PostInfo,
 
     val pet: PetInfo
-){
+) {
     data class PostInfo(
 
         val title: String,
@@ -39,6 +41,8 @@ data class PostDetailEntity(
 
         val petSex: String,
 
-        val filePaths: List<String>
+        val filePaths: List<String>,
+
+        val animalType: AnimalType
     )
 }
