@@ -18,11 +18,13 @@
         <entry key="app/src/main/res/drawable/shape_radius_dialog.xml" value="0.2574074074074074" />
         <entry key="app/src/main/res/drawable/shape_radius_small_button.xml" value="0.21851851851851853" />
         <entry key="app/src/main/res/layout/activity_coordinate.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.26927502876869963" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_my_profile.xml" value="0.19927536231884058" />
         <entry key="app/src/main/res/layout/activity_post_applications.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_post_detail.xml" value="0.19927536231884058" />
         <entry key="app/src/main/res/layout/activity_register_account.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_write_post.xml" value="0.19927536231884058" />
         <entry key="app/src/main/res/layout/dialog_need_to_verify_location.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_post_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_post.xml" value="0.375" />
