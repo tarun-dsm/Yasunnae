@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Yasunnae"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.registeraccount.RegisterAccountActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.postapplications.PostApplicationsActivity"
             android:exported="true" />
         <activity
@@ -24,7 +27,6 @@
         <activity
             android:name=".Profile.MyProfile"
             android:exported="true" />
-
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true">
