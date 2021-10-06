@@ -92,4 +92,7 @@
     <string name="input_pet_species">반려동물의 종을 입력해주세요</string>
     <string name="input_pet_gender">반려동물의 성별을 입력해주세요</string>
     <string name="complete_write">작성 완료</string>
+    <string name="limit_post_title">/30</string>
+    <string name="limit_post_description">/225</string>
+    <string name="limit_post_contacts">/100</string>
 </resources>
