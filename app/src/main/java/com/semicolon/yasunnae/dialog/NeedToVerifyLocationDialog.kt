@@ -1,4 +1,4 @@
-package com.semicolon.yasunnae.ui.dialog
+package com.semicolon.yasunnae.dialog
 
 import android.app.Dialog
 import android.content.Context

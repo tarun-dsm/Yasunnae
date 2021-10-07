@@ -9,7 +9,7 @@ import com.semicolon.yasunnae.adapter.PostListAdapter
 import com.semicolon.yasunnae.base.BaseFragment
 import com.semicolon.yasunnae.databinding.FragmentPostListBinding
 import com.semicolon.yasunnae.ui.coordinate.CoordinateActivity
-import com.semicolon.yasunnae.ui.dialog.NeedToVerifyLocationDialog
+import com.semicolon.yasunnae.dialog.NeedToVerifyLocationDialog
 
 class PostListFragment : BaseFragment<FragmentPostListBinding>() {
 
