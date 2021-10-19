@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Yasunnae"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.writepost.WritePostActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.registeraccount.RegisterAccountActivity"
             android:exported="true" />
         <activity

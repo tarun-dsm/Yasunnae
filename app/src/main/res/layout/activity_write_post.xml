@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.writepost.WritePostActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_app_bar_write_post"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_back_arrow_write_post"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/ic_arrow_back"
+                app:layout_constraintBottom_toBottomOf="@id/tv_app_bar_write_post"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_app_bar_write_post"
+                app:tint="@color/black"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tv_app_bar_write_post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@id/iv_back_arrow_write_post"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_app_bar_write_post">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="20dp">
+
+                <ScrollView
+                    android:id="@+id/sv_animal_categories_write_post"
+                    android:layout_width="0dp"
+                    android:layout_height="26dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="NestedScrolling">
+
+                    <RadioGroup
+                        android:id="@+id/rg_animal_categories_write_post"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:checkedButton="@id/rb_mammal_write_post"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/rb_mammal_write_post"
+                            android:layout_width="51dp"
+                            android:layout_height="26dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/shape_radius_category"
+                            android:backgroundTint="@color/banner_background"
+                            android:button="@null"
+                            android:elevation="5dp"
+                            android:gravity="center"
+                            android:text="@string/mammal"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            tools:ignore="SmallSp,TouchTargetSizeCheck" />
+
+                        <RadioButton
+                            android:id="@+id/rb_bird_write_post"
+                            android:layout_width="51dp"
+                            android:layout_height="26dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/shape_radius_category"
+                            android:backgroundTint="@color/banner_background"
+                            android:button="@null"
+                            android:elevation="5dp"
+                            android:gravity="center"
+                            android:text="@string/bird"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            tools:ignore="SmallSp,TouchTargetSizeCheck" />
+
+                        <RadioButton
+                            android:id="@+id/rb_reptiles_write_post"
+                            android:layout_width="51dp"
+                            android:layout_height="26dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/shape_radius_category"
+                            android:backgroundTint="@color/banner_background"
+                            android:button="@null"
+                            android:elevation="5dp"
+                            android:gravity="center"
+                            android:text="@string/reptiles"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            tools:ignore="SmallSp,TouchTargetSizeCheck" />
+
+                        <RadioButton
+                            android:id="@+id/rb_amphibians_write_post"
+                            android:layout_width="51dp"
+                            android:layout_height="26dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/shape_radius_category"
+                            android:backgroundTint="@color/banner_background"
+                            android:button="@null"
+                            android:elevation="5dp"
+                            android:gravity="center"
+                            android:text="@string/amphibians"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            tools:ignore="SmallSp,TouchTargetSizeCheck" />
+
+                        <RadioButton
+                            android:id="@+id/rb_fish_write_post"
+                            android:layout_width="51dp"
+                            android:layout_height="26dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/shape_radius_category"
+                            android:backgroundTint="@color/banner_background"
+                            android:button="@null"
+                            android:elevation="5dp"
+                            android:gravity="center"
+                            android:text="@string/fish"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            tools:ignore="SmallSp,TouchTargetSizeCheck" />
+
+                        <RadioButton
+                            android:id="@+id/rb_arthropods_write_post"
+                            android:layout_width="51dp"
+                            android:layout_height="26dp"
+                            android:background="@drawable/shape_radius_category"
+                            android:backgroundTint="@color/banner_background"
+                            android:button="@null"
+                            android:elevation="5dp"
+                            android:gravity="center"
+                            android:text="@string/arthropods"
+                            android:textColor="@color/black"
+                            android:textSize="10sp"
+                            tools:ignore="SmallSp,TouchTargetSizeCheck" />
+
+                    </RadioGroup>
+
+                </ScrollView>
+
+                <TextView
+                    android:id="@+id/tv_title_write_post"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/title"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sv_animal_categories_write_post" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_title_write_post"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/shape_radius_dialog"
+                    android:backgroundTint="@color/ivory"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title_write_post">
+
+
+                    <EditText
+                        android:id="@+id/et_title_write_post"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="left"
+                        android:hint="@string/input_title"
+                        android:importantForAutofill="no"
+                        android:inputType="none"
+                        android:maxLength="30"
+                        android:padding="15dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/red_orange"
+                        android:textSize="14sp"
+                        app:layout_constraintHeight_min="60dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="RtlHardcoded,TextContrastCheck" />
+
+                    <TextView
+                        android:id="@+id/tv_count_title_write_post"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:text="@string/limit_post_title"
+                        android:textColor="@color/gray_text"
+                        android:textSize="10sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/et_title_write_post"
+                        tools:ignore="SmallSp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tv_date_write_post"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/date"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_title_write_post" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_date_write_post"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/shape_radius_dialog"
+                    android:backgroundTint="@color/ivory"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_date_write_post">
+
+                    <ImageView
+                        android:id="@+id/iv_start_date_write_post"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_calendar"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@id/tv_start_date_write_post"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/tv_start_date_write_post"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/iv_start_date_write_post"
+                        app:layout_constraintRight_toLeftOf="@id/tv_from_write_post"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_from_write_post"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/from"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/tv_start_date_write_post"
+                        app:layout_constraintRight_toLeftOf="@id/iv_end_date_write_post"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/iv_end_date_write_post"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="20dp"
+                        android:src="@drawable/ic_calendar"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/tv_from_write_post"
+                        app:layout_constraintRight_toLeftOf="@id/tv_end_date_write_post"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/tv_end_date_write_post"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/iv_end_date_write_post"
+                        app:layout_constraintRight_toLeftOf="@id/tv_until_write_post"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_until_write_post"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/until"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/tv_end_date_write_post"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tv_deadline_write_post"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/deadline"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_date_write_post"
+                    tools:ignore="TextContrastCheck" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_deadline_write_post"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/shape_radius_dialog"
+                    android:backgroundTint="@color/ivory"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_deadline_write_post">
+
+                    <ImageView
+                        android:id="@+id/iv_deadline_write_post"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="30dp"
+                        android:src="@drawable/ic_calendar"
+                        android:tint="@color/red_orange"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription,UseAppTint,ImageContrastCheck" />
+
+                    <TextView
+                        android:id="@+id/tv_cur_deadline_write_post"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:textColor="@color/red_orange"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/iv_deadline_write_post"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tv_description_write_post"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/description"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_deadline_write_post" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_description_write_post"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/shape_radius_dialog"
+                    android:backgroundTint="@color/ivory"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_description_write_post">
+
+
+                    <EditText
+                        android:id="@+id/et_description_write_post"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="left"
+                        android:hint="@string/input_description"
+                        android:importantForAutofill="no"
+                        android:inputType="none"
+                        android:maxLength="225"
+                        android:padding="15dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/red_orange"
+                        android:textSize="14sp"
+                        app:layout_constraintHeight_min="170dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="RtlHardcoded,TextContrastCheck" />
+
+                    <TextView
+                        android:id="@+id/tv_count_description_write_post"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:text="@string/limit_post_description"
+                        android:textColor="@color/gray_text"
+                        android:textSize="10sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/et_description_write_post"
+                        tools:ignore="SmallSp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tv_contacts_write_post"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/contacts"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_description_write_post" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_contacts_write_post"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/shape_radius_dialog"
+                    android:backgroundTint="@color/ivory"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_contacts_write_post">
+
+                    <EditText
+                        android:id="@+id/et_contacts_write_post"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="left"
+                        android:hint="@string/input_contacts"
+                        android:importantForAutofill="no"
+                        android:inputType="none"
+                        android:maxLength="100"
+                        android:padding="15dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/red_orange"
+                        android:textSize="14sp"
+                        app:layout_constraintHeight_min="90dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="RtlHardcoded,TextContrastCheck" />
+
+                    <TextView
+                        android:id="@+id/tv_count_contacts_write_post"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:text="@string/limit_post_contacts"
+                        android:textColor="@color/gray_text"
+                        android:textSize="10sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/et_contacts_write_post"
+                        tools:ignore="SmallSp" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/tv_image_write_post"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/pet_photo"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_contacts_write_post" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_image_write_post"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/shape_radius_dialog"
+                    android:backgroundTint="@color/ivory"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_image_write_post">
+
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/vp_image_write_post"
+                        android:layout_width="0dp"
+                        android:layout_height="206dp"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="25dp"
+                        android:background="@drawable/shape_radius_banner"
+                        android:backgroundTint="@color/white"
+                        android:elevation="10dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageButton
+                        android:id="@+id/btn_delete_image_write_post"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:background="@drawable/shape_radius_dialog"
+                        android:backgroundTint="@color/white"
+                        android:elevation="15dp"
+                        android:src="@drawable/ic_delete"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toTopOf="@id/vp_image_write_post"
+                        app:layout_constraintLeft_toRightOf="@id/vp_image_write_post"
+                        app:layout_constraintRight_toRightOf="@id/vp_image_write_post"
+                        app:layout_constraintTop_toTopOf="@id/vp_image_write_post"
+                        tools:ignore="ContentDescription" />
+
+                    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                        android:id="@+id/indicator_image_write_post"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:dotsColor="@color/disabled_gray"
+                        app:dotsSize="10dp"
+                        app:dotsSpacing="3dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/vp_image_write_post"
+                        app:selectedDotColor="@color/white" />
+
+                    <ImageButton
+                        android:id="@+id/btn_add_image_write_post"
+                        android:layout_width="42dp"
+                        android:layout_height="29dp"
+                        android:layout_marginVertical="15dp"
+                        android:background="@drawable/shape_radius_banner"
+                        android:backgroundTint="@color/white"
+                        android:src="@drawable/ic_add_image"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/vp_image_write_post"
+                        tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_pet_name_write_post"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/name"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cl_image_write_post" />
+
+                <EditText
+                    android:id="@+id/et_pet_name_write_post"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/shape_radius_dialog"
+                    android:backgroundTint="@color/ivory"
+                    android:hint="@string/input_pet_name"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:paddingHorizontal="15dp"
+                    android:textColorHint="@color/red_orange"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_pet_name_write_post"
+                    tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tv_pet_species_write_post"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/species"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_pet_name_write_post" />
+
+                <EditText
+                    android:id="@+id/et_pet_species_write_post"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/shape_radius_dialog"
+                    android:backgroundTint="@color/ivory"
+                    android:hint="@string/input_pet_species"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:paddingHorizontal="15dp"
+                    android:textColorHint="@color/red_orange"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_pet_species_write_post"
+                    tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/tv_pet_gender_write_post"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/gender"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_pet_species_write_post" />
+
+                <EditText
+                    android:id="@+id/et_pet_gender_write_post"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/shape_radius_dialog"
+                    android:backgroundTint="@color/ivory"
+                    android:hint="@string/input_pet_gender"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:paddingHorizontal="15dp"
+                    android:textColorHint="@color/red_orange"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_pet_gender_write_post"
+                    tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+
+                <TextView
+                    android:id="@+id/btn_write_post"
+                    android:layout_width="0dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="35dp"
+                    android:background="@drawable/selector_radius_big_button"
+                    android:enabled="false"
+                    android:gravity="center"
+                    android:textColor="@color/selector_color_big_button"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/et_pet_gender_write_post" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
