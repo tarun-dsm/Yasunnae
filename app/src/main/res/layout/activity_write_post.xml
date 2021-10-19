@@ -34,7 +34,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="20dp"
-                android:text="@string/title_write_post"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -72,6 +71,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:checkedButton="@id/rb_mammal_write_post"
                         android:orientation="horizontal">
 
                         <RadioButton
@@ -667,7 +667,6 @@
                     android:background="@drawable/selector_radius_big_button"
                     android:enabled="false"
                     android:gravity="center"
-                    android:text="@string/complete_write"
                     android:textColor="@color/selector_color_big_button"
                     android:textSize="14sp"
                     android:textStyle="bold"
