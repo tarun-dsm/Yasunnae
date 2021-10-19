@@ -75,6 +75,7 @@
     <string name="login_warning">이메일이나 비밀번호가 올바르지 않습니다.</string>
 
     <string name="title_write_post">게시글 작성</string>
+    <string name="title_edit_post">게시글 수정</string>
     <string name="title">제목</string>
     <string name="date">날짜</string>
     <string name="from">부터</string>
@@ -92,6 +93,7 @@
     <string name="input_pet_species">반려동물의 종을 입력해주세요</string>
     <string name="input_pet_gender">반려동물의 성별을 입력해주세요</string>
     <string name="complete_write">작성 완료</string>
+    <string name="complete_edit">수정 완료</string>
     <string name="limit_post_title">/30</string>
     <string name="limit_post_description">/225</string>
     <string name="limit_post_contacts">/100</string>
