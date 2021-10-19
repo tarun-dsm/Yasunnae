@@ -5,9 +5,11 @@ import com.semicolon.domain.base.Error
 import com.semicolon.domain.base.Resource
 import com.semicolon.domain.base.ResourceStatus
 import com.semicolon.domain.param.FixedPostParam
+import com.semicolon.domain.param.PostImageParam
 import com.semicolon.domain.param.PostParam
 import com.semicolon.domain.usecase.auth.TokenRefreshUseCase
 import com.semicolon.domain.usecase.post.FixPostUseCase
+import com.semicolon.domain.usecase.post.SendPostImageUseCase
 import com.semicolon.domain.usecase.post.WritePostUseCase
 import com.semicolon.yasunnae.base.BaseViewModel
 import com.semicolon.yasunnae.base.SingleLiveEvent
@@ -19,10 +21,12 @@ import javax.inject.Inject
 class WritePostViewModel @Inject constructor(
     private val writePostUseCase: WritePostUseCase,
     private val fixPostUseCase: FixPostUseCase,
+    private val sendPostImageUseCase: SendPostImageUseCase,
     private val tokenRefreshUseCase: TokenRefreshUseCase
 ) : BaseViewModel() {
 
     val postIdLiveData = MutableLiveData<Int>()
+    val sendImageSuccessEvent = SingleLiveEvent<Unit>()
     val badRequestEvent = SingleLiveEvent<Unit>()
     val retryEvent = SingleLiveEvent<Unit>()
     val needToLoginEvent = SingleLiveEvent<Unit>()
@@ -58,6 +62,31 @@ class WritePostViewModel @Inject constructor(
     fun fixPost(fixedPostParam: FixedPostParam) {
         val result = fixPostUseCase.interact(fixedPostParam)
         observeSingle(result, resultObserver)
+    }
+
+    fun sendImage(imageParam: PostImageParam) {
+        val result = sendPostImageUseCase.interact(imageParam)
+        val observer = object : DisposableSingleObserver<Resource<Unit>>() {
+            override fun onSuccess(t: Resource<Unit>) {
+                when (t.status) {
+                    ResourceStatus.SUCCESS -> sendImageSuccessEvent.call()
+                    ResourceStatus.ERROR -> when (t.message) {
+                        Error.BAD_REQUEST -> badRequestEvent.call()
+                        Error.UNAUTHORIZED -> {
+                            tokenRefresh()
+                            retryEvent.call()
+                        }
+                        Error.NOT_FOUND -> notFoundEvent.call()
+                        else -> unknownEvent.call()
+                    }
+                }
+            }
+
+            override fun onError(e: Throwable) {
+                unknownEvent.call()
+            }
+        }
+        observeSingle(result, observer)
     }
 
     private fun tokenRefresh() {
