@@ -59,4 +59,11 @@ object DataSourceModule {
         tokenStorage: TokenStorage
     ): ReviewDataSource =
         ReviewDataSourceImpl(tokenStorage, reviewApi)
+
+    @Provides
+    fun provideCommentDataSource(
+        commentApi: CommentApi,
+        tokenStorage: TokenStorage
+    ): CommentDataSource =
+        CommentDataSourceImpl(tokenStorage, commentApi)
 }

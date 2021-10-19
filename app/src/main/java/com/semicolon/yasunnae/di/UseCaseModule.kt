@@ -4,6 +4,10 @@ import com.semicolon.domain.service.*
 import com.semicolon.domain.usecase.account.*
 import com.semicolon.domain.usecase.application.*
 import com.semicolon.domain.usecase.auth.*
+import com.semicolon.domain.usecase.comment.AddCommentUseCase
+import com.semicolon.domain.usecase.comment.DeleteCommentUseCase
+import com.semicolon.domain.usecase.comment.FixCommentUseCase
+import com.semicolon.domain.usecase.comment.GetCommentListUseCase
 import com.semicolon.domain.usecase.email.*
 import com.semicolon.domain.usecase.post.*
 import com.semicolon.domain.usecase.profile.*
@@ -146,4 +150,24 @@ object UseCaseModule {
     fun provideWriteReviewUseCase(
         reviewService: ReviewService
     ) = WriteReviewUseCase(reviewService)
+
+    @Provides
+    fun provideAddCommentUseCase(
+        commentService: CommentService
+    ) = AddCommentUseCase(commentService)
+
+    @Provides
+    fun provideFixCommentUseCase(
+        commentService: CommentService
+    ) = FixCommentUseCase(commentService)
+
+    @Provides
+    fun provideDeleteCommentUseCase(
+        commentService: CommentService
+    ) = DeleteCommentUseCase(commentService)
+
+    @Provides
+    fun provideGetCommentListUseCase(
+        commentService: CommentService
+    ) = GetCommentListUseCase(commentService)
 }
