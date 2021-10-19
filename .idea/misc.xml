@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.2722222222222222" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.28055555555555556" />
         <entry key="app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.28055555555555556" />
         <entry key="app/src/main/res/drawable/ic_calendar.xml" value="0.20925925925925926" />
@@ -31,6 +32,7 @@
         <entry key="app/src/main/res/layout/fragment_post_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_post.xml" value="0.375" />
         <entry key="app/src/main/res/layout/item_post_application.xml" value="0.2587786259541985" />
+        <entry key="app/src/main/res/layout/item_post_image.xml" value="0.20833333333333334" />
         <entry key="app/src/main/res/menu/menu_bnv.xml" value="0.2947916666666667" />
       </map>
     </option>
