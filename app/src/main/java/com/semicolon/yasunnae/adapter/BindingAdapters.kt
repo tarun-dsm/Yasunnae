@@ -10,6 +10,12 @@ object BindingAdapters {
 
     @BindingAdapter("imageURL")
     @JvmStatic
+    fun loadImage(imageView: ImageView, image: String) {
+        Picasso.get().load(image).into(imageView)
+    }
+
+    @BindingAdapter("imageFile")
+    @JvmStatic
     fun loadImage(imageView: ImageView, image: File) {
         Picasso.get().load(image).into(imageView)
     }
