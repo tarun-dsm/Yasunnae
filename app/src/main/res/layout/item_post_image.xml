@@ -5,12 +5,12 @@
     <data>
 
         <variable
-            name="imageUrl"
+            name="imageFile"
             type="java.io.File" />
     </data>
 
     <ImageView
-        imageURL="@{imageUrl}"
+        imageFile="@{imageFile}"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:ignore="ContentDescription" />

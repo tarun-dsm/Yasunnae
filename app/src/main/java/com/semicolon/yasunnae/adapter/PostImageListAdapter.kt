@@ -23,7 +23,7 @@ class PostImageListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemPostImageBinding.imageUrl = postImageList[position]
+        holder.itemPostImageBinding.imageFile = postImageList[position]
     }
 
     override fun getItemCount(): Int {
