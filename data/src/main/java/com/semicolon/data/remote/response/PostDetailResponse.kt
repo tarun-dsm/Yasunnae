@@ -12,6 +12,12 @@ data class PostDetailResponse(
     @SerializedName("rating")
     val rating: String,
 
+    @SerializedName("is_mine")
+    val isMine: Boolean,
+
+    @SerializedName("is_applied")
+    val isApplied: Boolean,
+
     @SerializedName("post")
     val post: PostDetail,
 
@@ -70,6 +76,8 @@ data class PetDetail(
 fun PostDetailResponse.toEntity() = PostDetailEntity(
     nickname = this.nickname,
     rating = this.rating,
+    isMine = this.isMine,
+    isApplied = this.isApplied,
     post = PostDetailEntity.PostInfo(
         title = this.post.title,
         protectionStartDate = this.post.protectionStartDate,
