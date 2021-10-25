@@ -27,7 +27,10 @@ data class Comment(
     val isUpdated: Boolean,
 
     @SerializedName("updated_at")
-    val updatedAt: String
+    val updatedAt: String,
+
+    @SerializedName("is_mine")
+    val isMine: Boolean
 )
 
 fun Comment.toEntity() = CommentEntity(
@@ -36,5 +39,6 @@ fun Comment.toEntity() = CommentEntity(
     comment = this.comment,
     createdAt = this.createdAt,
     isUpdated = this.isUpdated,
-    updatedAt = this.updatedAt
+    updatedAt = this.updatedAt,
+    isMine = this.isMine
 )
