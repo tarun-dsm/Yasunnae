@@ -94,6 +94,8 @@ class PostUseCasesUnitTest {
         val postDetail = PostDetailEntity(
             "Shin",
             "Good",
+            isMine = true,
+            isApplied = false,
             PostDetailEntity.PostInfo(
                 "Hi",
                 "2021-09-01",
