@@ -8,6 +8,10 @@ data class PostDetailEntity(
 
     val rating: String,
 
+    val isMine: Boolean,
+
+    val isApplied: Boolean,
+
     val post: PostInfo,
 
     val pet: PetInfo
