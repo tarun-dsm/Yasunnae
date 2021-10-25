@@ -12,5 +12,7 @@ data class CommentEntity(
 
     val isUpdated: Boolean,
 
-    val updatedAt: String
+    val updatedAt: String,
+
+    val isMine: Boolean
 )
