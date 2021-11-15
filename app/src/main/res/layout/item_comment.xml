@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.semicolon.yasunnae.util.UtilExtFuncKt" />
+
+        <variable
+            name="comment"
+            type="com.semicolon.domain.entity.CommentEntity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:id="@+id/tv_nickname_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{comment.nickname}"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_is_updated_comment"
+            android:layout_width="4dp"
+            android:layout_height="4dp"
+            android:layout_marginStart="8dp"
+            android:src="@color/red_orange"
+            android:visibility="@{comment.updated?View.VISIBLE:View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/tv_nickname_comment"
+            app:layout_constraintLeft_toRightOf="@id/tv_nickname_comment"
+            app:layout_constraintTop_toTopOf="@id/tv_nickname_comment" />
+
+        <TextView
+            android:id="@+id/tv_is_updated_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/updated"
+            android:textColor="@color/gray_text"
+            android:textSize="9sp"
+            android:visibility="@{comment.updated?View.VISIBLE:View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/tv_nickname_comment"
+            app:layout_constraintLeft_toRightOf="@id/iv_is_updated_comment"
+            app:layout_constraintTop_toTopOf="@id/tv_nickname_comment"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/tv_date_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{UtilExtFuncKt.toPrettyDate(comment.updated?comment.updatedAt:comment.createdAt)}"
+            android:textColor="@color/gray_text"
+            android:textSize="9sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_nickname_comment"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_nickname_comment"
+            tools:ignore="SmallSp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_comment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_radius_dialog"
+            android:backgroundTint="@color/ivory"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_nickname_comment">
+
+            <TextView
+                android:id="@+id/tv_comment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{comment.comment}"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/btn_edit_comment"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btn_edit_comment"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/ic_edit"
+                android:visibility="@{comment.mine?View.VISIBLE:View.GONE}"
+                app:layout_constraintLeft_toRightOf="@id/tv_comment"
+                app:layout_constraintRight_toLeftOf="@id/btn_delete_comment"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <ImageButton
+                android:id="@+id/btn_delete_comment"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/ic_trash"
+                android:visibility="@{comment.mine?View.VISIBLE:View.GONE}"
+                app:layout_constraintLeft_toRightOf="@id/btn_edit_comment"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
