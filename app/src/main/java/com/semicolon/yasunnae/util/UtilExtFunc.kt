@@ -28,12 +28,12 @@ fun String.toDate(): Date =
 
 fun Int.toAnimalType(): AnimalType =
     when (this) {
-        R.id.rb_mammal_write_post -> AnimalType.MAMMAL
-        R.id.rb_bird_write_post -> AnimalType.BIRD
-        R.id.rb_reptiles_write_post -> AnimalType.REPTILES
-        R.id.rb_amphibians_write_post -> AnimalType.AMPHIBIANS
-        R.id.rb_fish_write_post -> AnimalType.FISH
-        R.id.rb_arthropods_write_post -> AnimalType.ARTHROPODS
+        R.id.rb_mammal_write_post, R.id.rb_mammal -> AnimalType.MAMMAL
+        R.id.rb_bird_write_post, R.id.rb_bird -> AnimalType.BIRD
+        R.id.rb_reptiles_write_post, R.id.rb_reptiles -> AnimalType.REPTILES
+        R.id.rb_amphibians_write_post, R.id.rb_amphibians -> AnimalType.AMPHIBIANS
+        R.id.rb_fish_write_post, R.id.rb_fish -> AnimalType.FISH
+        R.id.rb_arthropods_write_post, R.id.rb_arthropods -> AnimalType.ARTHROPODS
         else -> AnimalType.WRONG_TYPE
     }
 
