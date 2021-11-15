@@ -97,4 +97,9 @@
     <string name="limit_post_title">/30</string>
     <string name="limit_post_description">/225</string>
     <string name="limit_post_contacts">/100</string>
+
+    <string name="deadline_colon">마감일:</string>
+    <string name="contacts_colon">연락처:</string>
+    <string name="comments">댓글</string>
+    <string name="please_input_comment">댓글을 입력해주세요.</string>
 </resources>
