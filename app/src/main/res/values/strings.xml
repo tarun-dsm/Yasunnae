@@ -102,4 +102,5 @@
     <string name="contacts_colon">연락처:</string>
     <string name="comments">댓글</string>
     <string name="please_input_comment">댓글을 입력해주세요.</string>
+    <string name="updated">수정됨</string>
 </resources>
