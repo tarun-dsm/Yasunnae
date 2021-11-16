@@ -103,4 +103,11 @@
     <string name="comments">댓글</string>
     <string name="please_input_comment">댓글을 입력해주세요.</string>
     <string name="updated">수정됨</string>
+    <string name="do_apply">신청하기</string>
+    <string name="cancel_apply">신청 취소하기</string>
+    <string name="see_applications">신청 목록 보기</string>
+    <string name="edit">수정</string>
+    <string name="cancel">취소</string>
+     <string name="edit_comment">댓글 수정</string>
+    <string name="please_edit_comment">수정할 댓글을 입력해주세요</string>
 </resources>
