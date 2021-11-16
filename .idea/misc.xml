@@ -41,6 +41,7 @@
         <entry key="app/src/main/res/layout/item_comment.xml" value="0.22587268993839835" />
         <entry key="app/src/main/res/layout/item_post.xml" value="0.375" />
         <entry key="app/src/main/res/layout/item_post_application.xml" value="0.2587786259541985" />
+        <entry key="app/src/main/res/layout/item_post_detail_image.xml" value="0.2441123188405797" />
         <entry key="app/src/main/res/layout/item_post_image.xml" value="0.20833333333333334" />
         <entry key="app/src/main/res/menu/menu_bnv.xml" value="0.2947916666666667" />
       </map>
