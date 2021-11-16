@@ -34,6 +34,7 @@
         <entry key="app/src/main/res/layout/activity_register_account.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_write_post.xml" value="0.25" />
         <entry key="app/src/main/res/layout/dialog_ask.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/dialog_edit_comment.xml" value="0.375" />
         <entry key="app/src/main/res/layout/dialog_need_to_verify_location.xml" value="0.335" />
         <entry key="app/src/main/res/layout/dialog_select_date.xml" value="0.2619010053687587" />
         <entry key="app/src/main/res/layout/fragment_post_list.xml" value="0.25" />
