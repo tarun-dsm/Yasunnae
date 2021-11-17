@@ -10,7 +10,7 @@ import io.reactivex.schedulers.Schedulers
 
 abstract class BaseViewModel : ViewModel() {
 
-    private lateinit var compositeDisposable: CompositeDisposable
+    private val compositeDisposable = CompositeDisposable()
 
     fun <T> observeSingle(
         single: Single<T>,
