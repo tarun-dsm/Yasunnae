@@ -5,7 +5,7 @@ import com.semicolon.domain.entity.PostApplicationEntity
 
 data class PostApplicationResponse(
 
-    @SerializedName("")
+    @SerializedName("applications")
     val applications: List<PostApplication>
 )
 
