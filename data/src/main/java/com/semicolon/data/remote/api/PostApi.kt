@@ -26,7 +26,7 @@ interface PostApi {
         @Body post: PostRequest
     ): Single<PostIdResponse>
 
-    @GET("post")
+    @GET("posts")
     fun getPostList(
         @Header("Authorization") token: String,
     ): Single<PostListResponse>
