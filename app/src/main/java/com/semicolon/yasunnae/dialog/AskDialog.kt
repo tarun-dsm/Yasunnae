@@ -28,6 +28,8 @@ class AskDialog(
             null,
             false
         )
+        dialog.setContentView(binding.root)
+
         binding.tvAsk.text = message
         binding.btnYesAsk.setOnClickListener {
             onYesClick()
