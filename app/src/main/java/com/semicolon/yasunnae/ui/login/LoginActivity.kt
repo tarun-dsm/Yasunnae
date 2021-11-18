@@ -25,15 +25,17 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(){
             if(email.toString().isEmpty() || password.toString().isEmpty())
                 binding.tvLoginWarning.text = getString(R.string.login_empty)
             else {
-                val login = LoginParam(email.toString(), password.toString())
+                val login = LoginParam(email.toString().trim(), password.toString().trim())
                 loginViewModel.login(login)
-                startMainActivity()
             }
         }
     }
 
     override fun observe() {
-        loginViewModel.nonExistentEmailEvent.observe(this) {
+        loginViewModel.successEvent.observe(this) {
+            startMainActivity()
+        }
+        loginViewModel.badRequestEvent.observe(this) {
             makeToast(getString(R.string.login_warning))
         }
     }
@@ -44,6 +46,5 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(){
 
     private fun startRegisterActivity() {
         TODO("회원가입 Activity 실행")
-
     }
 }
