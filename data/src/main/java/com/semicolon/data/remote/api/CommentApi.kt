@@ -28,9 +28,9 @@ interface CommentApi {
         @Path("id") id: Int
     ): Completable
 
-    @GET("comments")
+    @GET("comments/post/{id}")
     fun getCommentList(
         @Header("Authorization") token: String,
-        @Query("id") id: Int
+        @Path("id") id: Int
     ): Single<CommentResponse>
 }
