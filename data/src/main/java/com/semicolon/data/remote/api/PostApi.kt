@@ -44,7 +44,7 @@ interface PostApi {
         @Path("id") id: Int,
     ): Completable
 
-    @GET("post/details/{id}")
+    @GET("post/{id}")
     fun getPostDetail(
         @Header("Authorization") token: String,
         @Path("id") id: Int,
