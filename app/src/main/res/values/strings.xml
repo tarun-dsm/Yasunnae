@@ -116,4 +116,6 @@
 
     <string name="all">전체</string>
     <string name="application_end">신청 마감</string>
+    <string name="ask_delete_post">게시글을 삭제하시겠습니까?</string>
+    <string name="complete_delete_post">게시글을 삭제했습니다</string>
 </resources>
