@@ -50,7 +50,7 @@ interface PostApi {
         @Path("id") id: Int,
     ): Single<PostDetailResponse>
 
-    @GET("application/post/{id}")
+    @GET("applications/post/{id}")
     fun getPostApplication(
         @Header("Authorization") token: String,
         @Path("id") id: Int,
