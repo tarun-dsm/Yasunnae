@@ -115,4 +115,5 @@
     <string name="application_conflict">이미 신청한 게시글이 있습니다</string>
 
     <string name="all">전체</string>
+    <string name="application_end">신청 마감</string>
 </resources>
