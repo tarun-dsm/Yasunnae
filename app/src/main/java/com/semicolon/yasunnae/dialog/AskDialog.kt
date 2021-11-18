@@ -37,5 +37,6 @@ class AskDialog(
             onNoClick()
             dialog.dismiss()
         }
+        dialog.show()
     }
 }
