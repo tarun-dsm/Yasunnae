@@ -23,7 +23,7 @@ data class PostApplication(
     @SerializedName("is_accepted")
     val isAccepted: Boolean,
 
-    @SerializedName("application_nickname")
+    @SerializedName("applicant_nickname")
     val applicantNickname: String,
 
     @SerializedName("administration_division")
