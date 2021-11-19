@@ -11,9 +11,12 @@ import com.semicolon.domain.usecase.post.GetPostListUseCase
 import com.semicolon.domain.usecase.profile.GetProfileUseCase
 import com.semicolon.yasunnae.base.BaseViewModel
 import com.semicolon.yasunnae.base.SingleLiveEvent
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.observers.DisposableSingleObserver
+import javax.inject.Inject
 
-class PostListViewModel(
+@HiltViewModel
+class PostListViewModel @Inject constructor(
     private val getProfileUseCase: GetProfileUseCase,
     private val getPostListUseCase: GetPostListUseCase,
     private val tokenRefreshUseCase: TokenRefreshUseCase

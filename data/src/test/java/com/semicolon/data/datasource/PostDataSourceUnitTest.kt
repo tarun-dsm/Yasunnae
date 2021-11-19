@@ -231,7 +231,9 @@ class PostDataSourceUnitTest {
         val postDetail = PostDetailResponse(
             "Shin",
             "Good",
-            PostDetail(
+            isMine = true,
+            isApplied = false,
+            post = PostDetail(
                 "Hi",
                 "2021-09-01",
                 "2021-09-02",
@@ -242,7 +244,7 @@ class PostDataSourceUnitTest {
                 isApplicationEnd = false,
                 isUpdated = false
             ),
-            PetDetail(
+            pet = PetDetail(
                 "Tom",
                 "Cat",
                 "남",

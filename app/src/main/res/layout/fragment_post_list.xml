@@ -46,7 +46,7 @@
                 android:layout_height="38dp"
                 android:background="@drawable/shape_radius_banner"
                 android:backgroundTint="@color/banner_background"
-                android:visibility="@{viewModel.isLocationVerifiedLiveData() ? View.GONE : View.VISIBLE}"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -99,7 +99,7 @@
                 android:layout_height="38dp"
                 android:background="@drawable/shape_radius_banner"
                 android:backgroundTint="@color/banner_background"
-                android:visibility="@{viewModel.isLocationVerifiedLiveData() ? View.VISIBLE : View.GONE}"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -140,12 +140,12 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <ScrollView
+        <HorizontalScrollView
             android:id="@+id/sv_animal_categories"
             android:layout_width="0dp"
             android:layout_height="26dp"
             android:layout_marginTop="8dp"
-            android:orientation="horizontal"
+            android:scrollbars="none"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cl_banner_location">
@@ -154,9 +154,23 @@
                 android:id="@+id/rg_animal_categories"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal"
-                android:paddingHorizontal="20dp">
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_all"
+                    android:layout_width="51dp"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/shape_radius_category"
+                    android:backgroundTint="@color/selector_color_radio_button"
+                    android:button="@null"
+                    android:elevation="5dp"
+                    android:gravity="center"
+                    android:text="@string/all"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    tools:ignore="SmallSp" />
 
                 <RadioButton
                     android:id="@+id/rb_mammal"
@@ -164,7 +178,7 @@
                     android:layout_height="26dp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/shape_radius_category"
-                    android:backgroundTint="@color/banner_background"
+                    android:backgroundTint="@color/selector_color_radio_button"
                     android:button="@null"
                     android:elevation="5dp"
                     android:gravity="center"
@@ -179,7 +193,7 @@
                     android:layout_height="26dp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/shape_radius_category"
-                    android:backgroundTint="@color/banner_background"
+                    android:backgroundTint="@color/selector_color_radio_button"
                     android:button="@null"
                     android:elevation="5dp"
                     android:gravity="center"
@@ -194,7 +208,7 @@
                     android:layout_height="26dp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/shape_radius_category"
-                    android:backgroundTint="@color/banner_background"
+                    android:backgroundTint="@color/selector_color_radio_button"
                     android:button="@null"
                     android:elevation="5dp"
                     android:gravity="center"
@@ -209,7 +223,7 @@
                     android:layout_height="26dp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/shape_radius_category"
-                    android:backgroundTint="@color/banner_background"
+                    android:backgroundTint="@color/selector_color_radio_button"
                     android:button="@null"
                     android:elevation="5dp"
                     android:gravity="center"
@@ -224,7 +238,7 @@
                     android:layout_height="26dp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/shape_radius_category"
-                    android:backgroundTint="@color/banner_background"
+                    android:backgroundTint="@color/selector_color_radio_button"
                     android:button="@null"
                     android:elevation="5dp"
                     android:gravity="center"
@@ -237,8 +251,9 @@
                     android:id="@+id/rb_arthropods"
                     android:layout_width="51dp"
                     android:layout_height="26dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/shape_radius_category"
-                    android:backgroundTint="@color/banner_background"
+                    android:backgroundTint="@color/selector_color_radio_button"
                     android:button="@null"
                     android:elevation="5dp"
                     android:gravity="center"
@@ -249,7 +264,7 @@
 
             </RadioGroup>
 
-        </ScrollView>
+        </HorizontalScrollView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_post_list"
@@ -266,35 +281,35 @@
             android:id="@+id/cl_empty_post_list"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="invisible"
             android:layout_marginTop="8dp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sv_animal_categories" >
+            app:layout_constraintTop_toBottomOf="@id/sv_animal_categories">
 
             <ImageView
-                android:src="@drawable/image_sad_cat"
                 android:id="@+id/iv_empty_post_list"
                 android:layout_width="100dp"
-                app:layout_constraintVertical_chainStyle="packed"
                 android:layout_height="100dp"
-                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/image_sad_cat"
+                app:layout_constraintBottom_toTopOf="@id/tv_empty_post_list"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/tv_empty_post_list"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
                 android:id="@+id/tv_empty_post_list"
-                android:textSize="16sp"
-                android:text="@string/empty_post_list"
-                android:textColor="@color/disabled_gray"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/iv_empty_post_list"
+                android:text="@string/empty_post_list"
+                android:textColor="@color/disabled_gray"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"/>
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_empty_post_list" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -37,7 +37,8 @@ class CoordinateActivity : BaseActivity<ActivityCoordinateBinding>() {
         }
 
         coordinateViewModel.retryEvent.observe(this) {
-            getLocation()
+            makeToast(getString(R.string.try_it_later))
+            print("dd")
         }
 
         coordinateViewModel.needToLoginEvent.observe(this) {
@@ -70,16 +71,14 @@ class CoordinateActivity : BaseActivity<ActivityCoordinateBinding>() {
                 ),
                 0
             )
-            getLocation()
         } else {
             curLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
-        }
-
-        if (curLocation != null) coordinateViewModel.saveCoordinate(
-            longitude = curLocation.longitude,
-            latitude = curLocation.latitude
-        ) else {
-            makeToast(getString(R.string.failed_get_location))
+            if (curLocation != null) coordinateViewModel.saveCoordinate(
+                longitude = curLocation.longitude,
+                latitude = curLocation.latitude
+            ) else {
+                makeToast(getString(R.string.failed_get_location))
+            }
         }
     }
 }

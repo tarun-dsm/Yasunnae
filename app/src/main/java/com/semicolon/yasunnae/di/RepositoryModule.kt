@@ -53,4 +53,10 @@ object RepositoryModule {
         reviewDataSource: ReviewDataSource
     ): ReviewRepository =
         ReviewRepositoryImpl(reviewDataSource)
+
+    @Provides
+    fun provideCommentRepository(
+        commentDataSource: CommentDataSource
+    ): CommentRepository =
+        CommentRepositoryImpl(commentDataSource)
 }

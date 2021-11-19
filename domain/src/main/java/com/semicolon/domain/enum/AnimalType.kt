@@ -6,7 +6,7 @@ enum class AnimalType {
 
 fun String.toAnimalType() =
     when (this) {
-        "MAMMAL" -> AnimalType.MAMMAL
+        "MAMMEL" -> AnimalType.MAMMAL
         "BIRD" -> AnimalType.BIRD
         "REPTILES" -> AnimalType.REPTILES
         "AMPHIBIANS" -> AnimalType.AMPHIBIANS

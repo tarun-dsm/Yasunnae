@@ -75,5 +75,50 @@
     <string name="login_warning">이메일이나 비밀번호가 올바르지 않습니다.</string>
     <string name="login_empty">이메일이나 비밀번호를 입력해주세요.</string>
 
+    <string name="title_write_post">게시글 작성</string>
+    <string name="title_edit_post">게시글 수정</string>
+    <string name="title">제목</string>
+    <string name="date">날짜</string>
+    <string name="from">부터</string>
+    <string name="until">까지</string>
+    <string name="deadline">마감일</string>
+    <string name="description">설명</string>
+    <string name="contacts">연락처(전화번호, 카카오톡 오픈채팅 등)</string>
+    <string name="pet_photo">반려동물 사진 (최대 5장, 최소 1장 이상)</string>
+    <string name="name">이름</string>
+    <string name="species">종</string>
+    <string name="input_title">게시글의 제목을 입력해주세요</string>
+    <string name="input_description">게시글에 대한 추가 설명을 작성해주세요 예) 여행 이유, 반려동물 성격, 좋아하는 간식 등</string>
+    <string name="input_contacts">연락처를 입력해주세요</string>
+    <string name="input_pet_name">반려동물의 이름을 입력해주세요</string>
+    <string name="input_pet_species">반려동물의 종을 입력해주세요</string>
+    <string name="input_pet_gender">반려동물의 성별을 입력해주세요</string>
+    <string name="complete_write">작성 완료</string>
+    <string name="complete_edit">수정 완료</string>
+    <string name="limit_post_title">/30</string>
+    <string name="limit_post_description">/225</string>
+    <string name="limit_post_contacts">/100</string>
 
+    <string name="deadline_colon">마감일:</string>
+    <string name="contacts_colon">연락처:</string>
+    <string name="comments">댓글</string>
+    <string name="please_input_comment">댓글을 입력해주세요.</string>
+    <string name="updated">수정됨</string>
+    <string name="do_apply">신청하기</string>
+    <string name="cancel_apply">신청 취소하기</string>
+    <string name="see_applications">신청 목록 보기</string>
+    <string name="edit">수정</string>
+    <string name="cancel">취소</string>
+    <string name="edit_comment">댓글 수정</string>
+    <string name="please_edit_comment">수정할 댓글을 입력해주세요</string>
+    <string name="comment_not_found">댓글을 찾을 수 없습니다</string>
+    <string name="conflict">충돌이 발생했습니다</string>
+    <string name="application_conflict">이미 신청한 게시글이 있습니다</string>
+
+    <string name="all">전체</string>
+    <string name="application_end">신청 마감</string>
+    <string name="ask_delete_post">게시글을 삭제하시겠습니까?</string>
+    <string name="complete_delete_post">게시글을 삭제했습니다</string>
+    <string name="ask_delete_comment">댓글을 삭제하시겠습니까?</string>
+    <string name="complete_delete_comment">댓글을 삭제했습니다</string>
 </resources>

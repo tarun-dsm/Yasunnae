@@ -26,7 +26,7 @@ interface PostApi {
         @Body post: PostRequest
     ): Single<PostIdResponse>
 
-    @GET("post")
+    @GET("posts")
     fun getPostList(
         @Header("Authorization") token: String,
     ): Single<PostListResponse>
@@ -44,13 +44,13 @@ interface PostApi {
         @Path("id") id: Int,
     ): Completable
 
-    @GET("post/details/{id}")
+    @GET("post/{id}")
     fun getPostDetail(
         @Header("Authorization") token: String,
         @Path("id") id: Int,
     ): Single<PostDetailResponse>
 
-    @GET("application/post/{id}")
+    @GET("applications/post/{id}")
     fun getPostApplication(
         @Header("Authorization") token: String,
         @Path("id") id: Int,

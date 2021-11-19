@@ -60,4 +60,11 @@ object ServiceModule {
         errorHandler: ErrorHandler
     ): ReviewService =
         ReviewServiceImpl(reviewRepository, errorHandler)
+
+    @Provides
+    fun provideCommentService(
+        commentRepository: CommentRepository,
+        errorHandler: ErrorHandler
+    ): CommentService =
+        CommentServiceImpl(commentRepository, errorHandler)
 }

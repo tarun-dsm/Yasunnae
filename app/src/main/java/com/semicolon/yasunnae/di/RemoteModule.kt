@@ -48,4 +48,8 @@ object RemoteModule {
     @Provides
     fun provideReviewApi(retrofit: Retrofit): ReviewApi =
         retrofit.create(ReviewApi::class.java)
+
+    @Provides
+    fun provideCommentApi(retrofit: Retrofit): CommentApi =
+        retrofit.create(CommentApi::class.java)
 }
