@@ -1,6 +1,7 @@
 package com.semicolon.yasunnae.ui.postdetail
 
 import android.content.Intent
+import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.LifecycleOwner
 import com.semicolon.domain.entity.PostDetailEntity
@@ -13,6 +14,7 @@ import com.semicolon.yasunnae.base.IntentKeys.KEY_END_DATE
 import com.semicolon.yasunnae.base.IntentKeys.KEY_POST_ID
 import com.semicolon.yasunnae.base.IntentKeys.KEY_START_DATE
 import com.semicolon.yasunnae.databinding.ActivityPostDetailBinding
+import com.semicolon.yasunnae.dialog.AskDialog
 import com.semicolon.yasunnae.dialog.EditCommentDialog
 import com.semicolon.yasunnae.ui.postapplications.PostApplicationsActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,7 +27,7 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
 
     private val postDetailViewModel: PostDetailViewModel by viewModels()
     private val commentViewModel: CommentViewModel by viewModels()
-    private val postId = intent.getIntExtra(KEY_POST_ID, 0)
+    private var postId = 0
 
     private val postDetailImageAdapter = PostDetailImageAdapter()
     private val commentsAdapter = CommentsAdapter(
@@ -34,16 +36,27 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
                 commentViewModel.fixComment(CommentParam(it.id, fixedComment))
             }.callDialog()
         },
-        onDeleteClick = { commentViewModel.deleteComment(it.id) }
+        onDeleteClick = {
+            AskDialog(this, getString(R.string.ask_delete_comment), onYesClick = {
+                commentViewModel.deleteComment(it.id)
+            }).callDialog()
+        }
     )
 
     override fun init() {
+        postId = intent.getIntExtra(KEY_POST_ID, 0)
         binding.vpImagePostDetail.adapter = postDetailImageAdapter
         binding.rvCommentsPostDetail.adapter = commentsAdapter
         binding.btnBack.setOnClickListener { finish() }
+        binding.btnDeletePost.setOnClickListener {
+            AskDialog(this, getString(R.string.ask_delete_post), onYesClick = {
+                postDetailViewModel.deletePost(postId)
+            }).callDialog()
+        }
         binding.btnSendComment.setOnClickListener {
             val comment = binding.etCommentPostDetail.text.toString()
             if (comment.isNotEmpty()) commentViewModel.addComment(CommentParam(postId, comment))
+            binding.etCommentPostDetail.text.clear()
         }
         postDetailViewModel.getPostDetail(postId)
         commentViewModel.getCommentList(postId)
@@ -65,24 +78,35 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
                 binding.tvDeadlinePostDetail.text = deadline
                 binding.tvContactsPostDetail.text = contacts
             }
-            deletePostSuccessEvent.observe(owner) { finish() }
+            deletePostSuccessEvent.observe(owner) {
+                makeToast(getString(R.string.complete_delete_post))
+                finish()
+            }
             sendApplicationSuccessEvent.observe(owner) {
                 setApplicationBtn(R.string.cancel_apply) {
-                    postDetailViewModel.sendApplication(postId)
+                    postDetailViewModel.cancelApplication(postId)
                 }
+                binding.btnApplicationPostDetail.isEnabled = true
             }
             cancelApplicationSuccessEvent.observe(owner) {
                 setApplicationBtn(R.string.do_apply) {
-                    postDetailViewModel.cancelApplication(postId)
+                    postDetailViewModel.sendApplication(postId)
                 }
+                binding.btnApplicationPostDetail.isEnabled = true
             }
             postDetailBadRequestEvent.observe(owner) { makeToast(getString(R.string.bad_request)) }
-            sendApplicationBadRequestEvent.observe(owner) { makeToast(getString(R.string.bad_request)) }
+            sendApplicationBadRequestEvent.observe(owner) {
+                makeToast(getString(R.string.bad_request))
+                binding.btnApplicationPostDetail.isEnabled = true
+            }
             retryEvent.observe(owner) { makeToast(getString(R.string.try_it_later)) }
             needToLoginEvent.observe(owner) { TODO("로그인 창 열기") }
             postNotFoundEvent.observe(owner) { makeToast(getString(R.string.post_not_found)) }
             conflictEvent.observe(owner) { makeToast(getString(R.string.conflict)) }
-            applicationConflictEvent.observe(owner) { makeToast(getString(R.string.application_conflict)) }
+            applicationConflictEvent.observe(owner) {
+                makeToast(getString(R.string.application_conflict))
+                binding.btnApplicationPostDetail.isEnabled = true
+            }
             unknownErrorEvent.observe(owner) { makeToast(getString(R.string.unknown_error)) }
         }
     }
@@ -90,10 +114,15 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
     private fun observeCommentViewModel() {
         val owner: LifecycleOwner = this
         commentViewModel.apply {
-            commentListLiveData.observe(owner) { commentsAdapter.setCommentList(it) }
+            commentListLiveData.observe(owner) {
+                commentsAdapter.setCommentList(it)
+            }
             addCommentSuccessEvent.observe(owner) { commentViewModel.getCommentList(postId) }
             fixCommentSuccessEvent.observe(owner) { commentViewModel.getCommentList(postId) }
-            deleteCommentSuccessEvent.observe(owner) { commentViewModel.getCommentList(postId) }
+            deleteCommentSuccessEvent.observe(owner) {
+                makeToast(getString(R.string.complete_delete_comment))
+                commentViewModel.getCommentList(postId)
+            }
             commentBadRequestEvent.observe(owner) { makeToast(getString(R.string.bad_request)) }
             retryEvent.observe(owner) { makeToast(getString(R.string.try_it_later)) }
             postNotFoundEvent.observe(owner) { makeToast(getString(R.string.post_not_found)) }
@@ -113,19 +142,28 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
                     intent.putExtra(KEY_END_DATE, postDetail.post.protectionEndDate)
                     startActivity(intent)
                 }
+                binding.btnApplicationPostDetail.isEnabled = true
+                binding.btnEditPost.visibility = View.VISIBLE
+                binding.btnDeletePost.visibility = View.VISIBLE
+            }
+            postDetail.post.isApplicationEnd -> {
+                setApplicationBtn(R.string.application_end) {}
             }
             postDetail.isApplied -> {
                 setApplicationBtn(R.string.cancel_apply) {
-                    postDetailViewModel.sendApplication(postId)
+                    postDetailViewModel.cancelApplication(postId)
+                    binding.btnApplicationPostDetail.isEnabled = false
                 }
+                binding.btnApplicationPostDetail.isEnabled = true
             }
             else -> {
                 setApplicationBtn(R.string.do_apply) {
-                    postDetailViewModel.cancelApplication(postId)
+                    postDetailViewModel.sendApplication(postId)
+                    binding.btnApplicationPostDetail.isEnabled = false
                 }
+                binding.btnApplicationPostDetail.isEnabled = true
             }
         }
-        binding.btnApplicationPostDetail.isEnabled = true
     }
 
     private fun setApplicationBtn(textId: Int, onClick: () -> Unit) {
