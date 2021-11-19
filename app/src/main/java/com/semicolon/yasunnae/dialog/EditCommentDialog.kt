@@ -27,10 +27,13 @@ class EditCommentDialog(
             null,
             false
         )
+        dialog.setContentView(binding.root)
+
         binding.presentComment = presentComment
         binding.btnEditComment.setOnClickListener {
             if (binding.etEditComment.text.toString().isEmpty()) return@setOnClickListener
             onEditClick(binding.etEditComment.text.toString())
+            dialog.dismiss()
         }
         binding.btnCancelEditComment.setOnClickListener {
             dialog.dismiss()
