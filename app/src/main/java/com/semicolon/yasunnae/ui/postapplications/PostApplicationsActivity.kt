@@ -9,7 +9,9 @@ import com.semicolon.yasunnae.base.IntentKeys.KEY_END_DATE
 import com.semicolon.yasunnae.base.IntentKeys.KEY_POST_ID
 import com.semicolon.yasunnae.base.IntentKeys.KEY_START_DATE
 import com.semicolon.yasunnae.databinding.ActivityPostApplicationsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PostApplicationsActivity : BaseActivity<ActivityPostApplicationsBinding>() {
 
     override val layoutResId: Int
@@ -18,7 +20,7 @@ class PostApplicationsActivity : BaseActivity<ActivityPostApplicationsBinding>()
     private val postApplicationsViewModel: PostApplicationsViewModel by viewModels()
     private val onItemClickListener = object : PostApplicationsAdapter.OnItemClickListener {
         override fun onItemClick(applicantId: Int) {
-            TODO("프로필 페이지로 이동하는 코드 작성")
+//            TODO("프로필 페이지로 이동하는 코드 작성")
         }
     }
     private val onAcceptClickListener = object : PostApplicationsAdapter.OnAcceptClickListener {
@@ -26,9 +28,10 @@ class PostApplicationsActivity : BaseActivity<ActivityPostApplicationsBinding>()
             postApplicationsViewModel.acceptApplication(applicationId)
         }
     }
-    private val postId = intent.getIntExtra(KEY_POST_ID, 0)
+    private var postId = 0
 
     override fun init() {
+        postId = intent.getIntExtra(KEY_POST_ID, 0)
         val startDate = intent.getStringExtra(KEY_START_DATE)
         val endDate = intent.getStringExtra(KEY_END_DATE)
         binding.tvStartDatePostApplication.text = startDate

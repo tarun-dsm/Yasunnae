@@ -5,8 +5,9 @@ import com.semicolon.yasunnae.R
 import com.semicolon.yasunnae.base.BaseActivity
 import com.semicolon.yasunnae.databinding.ActivityMainBinding
 import com.semicolon.yasunnae.ui.postlist.PostListFragment
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override val layoutResId: Int

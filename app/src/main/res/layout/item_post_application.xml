@@ -44,7 +44,7 @@
             android:textColor="@color/gray_text"
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="@id/tv_applicant_name"
+            app:layout_constraintLeft_toRightOf="@id/tv_applicant_name"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="SmallSp" />
 

@@ -10,9 +10,11 @@ import com.semicolon.domain.usecase.auth.TokenRefreshUseCase
 import com.semicolon.domain.usecase.post.GetPostApplicationUseCase
 import com.semicolon.yasunnae.base.BaseViewModel
 import com.semicolon.yasunnae.base.SingleLiveEvent
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.observers.DisposableSingleObserver
 import javax.inject.Inject
 
+@HiltViewModel
 class PostApplicationsViewModel @Inject constructor(
     private val getPostApplicationUseCase: GetPostApplicationUseCase,
     private val acceptApplicationUseCase: AcceptApplicationUseCase,
