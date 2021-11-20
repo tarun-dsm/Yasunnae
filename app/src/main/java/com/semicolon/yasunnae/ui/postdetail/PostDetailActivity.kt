@@ -77,6 +77,8 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
                 initApplicationBtn(it)
                 binding.tvDeadlinePostDetail.text = deadline
                 binding.tvContactsPostDetail.text = contacts
+                postDetailImageAdapter.setImageList(it.pet.filePaths)
+                binding.indicatorImagePostDetail.setViewPager2(binding.vpImagePostDetail)
             }
             deletePostSuccessEvent.observe(owner) {
                 makeToast(getString(R.string.complete_delete_post))
