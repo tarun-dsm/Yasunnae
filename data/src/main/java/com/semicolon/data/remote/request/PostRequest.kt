@@ -46,6 +46,6 @@ fun PostParam.toRequestParam() = PostRequest(
     contactInfo = this.contactInfo,
     petName = this.petName,
     petSpecies = this.petSpecies,
-    petSex = this.petSex,
+    petSex = this.petSex.toString(),
     animalType = this.animalType.toString()
 )
