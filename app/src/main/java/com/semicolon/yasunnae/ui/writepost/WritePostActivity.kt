@@ -38,10 +38,12 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>() {
 
     private var isEditMode: Boolean = false
     private var postId: Int = 0
-    private var imageListAdapter = PostImageListAdapter(this)
     private var minDate: Date? = null
     private var maxDate: Date? = null
     private var deadline: Date? = null
+    private val imageListAdapter = PostImageListAdapter(this) {
+        binding.indicatorImageWritePost.setViewPager2(binding.vpImageWritePost)
+    }
 
     override val layoutResId: Int
         get() = R.layout.activity_write_post
@@ -134,15 +136,18 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>() {
     override fun observe() {
         writePostViewModel.postIdLiveData.observe(this) {
             postId = it
-            if (!isEditMode) writePostViewModel.sendImage(
+            writePostViewModel.sendImage(
                 PostImageParam(it, imageListAdapter.getPostImageList())
             )
         }
         writePostViewModel.sendImageSuccessEvent.observe(this) {
-            val intent = Intent(this, PostDetailActivity::class.java)
-            intent.putExtra(KEY_POST_ID, postId)
-            startActivity(intent)
-            finish()
+            if (isEditMode) finish()
+            else {
+                val intent = Intent(this, PostDetailActivity::class.java)
+                intent.putExtra(KEY_POST_ID, postId)
+                startActivity(intent)
+                finish()
+            }
         }
         writePostViewModel.badRequestEvent.observe(this) {
             makeToast(getString(R.string.bad_request))
@@ -175,12 +180,13 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>() {
             binding.etTitleWritePost.setText(intent.getStringExtra(IntentKeys.KEY_POST_TITLE))
             setStartDate(intent.getStringExtra(IntentKeys.KEY_START_DATE)!!)
             setEndDate(intent.getStringExtra(IntentKeys.KEY_END_DATE)!!)
-            binding.tvCurDeadlineWritePost.text = intent.getStringExtra(IntentKeys.KEY_DEADLINE)
+            setDeadLine(intent.getStringExtra(IntentKeys.KEY_DEADLINE)!!)
             binding.etDescriptionWritePost.setText(intent.getStringExtra(IntentKeys.KEY_DESCRIPTION))
             binding.etContactsWritePost.setText(intent.getStringExtra(IntentKeys.KEY_CONTACTS))
             imageListAdapter.setPostImageList(
                 intent.getStringArrayListExtra(IntentKeys.KEY_POST_IMAGE_LIST)!!
             )
+            binding.indicatorImageWritePost.setViewPager2(binding.vpImageWritePost)
             binding.etPetNameWritePost.setText(intent.getStringExtra(IntentKeys.KEY_PET_NAME))
             binding.etPetSpeciesWritePost.setText(intent.getStringExtra(IntentKeys.KEY_PET_SPECIES))
             if (intent.getStringExtra(IntentKeys.KEY_PET_SEX) == "MALE") binding.rgGenderWritePost.check(
@@ -236,6 +242,11 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>() {
         maxDate = date.toDate()
     }
 
+    private fun setDeadLine(date: String) {
+        binding.tvCurDeadlineWritePost.text = date
+        deadline = date.toDate()
+    }
+
     @SuppressLint("CheckResult")
     private fun getImage() {
         TedRxImagePicker.with(this)
@@ -247,6 +258,7 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>() {
                     imageListAdapter.addPostImageList(File(getRealPathFromURI(it)!!))
                 }
                 binding.indicatorImageWritePost.setViewPager2(binding.vpImageWritePost)
+                isCompletable()
             }, Throwable::printStackTrace)
     }
 
