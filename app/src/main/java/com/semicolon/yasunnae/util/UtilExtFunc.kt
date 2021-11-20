@@ -24,6 +24,9 @@ fun String.toPrettyDate(): String {
 fun String.toDate(): Date =
     SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).parse(this) ?: Date(0)
 
+fun Date.format(pattern: String): String =
+    SimpleDateFormat(pattern, Locale.KOREA).format(this)
+
 fun Int.toAnimalType(): AnimalType =
     when (this) {
         R.id.rb_mammal_write_post, R.id.rb_mammal -> AnimalType.MAMMAL
