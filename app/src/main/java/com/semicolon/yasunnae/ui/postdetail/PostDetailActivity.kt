@@ -77,6 +77,8 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
                 initApplicationBtn(it)
                 binding.tvDeadlinePostDetail.text = deadline
                 binding.tvContactsPostDetail.text = contacts
+                binding.tvPetGenderPostDetail.text =
+                    if (it.pet.petSex == "MALE") getString(R.string.male) else getString(R.string.female)
                 postDetailImageAdapter.setImageList(it.pet.filePaths)
                 binding.indicatorImagePostDetail.setViewPager2(binding.vpImagePostDetail)
             }
