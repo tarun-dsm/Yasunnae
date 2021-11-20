@@ -10,13 +10,25 @@ import com.semicolon.yasunnae.R
 import com.semicolon.yasunnae.adapter.CommentsAdapter
 import com.semicolon.yasunnae.adapter.PostDetailImageAdapter
 import com.semicolon.yasunnae.base.BaseActivity
+import com.semicolon.yasunnae.base.IntentKeys.KEY_CONTACTS
+import com.semicolon.yasunnae.base.IntentKeys.KEY_DEADLINE
+import com.semicolon.yasunnae.base.IntentKeys.KEY_DESCRIPTION
+import com.semicolon.yasunnae.base.IntentKeys.KEY_EDIT_POST_ID
 import com.semicolon.yasunnae.base.IntentKeys.KEY_END_DATE
+import com.semicolon.yasunnae.base.IntentKeys.KEY_IS_EDIT_MODE
+import com.semicolon.yasunnae.base.IntentKeys.KEY_PET_NAME
+import com.semicolon.yasunnae.base.IntentKeys.KEY_PET_SEX
+import com.semicolon.yasunnae.base.IntentKeys.KEY_PET_SPECIES
+import com.semicolon.yasunnae.base.IntentKeys.KEY_POST_CATEGORY
 import com.semicolon.yasunnae.base.IntentKeys.KEY_POST_ID
+import com.semicolon.yasunnae.base.IntentKeys.KEY_POST_IMAGE_LIST
+import com.semicolon.yasunnae.base.IntentKeys.KEY_POST_TITLE
 import com.semicolon.yasunnae.base.IntentKeys.KEY_START_DATE
 import com.semicolon.yasunnae.databinding.ActivityPostDetailBinding
 import com.semicolon.yasunnae.dialog.AskDialog
 import com.semicolon.yasunnae.dialog.EditCommentDialog
 import com.semicolon.yasunnae.ui.postapplications.PostApplicationsActivity
+import com.semicolon.yasunnae.ui.writepost.WritePostActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,6 +40,7 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
     private val postDetailViewModel: PostDetailViewModel by viewModels()
     private val commentViewModel: CommentViewModel by viewModels()
     private var postId = 0
+    private var postDetail: PostDetailEntity? = null
 
     private val postDetailImageAdapter = PostDetailImageAdapter()
     private val commentsAdapter = CommentsAdapter(
@@ -43,11 +56,19 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
         }
     )
 
+    override fun onResume() {
+        super.onResume()
+        init()
+    }
+
     override fun init() {
         postId = intent.getIntExtra(KEY_POST_ID, 0)
         binding.vpImagePostDetail.adapter = postDetailImageAdapter
         binding.rvCommentsPostDetail.adapter = commentsAdapter
         binding.btnBack.setOnClickListener { finish() }
+        binding.btnEditPost.setOnClickListener {
+            goToEditPost()
+        }
         binding.btnDeletePost.setOnClickListener {
             AskDialog(this, getString(R.string.ask_delete_post), onYesClick = {
                 postDetailViewModel.deletePost(postId)
@@ -71,6 +92,7 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
         val owner: LifecycleOwner = this
         postDetailViewModel.apply {
             postDetailLiveData.observe(owner) {
+                postDetail = it
                 val deadline = getString(R.string.deadline_colon) + " " + it.post.applicationEndDate
                 val contacts = getString(R.string.contacts_colon) + " " + it.post.contactInfo
                 binding.postDetail = it
@@ -173,5 +195,24 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
     private fun setApplicationBtn(textId: Int, onClick: () -> Unit) {
         binding.btnApplicationPostDetail.text = getString(textId)
         binding.btnApplicationPostDetail.setOnClickListener { onClick() }
+    }
+
+    private fun goToEditPost() {
+        if (postDetail == null) return
+        val intent = Intent(this, WritePostActivity::class.java)
+        intent.putExtra(KEY_IS_EDIT_MODE, true)
+        intent.putExtra(KEY_EDIT_POST_ID, postId)
+        intent.putExtra(KEY_POST_CATEGORY, postDetail!!.pet.animalType.toString())
+        intent.putExtra(KEY_POST_TITLE, postDetail!!.post.title)
+        intent.putExtra(KEY_START_DATE, postDetail!!.post.protectionStartDate)
+        intent.putExtra(KEY_END_DATE, postDetail!!.post.protectionEndDate)
+        intent.putExtra(KEY_DEADLINE, postDetail!!.post.applicationEndDate)
+        intent.putExtra(KEY_DESCRIPTION, postDetail!!.post.description)
+        intent.putExtra(KEY_CONTACTS, postDetail!!.post.contactInfo)
+        intent.putExtra(KEY_POST_IMAGE_LIST, ArrayList(postDetail!!.pet.filePaths))
+        intent.putExtra(KEY_PET_NAME, postDetail!!.pet.petName)
+        intent.putExtra(KEY_PET_SPECIES, postDetail!!.pet.petSpecies)
+        intent.putExtra(KEY_PET_SEX, postDetail!!.pet.petSex)
+        startActivity(intent)
     }
 }
