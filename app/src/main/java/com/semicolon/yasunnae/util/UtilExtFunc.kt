@@ -58,13 +58,9 @@ fun convertUrlToFile(context: Context, url: String): Single<File> {
                     emitter.onSuccess(newFile)
                 }
 
-                override fun onLoadCleared(placeholder: Drawable?) {
-                    emitter.onError(Exception())
-                }
+                override fun onLoadCleared(placeholder: Drawable?) {}
 
-                override fun onLoadFailed(errorDrawable: Drawable?) {
-                    emitter.onError(Exception())
-                }
+                override fun onLoadFailed(errorDrawable: Drawable?) {}
             })
     }
 }
