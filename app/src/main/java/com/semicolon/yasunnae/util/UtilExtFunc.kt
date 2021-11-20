@@ -29,7 +29,7 @@ fun Date.format(pattern: String): String =
 
 fun Int.toAnimalType(): AnimalType =
     when (this) {
-        R.id.rb_mammal_write_post, R.id.rb_mammal -> AnimalType.MAMMAL
+        R.id.rb_mammal_write_post, R.id.rb_mammal -> AnimalType.MAMMEL
         R.id.rb_bird_write_post, R.id.rb_bird -> AnimalType.BIRD
         R.id.rb_reptiles_write_post, R.id.rb_reptiles -> AnimalType.REPTILES
         R.id.rb_amphibians_write_post, R.id.rb_amphibians -> AnimalType.AMPHIBIANS
