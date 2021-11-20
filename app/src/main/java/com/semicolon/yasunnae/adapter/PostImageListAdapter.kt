@@ -13,7 +13,8 @@ import com.semicolon.yasunnae.util.convertUrlToFile
 import java.io.File
 
 class PostImageListAdapter(
-    val context: Context
+    val context: Context,
+    val onImageAdded: () -> Unit
 ) : RecyclerView.Adapter<PostImageListAdapter.ViewHolder>() {
 
     private var postImageList = ArrayList<File>()
@@ -35,10 +36,11 @@ class PostImageListAdapter(
 
     fun setPostImageList(urlList: List<String>) {
         urlList.map {
-            convertUrlToFile(context, it).doOnSuccess { file ->
-                postImageList.add(file)
-                notifyItemInserted(itemCount - 1)
-            }
+            convertUrlToFile(context, it)
+                .subscribe { file ->
+                    addPostImageList(file)
+                    onImageAdded()
+                }
         }
     }
 
