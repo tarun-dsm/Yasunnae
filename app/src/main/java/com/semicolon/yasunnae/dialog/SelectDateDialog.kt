@@ -30,11 +30,14 @@ class SelectDateDialog(
             false
         )
         dialog.setContentView(binding.root)
+
+        dialog.setContentView(binding.root)
         if (minDate != null) binding.cvSelectDate.minDate = minDate.time
         if (maxDate != null) binding.cvSelectDate.maxDate = maxDate.time
         binding.btnOkSelectDate.setOnClickListener {
             onOkClick(Date(binding.cvSelectDate.date))
             dialog.dismiss()
         }
+        dialog.show()
     }
 }
