@@ -1,10 +1,12 @@
 package com.semicolon.yasunnae.ui.main
 
+import android.content.Intent
 import androidx.fragment.app.Fragment
 import com.semicolon.yasunnae.R
 import com.semicolon.yasunnae.base.BaseActivity
 import com.semicolon.yasunnae.databinding.ActivityMainBinding
 import com.semicolon.yasunnae.ui.postlist.PostListFragment
+import com.semicolon.yasunnae.ui.writepost.WritePostActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -12,6 +14,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override val layoutResId: Int
         get() = R.layout.activity_main
+
+    override fun onResume() {
+        super.onResume()
+        init()
+    }
 
     override fun init() {
         binding.bnvMain.setOnItemSelectedListener {
@@ -35,7 +42,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     private fun startWritePostActivity() {
-        TODO("게시글 작성 Activity 실행")
+        val intent = Intent(this, WritePostActivity::class.java)
+        startActivity(intent)
     }
 
 }
