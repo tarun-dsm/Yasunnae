@@ -28,6 +28,7 @@ import java.util.*
 import android.database.Cursor
 
 import android.net.Uri
+import android.view.View.VISIBLE
 import androidx.loader.content.CursorLoader
 
 import com.semicolon.domain.*
@@ -42,7 +43,7 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>() {
     private var maxDate: Date? = null
     private var deadline: Date? = null
     private val imageListAdapter = PostImageListAdapter(this) {
-        binding.indicatorImageWritePost.setViewPager2(binding.vpImageWritePost)
+        binding.indicatorImageWritePost.refreshDots()
     }
 
     override val layoutResId: Int
@@ -59,6 +60,7 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>() {
         binding.tvCountDescriptionWritePost.text = descriptionCount
         binding.tvCountContactsWritePost.text = contactsCount
         binding.vpImageWritePost.adapter = imageListAdapter
+        binding.indicatorImageWritePost.setViewPager2(binding.vpImageWritePost)
         getIsEditMode()
         setUpView()
         binding.btnBackWritePost.setOnClickListener { finish() }
@@ -122,8 +124,15 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>() {
         }
         binding.btnDeleteImageWritePost.setOnClickListener {
             if (imageListAdapter.itemCount == 0) return@setOnClickListener
+            binding.vpImageWritePost.isUserInputEnabled = false
             imageListAdapter.deletePostImageList(binding.vpImageWritePost.currentItem)
-            if (imageListAdapter.itemCount == 0) it.visibility = INVISIBLE
+            binding.indicatorImageWritePost.refreshDots()
+            binding.vpImageWritePost.isUserInputEnabled = true
+            if (imageListAdapter.itemCount == 0) {
+                it.visibility = INVISIBLE
+                binding.vpImageWritePost.visibility = INVISIBLE
+                binding.cvEmptyImage.visibility = VISIBLE
+            }
         }
         binding.btnAddImageWritePost.setOnClickListener {
             getImage()
@@ -202,9 +211,9 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>() {
     private fun isCompletable(): Boolean {
         if (binding.rgAnimalCategoriesWritePost.checkedRadioButtonId == -1) return false
         if (binding.etTitleWritePost.text.isEmpty()) return false
-        if (binding.tvStartDateWritePost.text.isEmpty()) return false
-        if (binding.tvEndDateWritePost.text.isEmpty()) return false
-        if (binding.tvCurDeadlineWritePost.text.isEmpty()) return false
+        if (binding.tvStartDateWritePost.text.equals(getString(R.string.hyphen))) return false
+        if (binding.tvEndDateWritePost.text.equals(getString(R.string.hyphen))) return false
+        if (binding.tvCurDeadlineWritePost.equals(getString(R.string.hyphen))) return false
         if (binding.etDescriptionWritePost.text.isEmpty()) return false
         if (binding.etContactsWritePost.text.isEmpty()) return false
         if (imageListAdapter.itemCount == 0) return false
@@ -250,14 +259,18 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>() {
     @SuppressLint("CheckResult")
     private fun getImage() {
         TedRxImagePicker.with(this)
-            .max(5, getString(R.string.max_is_five))
+            .max(5 - imageListAdapter.itemCount, getString(R.string.max_is_five))
             .startMultiImage()
             .subscribe({ uriList ->
-                imageListAdapter.clearPostImage()
                 uriList.map {
                     imageListAdapter.addPostImageList(File(getRealPathFromURI(it)!!))
                 }
-                binding.indicatorImageWritePost.setViewPager2(binding.vpImageWritePost)
+                if (imageListAdapter.itemCount > 0) {
+                    binding.cvEmptyImage.visibility = INVISIBLE
+                    binding.vpImageWritePost.visibility = VISIBLE
+                    binding.btnDeleteImageWritePost.visibility = VISIBLE
+                }
+                binding.indicatorImageWritePost.refreshDots()
                 isCompletable()
             }, Throwable::printStackTrace)
     }
