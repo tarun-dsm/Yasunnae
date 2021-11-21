@@ -1,6 +1,5 @@
 package com.semicolon.yasunnae.adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -47,12 +46,6 @@ class PostImageListAdapter(
     fun addPostImageList(file: File) {
         postImageList.add(file)
         notifyItemInserted(itemCount - 1)
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun clearPostImage() {
-        postImageList.clear()
-        notifyDataSetChanged()
     }
 
     fun deletePostImageList(position: Int) {
