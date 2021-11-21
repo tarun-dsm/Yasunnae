@@ -16,11 +16,12 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/iv_back_arrow_write_post"
+            <ImageButton
+                android:id="@+id/btn_back_write_post"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginStart="20dp"
+                android:background="@android:color/transparent"
                 android:src="@drawable/ic_arrow_back"
                 app:layout_constraintBottom_toBottomOf="@id/tv_app_bar_write_post"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -37,7 +38,7 @@
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintLeft_toRightOf="@id/iv_back_arrow_write_post"
+                app:layout_constraintLeft_toRightOf="@id/btn_back_write_post"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -52,15 +53,14 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="20dp">
+                android:layout_height="wrap_content">
 
-                <ScrollView
+                <HorizontalScrollView
                     android:id="@+id/sv_animal_categories_write_post"
                     android:layout_width="0dp"
                     android:layout_height="26dp"
                     android:layout_marginTop="15dp"
-                    android:orientation="horizontal"
+                    android:scrollbars="none"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -70,7 +70,6 @@
                         android:id="@+id/rg_animal_categories_write_post"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:checkedButton="@id/rb_mammal_write_post"
                         android:orientation="horizontal">
 
@@ -78,9 +77,10 @@
                             android:id="@+id/rb_mammal_write_post"
                             android:layout_width="51dp"
                             android:layout_height="26dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginEnd="10dp"
                             android:background="@drawable/shape_radius_category"
-                            android:backgroundTint="@color/banner_background"
+                            android:backgroundTint="@color/selector_color_radio_button"
                             android:button="@null"
                             android:elevation="5dp"
                             android:gravity="center"
@@ -95,7 +95,7 @@
                             android:layout_height="26dp"
                             android:layout_marginEnd="10dp"
                             android:background="@drawable/shape_radius_category"
-                            android:backgroundTint="@color/banner_background"
+                            android:backgroundTint="@color/selector_color_radio_button"
                             android:button="@null"
                             android:elevation="5dp"
                             android:gravity="center"
@@ -110,7 +110,7 @@
                             android:layout_height="26dp"
                             android:layout_marginEnd="10dp"
                             android:background="@drawable/shape_radius_category"
-                            android:backgroundTint="@color/banner_background"
+                            android:backgroundTint="@color/selector_color_radio_button"
                             android:button="@null"
                             android:elevation="5dp"
                             android:gravity="center"
@@ -125,7 +125,7 @@
                             android:layout_height="26dp"
                             android:layout_marginEnd="10dp"
                             android:background="@drawable/shape_radius_category"
-                            android:backgroundTint="@color/banner_background"
+                            android:backgroundTint="@color/selector_color_radio_button"
                             android:button="@null"
                             android:elevation="5dp"
                             android:gravity="center"
@@ -140,7 +140,7 @@
                             android:layout_height="26dp"
                             android:layout_marginEnd="10dp"
                             android:background="@drawable/shape_radius_category"
-                            android:backgroundTint="@color/banner_background"
+                            android:backgroundTint="@color/selector_color_radio_button"
                             android:button="@null"
                             android:elevation="5dp"
                             android:gravity="center"
@@ -153,8 +153,9 @@
                             android:id="@+id/rb_arthropods_write_post"
                             android:layout_width="51dp"
                             android:layout_height="26dp"
+                            android:layout_marginEnd="20dp"
                             android:background="@drawable/shape_radius_category"
-                            android:backgroundTint="@color/banner_background"
+                            android:backgroundTint="@color/selector_color_radio_button"
                             android:button="@null"
                             android:elevation="5dp"
                             android:gravity="center"
@@ -165,12 +166,13 @@
 
                     </RadioGroup>
 
-                </ScrollView>
+                </HorizontalScrollView>
 
                 <TextView
                     android:id="@+id/tv_title_write_post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/title"
                     android:textColor="@color/black"
@@ -182,6 +184,7 @@
                     android:id="@+id/cl_title_write_post"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/shape_radius_dialog"
                     android:backgroundTint="@color/ivory"
@@ -231,6 +234,7 @@
                     android:id="@+id/tv_date_write_post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/date"
                     android:textColor="@color/black"
@@ -242,6 +246,7 @@
                     android:id="@+id/cl_date_write_post"
                     android:layout_width="0dp"
                     android:layout_height="38dp"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/shape_radius_dialog"
                     android:backgroundTint="@color/ivory"
@@ -253,9 +258,9 @@
                         android:id="@+id/iv_start_date_write_post"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
+                        android:layout_marginStart="20dp"
                         android:src="@drawable/ic_calendar"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintHorizontal_chainStyle="packed"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toLeftOf="@id/tv_start_date_write_post"
                         app:layout_constraintTop_toTopOf="parent"
@@ -266,6 +271,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
+                        android:text="@string/hyphen"
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -303,6 +309,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
+                        android:text="@string/hyphen"
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -320,7 +327,6 @@
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toRightOf="@id/tv_end_date_write_post"
-                        app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -329,6 +335,7 @@
                     android:id="@+id/tv_deadline_write_post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/deadline"
                     android:textColor="@color/black"
@@ -341,6 +348,7 @@
                     android:id="@+id/cl_deadline_write_post"
                     android:layout_width="0dp"
                     android:layout_height="38dp"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/shape_radius_dialog"
                     android:backgroundTint="@color/ivory"
@@ -365,6 +373,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
+                        android:text="@string/hyphen"
                         android:textColor="@color/red_orange"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -377,6 +386,7 @@
                     android:id="@+id/tv_description_write_post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/description"
                     android:textColor="@color/black"
@@ -388,6 +398,7 @@
                     android:id="@+id/cl_description_write_post"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/shape_radius_dialog"
                     android:backgroundTint="@color/ivory"
@@ -437,6 +448,7 @@
                     android:id="@+id/tv_contacts_write_post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/contacts"
                     android:textColor="@color/black"
@@ -448,6 +460,7 @@
                     android:id="@+id/cl_contacts_write_post"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/shape_radius_dialog"
                     android:backgroundTint="@color/ivory"
@@ -496,6 +509,7 @@
                     android:id="@+id/tv_image_write_post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/pet_photo"
                     android:textColor="@color/black"
@@ -507,6 +521,7 @@
                     android:id="@+id/cl_image_write_post"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/shape_radius_dialog"
                     android:backgroundTint="@color/ivory"
@@ -523,9 +538,32 @@
                         android:background="@drawable/shape_radius_banner"
                         android:backgroundTint="@color/white"
                         android:elevation="10dp"
+                        android:visibility="invisible"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_empty_image"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="25dp"
+                        android:background="@drawable/shape_radius_banner"
+                        android:elevation="5dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="206dp"
+                            android:background="@color/white"
+                            android:paddingVertical="80dp"
+                            android:src="@drawable/ic_image"
+                            tools:ignore="ContentDescription" />
+
+                    </androidx.cardview.widget.CardView>
 
                     <ImageButton
                         android:id="@+id/btn_delete_image_write_post"
@@ -549,6 +587,7 @@
                         app:dotsColor="@color/disabled_gray"
                         app:dotsSize="10dp"
                         app:dotsSpacing="3dp"
+                        app:dotsWidthFactor="1"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
@@ -560,8 +599,10 @@
                         android:layout_width="42dp"
                         android:layout_height="29dp"
                         android:layout_marginVertical="15dp"
+                        android:layout_marginEnd="20dp"
                         android:background="@drawable/shape_radius_banner"
                         android:backgroundTint="@color/white"
+                        android:elevation="5dp"
                         android:src="@drawable/ic_add_image"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
@@ -575,6 +616,7 @@
                     android:id="@+id/tv_pet_name_write_post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/name"
                     android:textColor="@color/black"
@@ -586,6 +628,7 @@
                     android:id="@+id/et_pet_name_write_post"
                     android:layout_width="0dp"
                     android:layout_height="38dp"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/shape_radius_dialog"
                     android:backgroundTint="@color/ivory"
@@ -604,6 +647,7 @@
                     android:id="@+id/tv_pet_species_write_post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/species"
                     android:textColor="@color/black"
@@ -615,6 +659,7 @@
                     android:id="@+id/et_pet_species_write_post"
                     android:layout_width="0dp"
                     android:layout_height="38dp"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/shape_radius_dialog"
                     android:backgroundTint="@color/ivory"
@@ -633,6 +678,7 @@
                     android:id="@+id/tv_pet_gender_write_post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/gender"
                     android:textColor="@color/black"
@@ -640,28 +686,45 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/et_pet_species_write_post" />
 
-                <EditText
-                    android:id="@+id/et_pet_gender_write_post"
-                    android:layout_width="0dp"
-                    android:layout_height="38dp"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/shape_radius_dialog"
-                    android:backgroundTint="@color/ivory"
-                    android:hint="@string/input_pet_gender"
-                    android:importantForAutofill="no"
-                    android:inputType="text"
-                    android:paddingHorizontal="15dp"
-                    android:textColorHint="@color/red_orange"
-                    android:textSize="14sp"
+                <RadioGroup
+                    android:id="@+id/rg_gender_write_post"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_pet_gender_write_post"
-                    tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_pet_gender_write_post">
+
+                    <RadioButton
+                        android:id="@+id/rb_male_write_post"
+                        android:layout_width="58dp"
+                        android:layout_height="20dp"
+                        android:buttonTint="@color/red_orange"
+                        android:checked="true"
+                        android:layoutDirection="rtl"
+                        android:text="@string/male"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/rb_female_write_post"
+                        android:layout_width="58dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="10dp"
+                        android:buttonTint="@color/red_orange"
+                        android:layoutDirection="rtl"
+                        android:text="@string/female"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                </RadioGroup>
 
                 <TextView
                     android:id="@+id/btn_write_post"
                     android:layout_width="0dp"
                     android:layout_height="38dp"
+                    android:layout_marginHorizontal="20dp"
                     android:layout_marginTop="50dp"
                     android:layout_marginBottom="35dp"
                     android:background="@drawable/selector_radius_big_button"
@@ -673,7 +736,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/et_pet_gender_write_post" />
+                    app:layout_constraintTop_toBottomOf="@id/rg_gender_write_post" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

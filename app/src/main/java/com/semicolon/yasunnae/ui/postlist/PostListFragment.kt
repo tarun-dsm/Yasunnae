@@ -38,7 +38,7 @@ class PostListFragment : BaseFragment<FragmentPostListBinding>() {
         binding.rgAnimalCategories.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.rb_all -> allCategory()
-                R.id.rb_mammal -> setCategory(AnimalType.MAMMAL)
+                R.id.rb_mammal -> setCategory(AnimalType.MAMMEL)
                 R.id.rb_bird -> setCategory(AnimalType.BIRD)
                 R.id.rb_reptiles -> setCategory(AnimalType.REPTILES)
                 R.id.rb_amphibians -> setCategory(AnimalType.AMPHIBIANS)

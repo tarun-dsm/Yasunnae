@@ -29,7 +29,7 @@ class PostDetailImageAdapter : RecyclerView.Adapter<PostDetailImageAdapter.ViewH
         imageUrlList.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setCommentList(imageUrlList: List<String>) {
+    fun setImageList(imageUrlList: List<String>) {
         this.imageUrlList = ArrayList(imageUrlList)
         notifyDataSetChanged()
     }

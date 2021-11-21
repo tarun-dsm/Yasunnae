@@ -1,6 +1,7 @@
 package com.semicolon.domain.param
 
 import com.semicolon.domain.enum.AnimalType
+import com.semicolon.domain.enum.Sex
 
 data class PostParam(
 
@@ -20,7 +21,7 @@ data class PostParam(
 
     val petSpecies: String,
 
-    val petSex: String,
+    val petSex: Sex,
 
     val animalType: AnimalType
 )
