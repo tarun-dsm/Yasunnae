@@ -36,6 +36,9 @@ class PostApplicationsActivity : BaseActivity<ActivityPostApplicationsBinding>()
         val endDate = intent.getStringExtra(KEY_END_DATE)
         binding.tvStartDatePostApplication.text = startDate
         binding.tvEndDatePostApplication.text = endDate
+        binding.btnBackPostApplications.setOnClickListener {
+            finish()
+        }
         binding.btnGoToPost.setOnClickListener {
             finish()
         }

@@ -3,7 +3,6 @@ package com.semicolon.yasunnae.util
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
-import android.os.SystemClock
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.target.CustomTarget
@@ -16,9 +15,16 @@ import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun String.toPrettyDate(): String {
+fun String?.toPrettyDate(): String {
+    if (this == null) return ""
     val date = this.split("T")
     return (date[0] + " " + date[1]).replace("-", "/")
+}
+
+fun String?.toPrettyDateWithoutTime(): String {
+    if (this == null) return ""
+    val date = this.split("T")
+    return date[0].replace("-", "/")
 }
 
 fun String.toDate(): Date =
@@ -49,6 +55,7 @@ fun convertUrlToFile(context: Context, url: String): Single<File> {
                     val file = File.createTempFile("JPEG_", ".jpg", context.cacheDir)
                     FileOutputStream(file)
                         .use { resource.compress(Bitmap.CompressFormat.JPEG, 100, it) }
+                    file.deleteOnExit()
                     emitter.onSuccess(file)
                 }
 

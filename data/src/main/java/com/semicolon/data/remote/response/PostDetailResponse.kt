@@ -6,6 +6,9 @@ import com.semicolon.domain.enum.toAnimalType
 
 data class PostDetailResponse(
 
+    @SerializedName("writer_id")
+    val writerId: Int,
+
     @SerializedName("nickname")
     val nickname: String,
 
@@ -74,6 +77,7 @@ data class PetDetail(
 )
 
 fun PostDetailResponse.toEntity() = PostDetailEntity(
+    writerId = this.writerId,
     nickname = this.nickname,
     rating = this.rating,
     isMine = this.isMine,

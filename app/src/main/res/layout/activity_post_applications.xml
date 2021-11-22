@@ -8,17 +8,31 @@
         android:layout_height="match_parent"
         tools:context=".ui.postapplications.PostApplicationsActivity">
 
+        <ImageButton
+            android:id="@+id/btn_back_post_applications"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="17dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginStart="20dp"
+            app:tint="@color/black"
+            tools:ignore="ContentDescription" />
+
         <TextView
             android:id="@+id/tv_applicant_list"
             android:layout_width="wrap_content"
-            android:layout_height="23dp"
-            android:layout_marginStart="19dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="17dp"
             android:text="@string/applicant_list"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/btn_back_post_applications"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
