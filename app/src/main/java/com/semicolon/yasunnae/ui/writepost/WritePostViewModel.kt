@@ -33,35 +33,54 @@ class WritePostViewModel @Inject constructor(
     val notFoundEvent = SingleLiveEvent<Unit>()
     val unknownEvent = SingleLiveEvent<Unit>()
 
-    private val resultObserver = object : DisposableSingleObserver<Resource<Int>>() {
-        override fun onSuccess(t: Resource<Int>) {
-            when (t.status) {
-                ResourceStatus.SUCCESS -> postIdLiveData.value = t.data!!
-                ResourceStatus.ERROR -> when (t.message) {
-                    Error.BAD_REQUEST -> badRequestEvent.call()
-                    Error.UNAUTHORIZED -> {
-                        tokenRefresh()
-                        retryEvent.call()
-                    }
-                    Error.NOT_FOUND -> notFoundEvent.call()
-                    else -> unknownEvent.call()
-                }
-            }
-        }
-
-        override fun onError(e: Throwable) {
-            unknownEvent.call()
-        }
-    }
-
     fun writePost(postParam: PostParam) {
         val result = writePostUseCase.interact(postParam)
-        observeSingle(result, resultObserver)
+        val observer = object : DisposableSingleObserver<Resource<Int>>() {
+            override fun onSuccess(t: Resource<Int>) {
+                when (t.status) {
+                    ResourceStatus.SUCCESS -> postIdLiveData.value = t.data!!
+                    ResourceStatus.ERROR -> when (t.message) {
+                        Error.BAD_REQUEST -> badRequestEvent.call()
+                        Error.UNAUTHORIZED -> {
+                            tokenRefresh()
+                            retryEvent.call()
+                        }
+                        Error.NOT_FOUND -> notFoundEvent.call()
+                        else -> unknownEvent.call()
+                    }
+                }
+            }
+
+            override fun onError(e: Throwable) {
+                unknownEvent.call()
+            }
+        }
+        observeSingle(result, observer)
     }
 
     fun fixPost(fixedPostParam: FixedPostParam) {
         val result = fixPostUseCase.interact(fixedPostParam)
-        observeSingle(result, resultObserver)
+        val observer = object : DisposableSingleObserver<Resource<Int>>() {
+            override fun onSuccess(t: Resource<Int>) {
+                when (t.status) {
+                    ResourceStatus.SUCCESS -> postIdLiveData.value = t.data!!
+                    ResourceStatus.ERROR -> when (t.message) {
+                        Error.BAD_REQUEST -> badRequestEvent.call()
+                        Error.UNAUTHORIZED -> {
+                            tokenRefresh()
+                            retryEvent.call()
+                        }
+                        Error.NOT_FOUND -> notFoundEvent.call()
+                        else -> unknownEvent.call()
+                    }
+                }
+            }
+
+            override fun onError(e: Throwable) {
+                unknownEvent.call()
+            }
+        }
+        observeSingle(result, observer)
     }
 
     fun sendImage(imageParam: PostImageParam) {
