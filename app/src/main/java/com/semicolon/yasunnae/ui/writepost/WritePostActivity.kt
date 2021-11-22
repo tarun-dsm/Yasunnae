@@ -44,6 +44,9 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>() {
     private var deadline: Date? = null
     private val imageListAdapter = PostImageListAdapter(this) {
         binding.indicatorImageWritePost.refreshDots()
+        binding.cvEmptyImage.visibility = INVISIBLE
+        binding.vpImageWritePost.visibility = VISIBLE
+        binding.btnDeleteImageWritePost.visibility = VISIBLE
     }
 
     override val layoutResId: Int
