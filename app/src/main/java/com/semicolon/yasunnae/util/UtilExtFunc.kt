@@ -21,6 +21,12 @@ fun String?.toPrettyDate(): String {
     return (date[0] + " " + date[1]).replace("-", "/")
 }
 
+fun String?.toPrettyDateWithoutTime(): String {
+    if (this == null) return ""
+    val date = this.split("T")
+    return date[0].replace("-", "/")
+}
+
 fun String.toDate(): Date =
     SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).parse(this) ?: Date(0)
 
