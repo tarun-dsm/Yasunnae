@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="com.semicolon.yasunnae.util.UtilExtFuncKt" />
+
         <variable
             name="postDetail"
             type="com.semicolon.domain.entity.PostDetailEntity" />
@@ -107,7 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:text="@{postDetail.post.createdAt}"
+                    android:text="@{UtilExtFuncKt.toPrettyDate(postDetail.post.createdAt)}"
                     android:textColor="@color/gray_text"
                     android:textSize="9sp"
                     app:layout_constraintBottom_toBottomOf="@id/tv_writer_name"
@@ -144,6 +146,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="120dp"
                     android:layout_marginEnd="20dp"
+                    android:text="@string/updated"
                     android:textColor="@color/gray_text"
                     android:textSize="9sp"
                     android:visibility="gone"
