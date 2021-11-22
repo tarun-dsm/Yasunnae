@@ -46,16 +46,10 @@ fun convertUrlToFile(context: Context, url: String): Single<File> {
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .into(object : CustomTarget<Bitmap>(SIZE_ORIGINAL, SIZE_ORIGINAL) {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                    val newFile = File(
-                        context.cacheDir.path,
-                        Random(SystemClock.currentThreadTimeMillis()).nextLong().toString()
-                    ).apply {
-                        createNewFile()
-                    }
-                    FileOutputStream(newFile).use {
-                        resource.compress(Bitmap.CompressFormat.JPEG, 100, it)
-                    }
-                    emitter.onSuccess(newFile)
+                    val file = File.createTempFile("JPEG_", ".jpg", context.cacheDir)
+                    FileOutputStream(file)
+                        .use { resource.compress(Bitmap.CompressFormat.JPEG, 100, it) }
+                    emitter.onSuccess(file)
                 }
 
                 override fun onLoadCleared(placeholder: Drawable?) {}
