@@ -9,6 +9,10 @@
         <import type="com.semicolon.yasunnae.util.UtilExtFuncKt" />
 
         <variable
+            name="profile"
+            type="com.semicolon.domain.entity.ProfileEntity" />
+
+        <variable
             name="postDetail"
             type="com.semicolon.domain.entity.PostDetailEntity" />
     </data>
@@ -86,7 +90,7 @@
                     android:isIndicator="true"
                     android:numStars="5"
                     android:progressTint="@color/star_yellow"
-                    android:rating="3"
+                    android:rating="@{Math.round(profile.avgGrade)}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_writer_name"
                     app:layout_constraintLeft_toRightOf="@id/tv_writer_name"
                     app:layout_constraintTop_toTopOf="@id/tv_writer_name" />
@@ -109,7 +113,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:text="@{UtilExtFuncKt.toPrettyDate(postDetail.post.createdAt)}"
+                    android:text="@{UtilExtFuncKt.toPrettyDateWithoutTime(postDetail.post.createdAt)}"
                     android:textColor="@color/gray_text"
                     android:textSize="9sp"
                     app:layout_constraintBottom_toBottomOf="@id/tv_writer_name"
@@ -122,6 +126,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
+                    android:text="@{profile.administrationDivision}"
                     android:textColor="@color/gray_text"
                     android:textSize="9sp"
                     app:layout_constraintBottom_toBottomOf="@id/tv_writer_name"
