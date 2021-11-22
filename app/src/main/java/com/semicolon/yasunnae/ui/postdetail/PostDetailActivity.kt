@@ -2,6 +2,7 @@ package com.semicolon.yasunnae.ui.postdetail
 
 import android.content.Intent
 import android.view.View
+import android.view.View.VISIBLE
 import androidx.activity.viewModels
 import androidx.lifecycle.LifecycleOwner
 import com.semicolon.domain.entity.PostDetailEntity
@@ -66,6 +67,9 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
         binding.vpImagePostDetail.adapter = postDetailImageAdapter
         binding.rvCommentsPostDetail.adapter = commentsAdapter
         binding.btnBack.setOnClickListener { finish() }
+        binding.tvWriterName.setOnClickListener {
+            // TODO("작성자 프로필로 이동하기")
+        }
         binding.btnEditPost.setOnClickListener {
             goToEditPost()
         }
@@ -92,6 +96,8 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
         val owner: LifecycleOwner = this
         postDetailViewModel.apply {
             postDetailLiveData.observe(owner) {
+                if(it.isMine) postDetailViewModel.getProfile(null)
+                else postDetailViewModel.getProfile(it.writerId)
                 postDetail = it
                 val deadline = getString(R.string.deadline_colon) + " " + it.post.applicationEndDate
                 val contacts = getString(R.string.contacts_colon) + " " + it.post.contactInfo
@@ -103,10 +109,17 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
                     if (it.pet.petSex == "MALE") getString(R.string.male) else getString(R.string.female)
                 postDetailImageAdapter.setImageList(it.pet.filePaths)
                 binding.indicatorImagePostDetail.setViewPager2(binding.vpImagePostDetail)
+                if(it.post.isUpdated) {
+                    binding.ivIsUpdatedPostDetail.visibility = VISIBLE
+                    binding.tvIsUpdatedPostDetail.visibility = VISIBLE
+                }
             }
             deletePostSuccessEvent.observe(owner) {
                 makeToast(getString(R.string.complete_delete_post))
                 finish()
+            }
+            profileLiveData.observe(owner) {
+                binding.profile = it
             }
             sendApplicationSuccessEvent.observe(owner) {
                 setApplicationBtn(R.string.cancel_apply) {
