@@ -8,6 +8,27 @@
         android:layout_height="match_parent"
         tools:context=".ui.login.LoginActivity">
 
+        <ImageView
+            android:id="@+id/iv_cat_login"
+            android:layout_width="73dp"
+            android:layout_height="73dp"
+            android:layout_marginStart="163dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/image_logincat"
+            app:layout_constraintEnd_toStartOf="@+id/iv_dog_login"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_dog_login"
+            android:layout_width="96.17dp"
+            android:layout_height="93dp"
+            android:layout_marginStart="236dp"
+            android:layout_marginTop="53dp"
+            android:background="@drawable/image_logindog"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -17,7 +38,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-
             <TextView
                 android:id="@+id/tv_welcome"
                 android:layout_width="wrap_content"
@@ -26,29 +46,6 @@
                 android:text="@string/welcome"
                 android:textColor="@color/black"
                 android:textSize="22sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/iv_cat_login"
-                android:layout_width="73dp"
-                android:layout_height="73dp"
-                android:layout_marginStart="163dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="124dp"
-                android:background="@drawable/image_logincat"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/iv_dog_login"
-                android:layout_width="96.17dp"
-                android:layout_height="93dp"
-                android:layout_marginStart="236dp"
-                android:layout_marginTop="53dp"
-                android:background="@drawable/image_logindog"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -175,12 +172,12 @@
                 android:background="@drawable/selector_radius_big_button"
                 android:drawableLeft="@drawable/ic_footprint"
                 android:drawableRight="@drawable/ic_footprint"
-                android:enabled="false"
+                android:enabled="true"
                 android:gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="@string/complete_login"
-                android:textColor="@color/selector_color_big_button"
+                android:text="@string/do_login"
+                android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
