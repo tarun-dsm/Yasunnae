@@ -18,7 +18,7 @@ object RemoteModule {
 
     @Provides
     fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =
-        HttpLoggingInterceptor { message -> Log.e("HTTP", message) }
+        HttpLoggingInterceptor { message -> Log.v("HTTP", message) }
             .setLevel(HttpLoggingInterceptor.Level.BODY)
 
     @Provides
