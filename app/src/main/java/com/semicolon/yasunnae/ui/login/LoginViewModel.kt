@@ -7,17 +7,19 @@ import com.semicolon.domain.usecase.auth.LoginUseCase
 import com.semicolon.yasunnae.base.BaseViewModel
 import com.semicolon.yasunnae.base.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
+import io.reactivex.Single
 import io.reactivex.observers.DisposableSingleObserver
 import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val loginUseCase: LoginUseCase,
+    private val loginUseCase: LoginUseCase
 ) : BaseViewModel() {
 
-    val badRequestEvent = SingleLiveEvent<Unit>()
-    val unknownErrorEvent = SingleLiveEvent<Unit>()
     val successEvent = SingleLiveEvent<Unit>()
+    val badRequestEvent = SingleLiveEvent<Unit>()
+    val nonExistsEmailEvent = SingleLiveEvent<Unit>()
+    val unknownErrorEvent = SingleLiveEvent<Unit>()
 
     fun login(login: LoginParam) {
         val result = loginUseCase.interact(login)
@@ -29,6 +31,9 @@ class LoginViewModel @Inject constructor(
                     ResourceStatus.ERROR -> when (t.message) {
                         Error.BAD_REQUEST -> {
                             badRequestEvent.call()
+                        }
+                        Error.NOT_FOUND -> {
+                            nonExistsEmailEvent.call()
                         }
                         else -> unknownErrorEvent.call()
                     }
