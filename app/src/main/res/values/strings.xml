@@ -61,18 +61,26 @@
     <string name="ok">확인</string>
     <string name="zero_zero">00</string>
     <string name="duplicate_email">중복되는 이메일입니다.</string>
+    <string name="ok_email">사용 가능한 이메일입니다.</string>
     <string name="incorrect_verify_number">인증번호가 올바르지 않습니다.</string>
     <string name="different_password">비밀번호가 다릅니다.</string>
     <string name="duplicate_nickname">중복되는 닉네임입니다.</string>
+    <string name="ok_nickname">사용 가능한 닉네임입니다.</string>
     <string name="please_input_age">나이를 입력해주세요.</string>
+    <string name="ok_ok">확인되었습니다.</string>
+    <string name="check_things">입력을 확인해보세요.</string>
 
     <string name="hello">안녕하세요~</string>
     <string name="prompt_email">이메일</string>
     <string name="prompt_password">비밀번호</string>
     <string name="welcome">Welcome!</string>
-    <string name="complete_login">로그인하기</string>
+    <string name="do_login">로그인하기</string>
     <string name="it_is_ggosunnae">모두가 행복한 반려동물 맡김 서비스 \n꼬순내 친구들입니다</string>
     <string name="login_warning">이메일이나 비밀번호가 올바르지 않습니다.</string>
+    <string name="login_empty">이메일이나 비밀번호를 입력해주세요.</string>
+    <string name="non_existent_email">이메일이 존재하지 않습니다.</string>
+    <string name="need_to_verify_email">이메일이 인증이 필요합니다.</string>
+    <string name="complete_login">로그인에 성공하였습니다!</string>
 
     <string name="title_write_post">게시글 작성</string>
     <string name="title_edit_post">게시글 수정</string>
