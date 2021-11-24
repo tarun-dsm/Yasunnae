@@ -27,13 +27,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(){
         val email = binding.etEmailBoxLogin.text
         val password = binding.etPasswordBoxLogin.text
 
-        if(email.toString().isNotEmpty() && password.toString().isNotEmpty()) {
-            binding.btnLoginAccount.isEnabled = true
-            binding.btnLoginAccount.setTextColor(Color.WHITE)
-        }
-
         binding.btnLoginAccount.setOnClickListener{
-
             binding.tvLoginWarning.text = ""
             if(email.toString().isEmpty() || password.toString().isEmpty()) {
                 binding.tvLoginWarning.text = getString(R.string.login_empty)
@@ -55,10 +49,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(){
             startMainActivity()
         }
         loginViewModel.badRequestEvent.observe(this) {
-            makeToast(getString(R.string.login_warning))
+            binding.tvLoginWarning.text = getString(R.string.login_warning)
         }
         loginViewModel.unknownErrorEvent.observe(this) {
-            makeToast(getString(R.string.non_existent_email))
+            binding.tvLoginWarning.text = getString(R.string.non_existent_email)
         }
     }
 
