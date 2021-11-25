@@ -21,7 +21,7 @@ class TokenStorageImpl(
 
     override fun saveRefreshToken(refreshToken: String) =
         getSharedPreference().edit().let {
-            it.putString(TokenKey.REFRESH_TOKEN_KEY, "Bearer $refreshToken")
+            it.putString(TokenKey.REFRESH_TOKEN_KEY, refreshToken)
             it.apply()
         }
 
