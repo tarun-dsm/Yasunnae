@@ -1,18 +1,15 @@
 package com.semicolon.data.remote.api
 
+import com.semicolon.data.remote.request.EmailRequest
 import com.semicolon.data.remote.request.SendCertificationEmailRequest
 import io.reactivex.Completable
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface EmailApi {
 
-    @GET("email")
+    @PATCH("email")
     fun checkCertificationNumber(
-        @Query("email") email: String,
-        @Query("number") number: String,
+        @Body emailRequest: EmailRequest
     ): Completable
 
     @POST("email")
