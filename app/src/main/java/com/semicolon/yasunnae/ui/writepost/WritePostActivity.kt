@@ -33,6 +33,7 @@ import androidx.loader.content.CursorLoader
 
 import com.semicolon.domain.*
 import com.semicolon.domain.param.FixedPostParam
+import com.semicolon.yasunnae.ui.login.LoginActivity
 
 @AndroidEntryPoint
 class WritePostActivity : BaseActivity<ActivityWritePostBinding>() {
@@ -168,8 +169,9 @@ class WritePostActivity : BaseActivity<ActivityWritePostBinding>() {
             makeToast(getString(R.string.try_it_later))
         }
         writePostViewModel.needToLoginEvent.observe(this) {
-            finish()
-            TODO("로그인 창 열기")
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
         writePostViewModel.notFoundEvent.observe(this) {
             makeToast(getString(R.string.post_not_found))
