@@ -1,7 +1,6 @@
 package com.semicolon.yasunnae.ui.postdetail
 
 import android.content.Intent
-import android.view.View
 import android.view.View.VISIBLE
 import androidx.activity.viewModels
 import androidx.lifecycle.LifecycleOwner
@@ -28,6 +27,7 @@ import com.semicolon.yasunnae.base.IntentKeys.KEY_START_DATE
 import com.semicolon.yasunnae.databinding.ActivityPostDetailBinding
 import com.semicolon.yasunnae.dialog.AskDialog
 import com.semicolon.yasunnae.dialog.EditCommentDialog
+import com.semicolon.yasunnae.ui.login.LoginActivity
 import com.semicolon.yasunnae.ui.postapplications.PostApplicationsActivity
 import com.semicolon.yasunnae.ui.writepost.WritePostActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -96,7 +96,7 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
         val owner: LifecycleOwner = this
         postDetailViewModel.apply {
             postDetailLiveData.observe(owner) {
-                if(it.isMine) postDetailViewModel.getProfile(null)
+                if (it.isMine) postDetailViewModel.getProfile(null)
                 else postDetailViewModel.getProfile(it.writerId)
                 postDetail = it
                 val deadline = getString(R.string.deadline_colon) + " " + it.post.applicationEndDate
@@ -109,7 +109,7 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
                     if (it.pet.petSex == "MALE") getString(R.string.male) else getString(R.string.female)
                 postDetailImageAdapter.setImageList(it.pet.filePaths)
                 binding.indicatorImagePostDetail.setViewPager2(binding.vpImagePostDetail)
-                if(it.post.isUpdated) {
+                if (it.post.isUpdated) {
                     binding.ivIsUpdatedPostDetail.visibility = VISIBLE
                     binding.tvIsUpdatedPostDetail.visibility = VISIBLE
                 }
@@ -139,7 +139,7 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
                 binding.btnApplicationPostDetail.isEnabled = true
             }
             retryEvent.observe(owner) { makeToast(getString(R.string.try_it_later)) }
-            needToLoginEvent.observe(owner) { TODO("로그인 창 열기") }
+            needToLoginEvent.observe(owner) { openLoginActivity() }
             postNotFoundEvent.observe(owner) { makeToast(getString(R.string.post_not_found)) }
             conflictEvent.observe(owner) { makeToast(getString(R.string.conflict)) }
             applicationConflictEvent.observe(owner) {
@@ -166,7 +166,7 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
             retryEvent.observe(owner) { makeToast(getString(R.string.try_it_later)) }
             postNotFoundEvent.observe(owner) { makeToast(getString(R.string.post_not_found)) }
             commentNotFoundEvent.observe(owner) { makeToast(getString(R.string.comment_not_found)) }
-            needToLoginEvent.observe(owner) { TODO("로그인 창 열기") }
+            needToLoginEvent.observe(owner) { openLoginActivity() }
             unknownErrorEvent.observe(owner) { makeToast(getString(R.string.unknown_error)) }
         }
     }
@@ -182,8 +182,8 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
                     startActivity(intent)
                 }
                 binding.btnApplicationPostDetail.isEnabled = true
-                binding.btnEditPost.visibility = View.VISIBLE
-                binding.btnDeletePost.visibility = View.VISIBLE
+                binding.btnEditPost.visibility = VISIBLE
+                binding.btnDeletePost.visibility = VISIBLE
             }
             postDetail.post.isApplicationEnd -> {
                 setApplicationBtn(R.string.application_end) {}
@@ -226,6 +226,12 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
         intent.putExtra(KEY_PET_NAME, postDetail!!.pet.petName)
         intent.putExtra(KEY_PET_SPECIES, postDetail!!.pet.petSpecies)
         intent.putExtra(KEY_PET_SEX, postDetail!!.pet.petSex)
+        startActivity(intent)
+    }
+
+    private fun openLoginActivity() {
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
     }
 }
