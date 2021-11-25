@@ -40,7 +40,7 @@
     <string name="arthropods">절지동물</string>
 
     <string name="register_account">회원가입</string>
-    <string name="complete_register_account">회원가입 완료</string>
+    <string name="complete_register_account">회원가입에 성공하였습니다!</string>
     <string name="email">이메일</string>
     <string name="email_verify">이메일 인증</string>
     <string name="input_verify_number">인증번호를 입력해주세요</string>
@@ -57,18 +57,26 @@
     <string name="no">아니오</string>
     <string name="experience">경험</string>
     <string name="input_experience">반려동물을 키운 경험에 대해 설명할 사항이 있으면 작성해주세요</string>
+    <string name="send">전송</string>
     <string name="duplicate">중복</string>
     <string name="ok">확인</string>
     <string name="zero_zero">00</string>
     <string name="duplicate_email">중복되는 이메일입니다.</string>
+    <string name="non_email_form">올바른 이메일 형식이 아닙니다.</string>
+    <string name="send_failed">전송이 제대로 되지 않았습니다.</string>
     <string name="ok_email">사용 가능한 이메일입니다.</string>
+    <string name="ok_send_email">이메일로 인증번호를 전송했습니다.</string>
     <string name="incorrect_verify_number">인증번호가 올바르지 않습니다.</string>
     <string name="different_password">비밀번호가 다릅니다.</string>
+    <string name="wrong_password_format">비밀번호는 8~15자 영문+숫자+특수문자 조합으로 만들어주세요.</string>
     <string name="duplicate_nickname">중복되는 닉네임입니다.</string>
     <string name="ok_nickname">사용 가능한 닉네임입니다.</string>
     <string name="please_input_age">나이를 입력해주세요.</string>
     <string name="ok_ok">확인되었습니다.</string>
-    <string name="check_things">입력을 확인해보세요.</string>
+    <string name="need_to_verify_email">이메일 인증이 필요합니다.</string>
+    <string name="need_to_check_password">비밀번호 확인이 필요합니다.</string>
+    <string name="need_to_check_nickname">닉네임 중복 확인이 필요합니다.</string>
+    <string name="check_things">입력을 확인해주세요.</string>
 
     <string name="hello">안녕하세요~</string>
     <string name="prompt_email">이메일</string>
@@ -79,7 +87,6 @@
     <string name="login_warning">이메일이나 비밀번호가 올바르지 않습니다.</string>
     <string name="login_empty">이메일이나 비밀번호를 입력해주세요.</string>
     <string name="non_existent_email">이메일이 존재하지 않습니다.</string>
-    <string name="need_to_verify_email">이메일이 인증이 필요합니다.</string>
     <string name="complete_login">로그인에 성공하였습니다!</string>
 
     <string name="title_write_post">게시글 작성</string>
