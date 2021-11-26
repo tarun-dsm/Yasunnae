@@ -1,6 +1,7 @@
 package com.semicolon.data.datasource
 
 import com.semicolon.data.remote.api.EmailApi
+import com.semicolon.data.remote.request.EmailRequest
 import com.semicolon.data.remote.request.SendCertificationEmailRequest
 import com.semicolon.domain.param.EmailCertificationParam
 import io.reactivex.Completable
@@ -33,8 +34,7 @@ class EmailDataSourceUnitTest {
 
         `when`(
             emailApi.checkCertificationNumber(
-                emailCertificationParam.email,
-                emailCertificationParam.number
+                EmailRequest( emailCertificationParam.email, emailCertificationParam.number)
             )
         ).thenReturn(Completable.complete())
 
@@ -52,8 +52,7 @@ class EmailDataSourceUnitTest {
 
         `when`(
             emailApi.checkCertificationNumber(
-                emailCertificationParam.email,
-                emailCertificationParam.number
+                EmailRequest( emailCertificationParam.email, emailCertificationParam.number)
             )
         ).thenReturn(Completable.error(exception))
 
