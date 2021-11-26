@@ -564,7 +564,7 @@
                     android:background="@drawable/selector_radius_big_button"
                     android:enabled="true"
                     android:gravity="center"
-                    android:text="@string/complete_register_account"
+                    android:text="@string/do_register_account"
                     android:textColor="@color/white"
                     android:textSize="14sp"
                     android:textStyle="bold"

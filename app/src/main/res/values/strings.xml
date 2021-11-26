@@ -40,6 +40,7 @@
     <string name="arthropods">절지동물</string>
 
     <string name="register_account">회원가입</string>
+    <string name="do_register_account">회원가입 완료</string>
     <string name="complete_register_account">회원가입에 성공하였습니다!</string>
     <string name="email">이메일</string>
     <string name="email_verify">이메일 인증</string>
