@@ -12,7 +12,7 @@ interface AccountApi {
 
     @POST("account")
     fun registerAccount(
-        registerAccountRequest: RegisterAccountRequest
+        @Body registerAccountRequest: RegisterAccountRequest
     ): Single<TokenResponse>
 
     @GET("account/email/{email}")
