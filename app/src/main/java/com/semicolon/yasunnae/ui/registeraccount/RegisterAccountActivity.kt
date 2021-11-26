@@ -1,15 +1,13 @@
 package com.semicolon.yasunnae.ui.registeraccount
 
 import android.content.Intent
-import android.graphics.Color
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import com.semicolon.domain.param.EmailCertificationParam
 import com.semicolon.domain.param.RegisterAccountParam
-import com.semicolon.domain.param.Sex
+import com.semicolon.domain.enum.Sex
 import com.semicolon.yasunnae.R
 import com.semicolon.yasunnae.base.BaseActivity
 import com.semicolon.yasunnae.databinding.ActivityRegisterAccountBinding
@@ -216,7 +214,6 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
         registerViewModel.unknownErrorEvent.observe(this) {
             makeToast(getString(R.string.unknown_error))
         }
-
     }
 
     private fun startLoginActivity() {
