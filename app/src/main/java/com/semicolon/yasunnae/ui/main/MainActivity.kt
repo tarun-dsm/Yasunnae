@@ -6,6 +6,7 @@ import com.semicolon.yasunnae.R
 import com.semicolon.yasunnae.base.BaseActivity
 import com.semicolon.yasunnae.databinding.ActivityMainBinding
 import com.semicolon.yasunnae.ui.postlist.PostListFragment
+import com.semicolon.yasunnae.ui.profile.ProfileFragment
 import com.semicolon.yasunnae.ui.writepost.WritePostActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,7 +27,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 R.id.menu_home -> setFragment(PostListFragment())
                 R.id.menu_write_post -> startWritePostActivity()
                 R.id.menu_my_applications -> TODO("내 신청목록 Fragment 실행")
-                R.id.menu_my_profile -> TODO("마이 프로필 Fragment 로 실행")
+                R.id.menu_my_profile -> setFragment(ProfileFragment())
             }
             return@setOnItemSelectedListener true
         }
