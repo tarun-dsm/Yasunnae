@@ -39,9 +39,6 @@
             android:name=".ui.coordinate.CoordinateActivity"
             android:exported="true" />
         <activity
-            android:name=".Profile.MyProfile"
-            android:exported="true" />
-        <activity
             android:name=".ui.main.MainActivity"
             android:exported="true" />
     </application>
