@@ -1,4 +1,4 @@
-package com.semicolon.yasunnae.Profile
+package com.semicolon.yasunnae.ui.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
