@@ -138,4 +138,15 @@
     <string name="complete_delete_comment">댓글을 삭제했습니다</string>
     <string name="max_is_five">사진은 최대 5장 입니다</string>
     <string name="hyphen">-</string>
+
+    <string name="review">리뷰</string>
+    <string name="post">게시글</string>
+    <string name="greet_hello">안녕하세요~</string>
+    <string name="logout">로그아웃</string>
+    <string name="report">신고</string>
+    <string name="star">별점</string>
+    <string name="location">위치</string>
+    <string name="grade">등급</string>
+    <string name="has_experience">펫 키워본 적</string>
+    <string name="respect">님,</string>
 </resources>
