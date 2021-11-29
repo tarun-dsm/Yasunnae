@@ -10,7 +10,7 @@
         android:backgroundTint="@color/white">
 
         <TextView
-            android:id="@+id/tv_ask"
+            android:id="@+id/tv_notify"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -22,7 +22,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/btn_yes_ask"
+            android:id="@+id/btn_ok_notify"
             android:layout_width="48dp"
             android:layout_height="36dp"
             android:layout_marginTop="30dp"
@@ -33,7 +33,7 @@
             android:layout_marginEnd="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_ask"
+            app:layout_constraintTop_toBottomOf="@id/tv_notify"
             tools:ignore="TextContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
