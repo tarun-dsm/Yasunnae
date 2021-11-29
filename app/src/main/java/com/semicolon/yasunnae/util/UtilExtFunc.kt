@@ -18,7 +18,7 @@ import java.util.*
 fun String?.toPrettyDate(): String {
     if (this == null) return ""
     val date = this.split("T")
-    return (date[0] + " " + date[1]).replace("-", "/")
+    return if(date.size >= 2) (date[0] + " " + date[1]).replace("-", "/") else ""
 }
 
 fun String?.toPrettyDateWithoutTime(): String {
