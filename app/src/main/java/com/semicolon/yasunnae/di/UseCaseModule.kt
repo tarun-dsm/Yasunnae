@@ -77,6 +77,11 @@ object UseCaseModule {
     ) = TokenRefreshUseCase(authService)
 
     @Provides
+    fun provideLogoutUseCase(
+        authService: AuthService
+    ) = LogoutUseCase(authService)
+
+    @Provides
     fun provideCheckCertificationNumberUseCase(
         emailService: EmailService
     ) = CheckCertificationNumberUseCase(emailService)
