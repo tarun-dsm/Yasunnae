@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="review"
             type="com.semicolon.domain.entity.ReviewEntity" />
@@ -18,8 +20,8 @@
             android:id="@+id/tv_nickname_review"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="15dp"
             android:text="@{review.nickname}"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -37,12 +39,37 @@
             app:layout_constraintLeft_toRightOf="@id/tv_nickname_review"
             app:layout_constraintTop_toTopOf="@id/tv_nickname_review" />
 
+        <ImageButton
+            android:id="@+id/btn_edit_review"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/ic_edit"
+            android:visibility="@{review.myReview?View.VISIBLE:View.GONE}"
+            app:layout_constraintRight_toLeftOf="@id/btn_delete_review"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/btn_delete_review"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_trash"
+            android:visibility="@{review.myReview?View.VISIBLE:View.GONE}"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
         <TextView
             android:id="@+id/tv_comment_review"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="15dp"
             android:text="@{review.comment}"
             android:textColor="@color/black"
             android:textSize="10sp"
@@ -54,13 +81,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
             android:text="@{review.createdAt}"
             android:textColor="@color/gray_text"
-            android:layout_marginTop="20dp"
             android:textSize="10sp"
-            android:layout_marginHorizontal="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="15dp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_comment_review"
             tools:ignore="SmallSp" />
