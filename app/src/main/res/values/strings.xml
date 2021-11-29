@@ -156,4 +156,6 @@
     <string name="change">변경</string>
     <string name="register">등록</string>
     <string name="no_location">위치인증 안 함</string>
+    <string name="write_report_reason">신고 사유를 적어주세요</string>
+    <string name="user_report">사용자 신고</string>
 </resources>
