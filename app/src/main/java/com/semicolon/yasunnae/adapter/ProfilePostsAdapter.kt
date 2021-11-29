@@ -1,5 +1,6 @@
 package com.semicolon.yasunnae.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,7 @@ class ProfilePostsAdapter(
     val onPostClick: () -> Unit
 ) : RecyclerView.Adapter<ProfilePostsAdapter.ViewHolder>() {
 
-    private val profilePosts = ArrayList<ProfilePostEntity>()
+    private var profilePosts = ArrayList<ProfilePostEntity>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -29,6 +30,12 @@ class ProfilePostsAdapter(
 
     override fun getItemCount(): Int =
         profilePosts.size
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setProfilePosts(profilePosts: List<ProfilePostEntity>) {
+        this.profilePosts = ArrayList(profilePosts)
+        notifyDataSetChanged()
+    }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding: ItemProfilePostBinding = DataBindingUtil.bind(itemView)!!
