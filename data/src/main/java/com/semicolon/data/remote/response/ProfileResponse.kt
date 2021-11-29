@@ -27,7 +27,7 @@ data class ProfileResponse(
     val locationConfirm: Boolean,
 
     @SerializedName("experience_raising_pet")
-    val experienceRaisingPet: String,
+    val experienceRaisingPet: Boolean,
 
     @SerializedName("administration_division")
     val administrationDivision: String

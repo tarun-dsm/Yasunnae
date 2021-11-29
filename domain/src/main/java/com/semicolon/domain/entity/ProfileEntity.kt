@@ -16,7 +16,7 @@ data class ProfileEntity(
 
     val locationConfirm: Boolean,
 
-    val experienceRaisingPet: String,
+    val experienceRaisingPet: Boolean,
 
     val administrationDivision: String
 )
