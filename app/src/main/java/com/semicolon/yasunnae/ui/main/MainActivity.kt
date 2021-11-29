@@ -27,7 +27,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 R.id.menu_home -> setFragment(PostListFragment())
                 R.id.menu_write_post -> startWritePostActivity()
                 R.id.menu_my_applications -> TODO("내 신청목록 Fragment 실행")
-                R.id.menu_my_profile -> setFragment(ProfileFragment())
+                R.id.menu_my_profile -> {
+                    val profileFragment = ProfileFragment()
+                    setFragment(profileFragment)
+                    ProfileFragment.IS_MINE = true
+                }
             }
             return@setOnItemSelectedListener true
         }
