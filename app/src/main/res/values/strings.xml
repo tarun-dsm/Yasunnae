@@ -149,4 +149,11 @@
     <string name="grade">등급</string>
     <string name="has_experience">펫 키워본 적</string>
     <string name="respect">님,</string>
+    <string name="have">있음</string>
+    <string name="none">없음</string>
+    <string name="ask_delete_review">리뷰를 삭제하시겠습니까?</string>
+    <string name="complete_report">사용자 신고가 접수되었습니다</string>
+    <string name="change">변경</string>
+    <string name="register">등록</string>
+    <string name="no_location">위치인증 안 함</string>
 </resources>
