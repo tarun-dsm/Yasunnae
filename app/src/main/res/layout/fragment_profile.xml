@@ -49,6 +49,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_my_name" />
 
             <TextView
+                android:id="@+id/btn_logout"
                 android:layout_width="46dp"
                 android:layout_height="14dp"
                 android:layout_marginStart="15dp"
@@ -87,6 +88,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_report"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="57dp"
                 android:layout_height="27dp"
@@ -159,12 +161,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:rating="@{Math.round(profile.avgGrade)}"
-                android:textColor="@color/black"
-                android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="@id/tv_star"
                 app:layout_constraintLeft_toRightOf="@id/tv_star"
-                app:layout_constraintTop_toTopOf="@id/tv_star"
-                tools:ignore="SmallSp" />
+                app:layout_constraintTop_toTopOf="@id/tv_star" />
 
             <TextView
                 android:id="@+id/tv_user_star"
@@ -243,7 +242,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:text="@{profile.age}"
+                android:text="@{String.valueOf(profile.age)}"
                 android:textColor="@color/black"
                 android:textSize="10sp"
                 app:layout_constraintLeft_toRightOf="@id/tv_age"
@@ -274,6 +273,24 @@
                 app:layout_constraintTop_toTopOf="@id/tv_location"
                 tools:ignore="SmallSp" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_set_location"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="40dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
+                android:paddingHorizontal="0dp"
+                android:paddingVertical="0dp"
+                android:textColor="@color/red_orange"
+                android:textSize="10sp"
+                android:visibility="gone"
+                app:icon="@drawable/ic_location"
+                app:iconTint="@color/red_orange"
+                app:layout_constraintBottom_toBottomOf="@id/tv_location"
+                app:layout_constraintLeft_toRightOf="@id/tv_user_location"
+                app:layout_constraintTop_toTopOf="@id/tv_location"
+                tools:ignore="SmallSp" />
+
             <TextView
                 android:id="@+id/tv_has_experience"
                 android:layout_width="wrap_content"
@@ -291,7 +308,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:text="@{profile.experienceRaisingPet}"
                 android:textColor="@color/black"
                 android:textSize="10sp"
                 app:layout_constraintLeft_toRightOf="@id/tv_has_experience"
