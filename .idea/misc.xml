@@ -12,11 +12,13 @@
         <entry key="app/src/main/res/drawable/ic_comments.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/drawable/ic_delete.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/drawable/ic_edit.xml" value="0.3109375" />
+        <entry key="app/src/main/res/drawable/ic_footprint.xml" value="0.2898148148148148" />
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.20925925925925926" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/drawable/ic_my_applications.xml" value="0.20925925925925926" />
         <entry key="app/src/main/res/drawable/ic_my_profile.xml" value="0.20925925925925926" />
         <entry key="app/src/main/res/drawable/ic_trash.xml" value="0.3109375" />
+        <entry key="app/src/main/res/drawable/ic_warning.xml" value="0.2898148148148148" />
         <entry key="app/src/main/res/drawable/ic_write_post.xml" value="0.24444444444444444" />
         <entry key="app/src/main/res/drawable/selector_bnv_icon.xml" value="0.2574074074074074" />
         <entry key="app/src/main/res/drawable/selector_radius_big_button.xml" value="0.2574074074074074" />
@@ -40,15 +42,18 @@
         <entry key="app/src/main/res/layout/dialog_ask.xml" value="0.25" />
         <entry key="app/src/main/res/layout/dialog_edit_comment.xml" value="0.375" />
         <entry key="app/src/main/res/layout/dialog_need_to_verify_location.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/dialog_notify.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/dialog_select_date.xml" value="0.2619010053687587" />
         <entry key="app/src/main/res/layout/fragment_post_list.xml" value="0.2947916666666667" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.28020833333333334" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_user_info.xml" value="0.2341485507246377" />
-        <entry key="app/src/main/res/layout/item_comment.xml" value="0.22587268993839835" />
+        <entry key="app/src/main/res/layout/item_comment.xml" value="0.335" />
         <entry key="app/src/main/res/layout/item_post.xml" value="0.375" />
         <entry key="app/src/main/res/layout/item_post_application.xml" value="0.2587786259541985" />
         <entry key="app/src/main/res/layout/item_post_detail_image.xml" value="0.2441123188405797" />
         <entry key="app/src/main/res/layout/item_post_image.xml" value="0.20833333333333334" />
+        <entry key="app/src/main/res/layout/item_profile_psot.xml" value="0.2947916666666667" />
+        <entry key="app/src/main/res/layout/item_review.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/menu/menu_bnv.xml" value="0.2947916666666667" />
       </map>
     </option>
