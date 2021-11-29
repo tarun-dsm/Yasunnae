@@ -11,7 +11,7 @@ import com.semicolon.yasunnae.R
 import com.semicolon.yasunnae.databinding.ItemProfilePostBinding
 
 class ProfilePostsAdapter(
-    val onPostClick: () -> Unit
+    val onPostClick: (profilePost: ProfilePostEntity) -> Unit
 ) : RecyclerView.Adapter<ProfilePostsAdapter.ViewHolder>() {
 
     private var profilePosts = ArrayList<ProfilePostEntity>()
@@ -41,7 +41,7 @@ class ProfilePostsAdapter(
         val binding: ItemProfilePostBinding = DataBindingUtil.bind(itemView)!!
 
         init {
-            itemView.setOnClickListener { onPostClick() }
+            itemView.setOnClickListener { onPostClick(profilePosts[adapterPosition]) }
         }
     }
 }
