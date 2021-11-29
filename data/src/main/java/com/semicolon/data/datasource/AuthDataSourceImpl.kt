@@ -18,4 +18,8 @@ class AuthDataSourceImpl(
     override fun tokenRefresh(): Completable =
         authApi.tokenRefresh(tokenStorage.getRefreshToken())
             .map { tokenStorage.saveToken(it.accessToken, it.refreshToken) }.ignoreElement()
+
+    override fun logout(): Completable =
+        authApi.logout(tokenStorage.getAccessToken())
+
 }

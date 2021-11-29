@@ -14,4 +14,7 @@ class AuthRepositoryImpl(
 
     override fun tokenRefresh(): Completable =
         authDataSource.tokenRefresh()
+
+    override fun logout(): Completable =
+        authDataSource.logout()
 }
