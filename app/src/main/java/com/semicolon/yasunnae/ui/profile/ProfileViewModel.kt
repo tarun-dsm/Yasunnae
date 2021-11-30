@@ -3,10 +3,12 @@ package com.semicolon.yasunnae.ui.profile
 import androidx.lifecycle.MutableLiveData
 import com.semicolon.domain.base.Resource
 import com.semicolon.domain.base.ResourceStatus
+import com.semicolon.domain.entity.InterestedEntity
 import com.semicolon.domain.entity.ProfileEntity
 import com.semicolon.domain.entity.ProfilePostEntity
 import com.semicolon.domain.entity.ReviewEntity
 import com.semicolon.domain.param.ReportParam
+import com.semicolon.domain.usecase.account.HasInterestedUseCase
 import com.semicolon.domain.usecase.account.ReportUserUseCase
 import com.semicolon.domain.usecase.auth.LogoutUseCase
 import com.semicolon.domain.usecase.auth.TokenRefreshUseCase
@@ -28,6 +30,7 @@ class ProfileViewModel @Inject constructor(
     private val reportUserUseCase: ReportUserUseCase,
     private val deleteReviewUseCase: DeleteReviewUseCase,
     private val logoutUseCase: LogoutUseCase,
+    private val hasInterestedUseCase: HasInterestedUseCase,
     private val tokenRefreshUseCase: TokenRefreshUseCase
 ) : BaseViewModel() {
 
@@ -37,6 +40,7 @@ class ProfileViewModel @Inject constructor(
     val reportSuccessEvent = SingleLiveEvent<Unit>()
     val deleteReviewSuccessEvent = SingleLiveEvent<Unit>()
     val logoutSuccessEvent = SingleLiveEvent<Unit>()
+    val hasInterestedEvent = SingleLiveEvent<Boolean>()
     val needToLoginEvent = SingleLiveEvent<Unit>()
     val unknownErrorEvent = SingleLiveEvent<Unit>()
 
@@ -104,7 +108,7 @@ class ProfileViewModel @Inject constructor(
         val result = deleteReviewUseCase.interact(id)
         val observer = object : DisposableSingleObserver<Resource<Unit>>() {
             override fun onSuccess(t: Resource<Unit>) {
-                if(t.status == ResourceStatus.SUCCESS)
+                if (t.status == ResourceStatus.SUCCESS)
                     deleteReviewSuccessEvent.call()
             }
 
@@ -120,6 +124,20 @@ class ProfileViewModel @Inject constructor(
         val observer = object : DisposableSingleObserver<Resource<Unit>>() {
             override fun onSuccess(t: Resource<Unit>) {
                 logoutSuccessEvent.call()
+            }
+
+            override fun onError(e: Throwable) {
+                unknownErrorEvent.call()
+            }
+        }
+        observeSingle(result, observer)
+    }
+
+    fun hasInterested(id: Int) {
+        val result = hasInterestedUseCase.interact(id)
+        val observer = object : DisposableSingleObserver<Resource<InterestedEntity>>() {
+            override fun onSuccess(t: Resource<InterestedEntity>) {
+                if (t.status == ResourceStatus.SUCCESS) hasInterestedEvent.setValue(t.data!!.isTrue)
             }
 
             override fun onError(e: Throwable) {
