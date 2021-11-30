@@ -72,6 +72,7 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
         binding.tvWriterName.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             intent.putExtra(IntentKeys.KEY_USER_ID, postDetail!!.writerId)
+            intent.putExtra(IntentKeys.KEY_USER_NAME, postDetail!!.nickname)
             startActivity(intent)
         }
         binding.btnEditPost.setOnClickListener {
