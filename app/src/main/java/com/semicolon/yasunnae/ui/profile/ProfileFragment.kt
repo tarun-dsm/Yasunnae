@@ -143,7 +143,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             getProfile(id)
             getReview(id)
         }
-        binding.clOthersProfile.visibility = INVISIBLE
+        binding.clOthersProfile.visibility = VISIBLE
     }
 
     private fun goToLogin() {
