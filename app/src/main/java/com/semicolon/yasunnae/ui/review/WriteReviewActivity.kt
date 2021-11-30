@@ -1,48 +1,43 @@
 package com.semicolon.yasunnae.ui.review
 
-import android.database.Cursor
-import android.net.Uri
-import android.provider.MediaStore
 import androidx.activity.viewModels
 import androidx.core.widget.doOnTextChanged
-import androidx.loader.content.CursorLoader
-import com.semicolon.domain.param.FixedPostParam
-import com.semicolon.domain.param.PostParam
 import com.semicolon.yasunnae.R
-import java.util.*
 import com.semicolon.yasunnae.base.BaseActivity
 import com.semicolon.yasunnae.base.IntentKeys
-import com.semicolon.yasunnae.ui.review.WriteReviewViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import android.widget.TextView
+import com.semicolon.domain.param.ReviewParam
+import com.semicolon.yasunnae.base.IntentKeys.KEY_USER_ID
+import com.semicolon.yasunnae.databinding.ActivityWriteReviewBinding
 
 @AndroidEntryPoint
-class WriteReviewActivity : BaseActivity<ActivityWritReviewBinding>() {
+class WriteReviewActivity : BaseActivity<ActivityWriteReviewBinding>() {
     private var isEditMode: Boolean = false
     private var postId: Int = 0
+    private var userId = 0
+    private var curRating: Float = 0F
 
     override val layoutResId: Int
         get() = R.layout.activity_write_review
 
-    private val writeReviewViewModel: WriteReviewViewModel by viewModels()
+    private val writeReviewViewModel: WritReviewViewModel by viewModels()
+
 
     override fun init() {
-        val commentCount = "0${getText(R.string.Limit_post_comment)}"
-
-        binding.tvCountCommentWritePost.text = commentCount
-
+        postId = intent.getIntExtra(IntentKeys.KEY_POST_ID, 0)
+        userId = intent.getIntExtra(KEY_USER_ID, 0)
         getIsEditMode()
         setUpView()
         binding.btnBackWritePost.setOnClickListener { finish() }
-
-        binding.etReviewWritePost.doOnTextChanged { text, _, _, _ ->
-            val textCount = "${text?.length}" + getText(R.string.Limit_post_comment)
-            binding.tvCountCommentWritePost.text = textCount
-            isCompletable()
-        }
-
         binding.btnWritePost.setOnClickListener {
             writePost()
+        }
+
+        binding.etComentWritePost.doOnTextChanged { _, _, _, _ ->
+            isCompletable()
+        }
+        binding.ratingBar.setOnRatingBarChangeListener { _, rating, _ ->
+            curRating = rating
         }
     }
 
@@ -53,7 +48,7 @@ class WriteReviewActivity : BaseActivity<ActivityWritReviewBinding>() {
 
     private fun setUpView() {
         if (isEditMode) {
-            binding.etCommentWritePost.setText(intent.getStringExtra(IntentKeys.KEY_COMMENT_POST))
+            binding.etComentWritePost.setText(intent.getStringExtra(IntentKeys.KEY_COMMENT_POST))
             binding.btnWritePost.text = getString(R.string.complete_edit)
         } else {
             binding.tvAppBarWritePost.text = getString(R.string.review_write)
@@ -62,7 +57,7 @@ class WriteReviewActivity : BaseActivity<ActivityWritReviewBinding>() {
     }
 
     private fun isCompletable(): Boolean {
-        if (binding.etCommentWritePost.text.isEmpty()) return false
+        if (binding.etComentWritePost.text.isEmpty()) return false
         binding.btnWritePost.isEnabled = true
         return true
     }
@@ -70,18 +65,17 @@ class WriteReviewActivity : BaseActivity<ActivityWritReviewBinding>() {
 
     private fun writePost() {
         if (!isCompletable()) return
-        val postParam = PostParam(
-            comment = binding.etCommentWritePost.text.toString()
+        val reviewParam = ReviewParam(
+            id = userId,
+            grade = curRating.toDouble(),
+            comment = binding . etComentWritePost . text . toString ()
         )
-        if (isEditMode) writeReviewViewModel.fixPost(FixedPostParam(postId, postParam))
-        else writeReviewViewModel.writePost(postParam)
-        binding.btnWriteComment.isEnabled = false
+        if (isEditMode) writeReviewViewModel.fixReview(reviewParam)
+        else writeReviewViewModel.writeReview(reviewParam)
+        binding.btnWritePost.isEnabled = false
     }
 
     override fun observe() {
-        writeReviewViewModel.postIdLiveData.observe(this) {
-            postId = it
-        }
         writeReviewViewModel.badRequestEvent.observe(this) {
             makeToast(getString(R.string.bad_request))
         }
@@ -100,4 +94,5 @@ class WriteReviewActivity : BaseActivity<ActivityWritReviewBinding>() {
             makeToast(getString(R.string.unknown_error))
         }
     }
+
 }
