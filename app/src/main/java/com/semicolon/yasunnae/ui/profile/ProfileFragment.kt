@@ -32,7 +32,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         }, onDeleteClick = {
             AskDialog(requireContext(), getString(R.string.ask_delete_review), onYesClick = {
                 profileViewModel.deleteReview(it.id)
-            })
+            }).callDialog()
         })
     private val profilePostsAdapter = ProfilePostsAdapter {
         val intent = Intent(context, PostDetailActivity::class.java)
@@ -49,7 +49,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         binding.btnReport.setOnClickListener {
             ReportDialog(requireContext()) {
                 profileViewModel.reportUser(ReportParam(USER_ID, it))
-            }
+            }.callDialog()
         }
         binding.btnSetLocation.setOnClickListener {
             val intent = Intent(context, CoordinateActivity::class.java)
