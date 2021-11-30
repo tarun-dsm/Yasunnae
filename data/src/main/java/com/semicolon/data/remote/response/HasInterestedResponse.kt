@@ -5,7 +5,7 @@ import com.semicolon.domain.entity.InterestedEntity
 
 data class HasInterestedResponse(
 
-    @SerializedName("is_true")
+    @SerializedName("is_existence")
     val isTrue: Boolean
 )
 

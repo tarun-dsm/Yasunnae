@@ -29,6 +29,7 @@ class NotifyDialog(
         dialog.setContentView(binding.root)
 
         binding.tvNotify.text = message
+        binding.btnOkNotify.setOnClickListener { dialog.dismiss() }
         dialog.show()
     }
 }

@@ -8,8 +8,6 @@ data class ProfilePostEntity(
 
     val createdAt: String,
 
-    val nickname: String,
-
     val firstImagePath: String,
 
     val protectorId: String,

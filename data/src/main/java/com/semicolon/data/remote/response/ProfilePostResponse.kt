@@ -20,25 +20,21 @@ data class ProfilePost(
     @SerializedName("created_at")
     val createdAt: String,
 
-    @SerializedName("nickname")
-    val nickname: String,
-
     @SerializedName("first_image_path")
     val firstImagePath: String,
 
     @SerializedName("protector_id")
-    val protectorId: String,
+    val protectorId: String?,
 
     @SerializedName("protector_nickname")
-    val protectorNickname: String
+    val protectorNickname: String?
 )
 
 fun ProfilePost.toEntity() = ProfilePostEntity(
     id = this.id,
     title = this.title,
     createdAt = this.createdAt,
-    nickname = this.nickname,
     firstImagePath = this.firstImagePath,
-    protectorId = this.protectorId,
-    protectorNickname = this.protectorNickname
+    protectorId = this.protectorId ?: "",
+    protectorNickname = this.protectorNickname ?: ""
 )

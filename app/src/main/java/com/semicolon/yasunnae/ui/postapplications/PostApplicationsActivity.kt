@@ -9,8 +9,10 @@ import com.semicolon.yasunnae.base.BaseActivity
 import com.semicolon.yasunnae.base.IntentKeys.KEY_END_DATE
 import com.semicolon.yasunnae.base.IntentKeys.KEY_POST_ID
 import com.semicolon.yasunnae.base.IntentKeys.KEY_START_DATE
+import com.semicolon.yasunnae.base.IntentKeys.KEY_USER_ID
 import com.semicolon.yasunnae.databinding.ActivityPostApplicationsBinding
 import com.semicolon.yasunnae.ui.login.LoginActivity
+import com.semicolon.yasunnae.ui.profile.ProfileActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,7 +24,9 @@ class PostApplicationsActivity : BaseActivity<ActivityPostApplicationsBinding>()
     private val postApplicationsViewModel: PostApplicationsViewModel by viewModels()
     private val onItemClickListener = object : PostApplicationsAdapter.OnItemClickListener {
         override fun onItemClick(applicantId: Int) {
-//            TODO("프로필 페이지로 이동하는 코드 작성")
+            val intent = Intent(this@PostApplicationsActivity, ProfileActivity::class.java)
+            intent.putExtra(KEY_USER_ID, applicantId)
+            startActivity(intent)
         }
     }
     private val onAcceptClickListener = object : PostApplicationsAdapter.OnAcceptClickListener {

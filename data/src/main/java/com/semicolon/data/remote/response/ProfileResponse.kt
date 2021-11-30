@@ -30,7 +30,7 @@ data class ProfileResponse(
     val experienceRaisingPet: Boolean,
 
     @SerializedName("administration_division")
-    val administrationDivision: String
+    val administrationDivision: String?
 )
 
 fun ProfileResponse.toEntity() = ProfileEntity(
@@ -42,5 +42,5 @@ fun ProfileResponse.toEntity() = ProfileEntity(
     experience = this.experience,
     locationConfirm = this.locationConfirm,
     experienceRaisingPet = this.experienceRaisingPet,
-    administrationDivision = this.administrationDivision
+    administrationDivision = this.administrationDivision ?: ""
 )

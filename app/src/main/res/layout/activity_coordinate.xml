@@ -7,18 +7,32 @@
         android:layout_height="match_parent"
         tools:context=".ui.coordinate.CoordinateActivity">
 
+        <ImageButton
+            android:id="@+id/btn_back_coordinate"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="17dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginStart="20dp"
+            app:tint="@color/black"
+            tools:ignore="ContentDescription" />
+
         <TextView
             android:id="@+id/tv_location_certificate"
             android:layout_width="wrap_content"
             android:layout_height="26dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="22dp"
             android:text="@string/location_certificate"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintLeft_toRightOf="@id/btn_back_coordinate"
+            app:layout_constraintTop_toTopOf="@id/btn_back_coordinate"
+            app:layout_constraintBottom_toBottomOf="@id/btn_back_coordinate"/>
 
         <ImageView
             android:layout_width="0dp"

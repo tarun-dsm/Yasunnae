@@ -266,7 +266,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
-                android:text="@{profile.administrationDivision}"
                 android:textColor="@color/black"
                 android:textSize="10sp"
                 app:layout_constraintLeft_toRightOf="@id/tv_location"
@@ -371,7 +370,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="25dp"
             android:background="@drawable/shape_vertical_line_background"
-            android:paddingTop="18dp"
+            android:paddingTop="28dp"
             android:visibility="visible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -386,13 +385,38 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="25dp"
             android:background="@drawable/shape_vertical_line_background"
-            android:paddingTop="18dp"
+            android:paddingTop="28dp"
             android:visibility="invisible"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cl_profile_info" />
+
+        <ImageView
+            android:id="@+id/iv_no_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:visibility="invisible"
+            android:src="@drawable/image_sad_cat"
+            app:layout_constraintBottom_toTopOf="@id/tv_no_content"
+            app:layout_constraintLeft_toLeftOf="@id/rv_user_post"
+            app:layout_constraintRight_toRightOf="@id/rv_user_post"
+            app:layout_constraintTop_toTopOf="@id/rv_user_post"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tv_no_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/disabled_gray"
+            android:textSize="16sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/rv_user_post"
+            app:layout_constraintLeft_toLeftOf="@id/rv_user_post"
+            app:layout_constraintRight_toRightOf="@id/rv_user_post"
+            app:layout_constraintTop_toBottomOf="@id/iv_no_content" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

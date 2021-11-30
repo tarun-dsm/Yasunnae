@@ -32,7 +32,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         }, onDeleteClick = {
             AskDialog(requireContext(), getString(R.string.ask_delete_review), onYesClick = {
                 profileViewModel.deleteReview(it.id)
-            })
+            }).callDialog()
         })
     private val profilePostsAdapter = ProfilePostsAdapter {
         val intent = Intent(context, PostDetailActivity::class.java)
@@ -49,7 +49,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         binding.btnReport.setOnClickListener {
             ReportDialog(requireContext()) {
                 profileViewModel.reportUser(ReportParam(USER_ID, it))
-            }
+            }.callDialog()
         }
         binding.btnSetLocation.setOnClickListener {
             val intent = Intent(context, CoordinateActivity::class.java)
@@ -61,10 +61,13 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             .addTab(postTab)
         binding.tlUserHistory.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
+                setNoContent(false)
                 if (tab == reviewTab) {
+                    profileViewModel.getReview(if (IS_MINE) null else USER_ID)
                     binding.rvUserPost.visibility = INVISIBLE
                     binding.rvUserReview.visibility = VISIBLE
                 } else if (tab == postTab) {
+                    profileViewModel.getProfilePost(if (IS_MINE) null else USER_ID)
                     binding.rvUserReview.visibility = INVISIBLE
                     binding.rvUserPost.visibility = VISIBLE
                 }
@@ -87,22 +90,26 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 val myName = it.nickname + getString(R.string.respect)
                 binding.profile = it
                 binding.tvMyName.text = myName
-                if (it.experienceRaisingPet) binding.tvUserHasExperience.text =
-                    getString(R.string.have)
+                if (it.experienceRaisingPet)
+                    binding.tvUserHasExperience.text = getString(R.string.have)
                 else binding.tvUserHasExperience.text = getString(R.string.none)
                 if (it.locationConfirm) {
                     binding.btnSetLocation.text = getString(R.string.change)
+                    binding.tvUserLocation.text = it.administrationDivision
                 } else {
                     binding.btnSetLocation.text = getString(R.string.register)
                     binding.tvUserLocation.text = getString(R.string.no_location)
                     binding.tvUserLocation.setTextColor(resources.getColor(R.color.red_orange))
                 }
+                if(IS_MINE)binding.btnSetLocation.visibility = VISIBLE
             }
             reviewLiveData.observe(owner) {
                 reviewsAdapter.setReviews(it)
+                setNoContent(it.isEmpty(), getString(R.string.no_review))
             }
             profilePostLiveData.observe(owner) {
                 profilePostsAdapter.setProfilePosts(it)
+                setNoContent(it.isEmpty(), getString(R.string.no_post))
             }
             reportSuccessEvent.observe(owner) {
                 makeToast(getString(R.string.complete_report))
@@ -113,6 +120,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             }
             logoutSuccessEvent.observe(owner) {
                 goToLogin()
+            }
+            retryEvent.observe(owner) {
+                makeToast(getString(R.string.try_it_later))
             }
             needToLoginEvent.observe(owner) {
                 goToLogin()
@@ -127,7 +137,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         profileViewModel.run {
             getProfile(null)
             getReview(null)
-            getProfilePost(null)
         }
         binding.clMyProfile.visibility = VISIBLE
     }
@@ -136,9 +145,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         profileViewModel.run {
             getProfile(id)
             getReview(id)
-            getProfilePost(id)
         }
-        binding.clOthersProfile.visibility = INVISIBLE
+        binding.clOthersProfile.visibility = VISIBLE
     }
 
     private fun goToLogin() {
@@ -146,6 +154,17 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
+    }
+
+    private fun setNoContent(isNoContent: Boolean, message: String = "") {
+        if (isNoContent) {
+            binding.tvNoContent.text = message
+            binding.ivNoContent.visibility = VISIBLE
+            binding.tvNoContent.visibility = VISIBLE
+        } else {
+            binding.ivNoContent.visibility = INVISIBLE
+            binding.tvNoContent.visibility = INVISIBLE
+        }
     }
 
     companion object IsMine {

@@ -10,6 +10,7 @@ import com.semicolon.yasunnae.R
 import com.semicolon.yasunnae.adapter.CommentsAdapter
 import com.semicolon.yasunnae.adapter.PostDetailImageAdapter
 import com.semicolon.yasunnae.base.BaseActivity
+import com.semicolon.yasunnae.base.IntentKeys
 import com.semicolon.yasunnae.base.IntentKeys.KEY_CONTACTS
 import com.semicolon.yasunnae.base.IntentKeys.KEY_DEADLINE
 import com.semicolon.yasunnae.base.IntentKeys.KEY_DESCRIPTION
@@ -29,6 +30,7 @@ import com.semicolon.yasunnae.dialog.AskDialog
 import com.semicolon.yasunnae.dialog.EditCommentDialog
 import com.semicolon.yasunnae.ui.login.LoginActivity
 import com.semicolon.yasunnae.ui.postapplications.PostApplicationsActivity
+import com.semicolon.yasunnae.ui.profile.ProfileActivity
 import com.semicolon.yasunnae.ui.writepost.WritePostActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -68,7 +70,10 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
         binding.rvCommentsPostDetail.adapter = commentsAdapter
         binding.btnBack.setOnClickListener { finish() }
         binding.tvWriterName.setOnClickListener {
-            // TODO("작성자 프로필로 이동하기")
+            val intent = Intent(this, ProfileActivity::class.java)
+            intent.putExtra(IntentKeys.KEY_USER_ID, postDetail!!.writerId)
+            intent.putExtra(IntentKeys.KEY_USER_NAME, postDetail!!.nickname)
+            startActivity(intent)
         }
         binding.btnEditPost.setOnClickListener {
             goToEditPost()

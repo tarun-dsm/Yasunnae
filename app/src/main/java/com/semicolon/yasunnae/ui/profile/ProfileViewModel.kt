@@ -1,6 +1,7 @@
 package com.semicolon.yasunnae.ui.profile
 
 import androidx.lifecycle.MutableLiveData
+import com.semicolon.domain.base.Error
 import com.semicolon.domain.base.Resource
 import com.semicolon.domain.base.ResourceStatus
 import com.semicolon.domain.entity.InterestedEntity
@@ -41,6 +42,7 @@ class ProfileViewModel @Inject constructor(
     val deleteReviewSuccessEvent = SingleLiveEvent<Unit>()
     val logoutSuccessEvent = SingleLiveEvent<Unit>()
     val hasInterestedEvent = SingleLiveEvent<Boolean>()
+    val retryEvent = SingleLiveEvent<Unit>()
     val needToLoginEvent = SingleLiveEvent<Unit>()
     val unknownErrorEvent = SingleLiveEvent<Unit>()
 
@@ -50,6 +52,10 @@ class ProfileViewModel @Inject constructor(
             override fun onSuccess(t: Resource<ProfileEntity>) {
                 if (t.status == ResourceStatus.SUCCESS)
                     profileLiveData.value = t.data!!
+                else if (t.message == Error.UNAUTHORIZED) {
+                    retryEvent.call()
+                    tokenRefresh()
+                }
             }
 
             override fun onError(e: Throwable) {
@@ -65,6 +71,10 @@ class ProfileViewModel @Inject constructor(
             override fun onSuccess(t: Resource<List<ReviewEntity>>) {
                 if (t.status == ResourceStatus.SUCCESS)
                     reviewLiveData.value = t.data!!
+                else if (t.message == Error.UNAUTHORIZED) {
+                    retryEvent.call()
+                    tokenRefresh()
+                }
             }
 
             override fun onError(e: Throwable) {
@@ -80,6 +90,10 @@ class ProfileViewModel @Inject constructor(
             override fun onSuccess(t: Resource<List<ProfilePostEntity>>) {
                 if (t.status == ResourceStatus.SUCCESS)
                     profilePostLiveData.value = t.data!!
+                else if (t.message == Error.UNAUTHORIZED) {
+                    retryEvent.call()
+                    tokenRefresh()
+                }
             }
 
             override fun onError(e: Throwable) {
@@ -95,6 +109,10 @@ class ProfileViewModel @Inject constructor(
             override fun onSuccess(t: Resource<Unit>) {
                 if (t.status == ResourceStatus.SUCCESS)
                     reportSuccessEvent.call()
+                else if (t.message == Error.UNAUTHORIZED) {
+                    retryEvent.call()
+                    tokenRefresh()
+                }
             }
 
             override fun onError(e: Throwable) {
@@ -110,6 +128,10 @@ class ProfileViewModel @Inject constructor(
             override fun onSuccess(t: Resource<Unit>) {
                 if (t.status == ResourceStatus.SUCCESS)
                     deleteReviewSuccessEvent.call()
+                else if (t.message == Error.UNAUTHORIZED) {
+                    retryEvent.call()
+                    tokenRefresh()
+                }
             }
 
             override fun onError(e: Throwable) {
@@ -137,7 +159,12 @@ class ProfileViewModel @Inject constructor(
         val result = hasInterestedUseCase.interact(id)
         val observer = object : DisposableSingleObserver<Resource<InterestedEntity>>() {
             override fun onSuccess(t: Resource<InterestedEntity>) {
-                if (t.status == ResourceStatus.SUCCESS) hasInterestedEvent.setValue(t.data!!.isTrue)
+                if (t.status == ResourceStatus.SUCCESS)
+                    hasInterestedEvent.setValue(t.data!!.isTrue)
+                else if (t.message == Error.UNAUTHORIZED) {
+                    retryEvent.call()
+                    tokenRefresh()
+                }
             }
 
             override fun onError(e: Throwable) {
