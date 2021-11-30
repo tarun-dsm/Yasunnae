@@ -47,6 +47,11 @@ object UseCaseModule {
     ) = SaveCoordinateUseCase(accountService)
 
     @Provides
+    fun provideHasInterestedUseCase(
+        accountService: AccountService
+    ) = HasInterestedUseCase(accountService)
+
+    @Provides
     fun provideAcceptApplicationUseCase(
         applicationService: ApplicationService
     ) = AcceptApplicationUseCase(applicationService)
