@@ -45,17 +45,20 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     override fun observe() {
         loginViewModel.successEvent.observe(this) {
+            binding.tvLoginWarning.visibility = View.INVISIBLE
             makeToast(getString(R.string.complete_login))
             startMainActivity()
         }
         loginViewModel.badRequestEvent.observe(this) {
             binding.tvLoginWarning.text = getString(R.string.login_warning)
+            binding.tvLoginWarning.visibility = View.VISIBLE
         }
         loginViewModel.blockedUserEvent.observe(this) {
             BlockedUserDialog(context = this).callDialog()
         }
         loginViewModel.unknownErrorEvent.observe(this) {
             binding.tvLoginWarning.text = getString(R.string.non_existent_email)
+            binding.tvLoginWarning.visibility = View.VISIBLE
         }
         loginViewModel.tokenRefreshSuccessEvent.observe(this) {
             startMainActivity()
