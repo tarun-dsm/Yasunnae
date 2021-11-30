@@ -16,10 +16,14 @@
         android:theme="@style/Theme.Yasunnae"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.profile.ProfileActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
