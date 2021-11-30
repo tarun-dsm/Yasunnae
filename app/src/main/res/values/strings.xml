@@ -78,6 +78,7 @@
     <string name="need_to_check_password">비밀번호 확인이 필요합니다.</string>
     <string name="need_to_check_nickname">닉네임 중복 확인이 필요합니다.</string>
     <string name="check_things">입력을 확인해주세요.</string>
+    <string name="experience_false">반려동물을 키워본 적이 없으면 경험 칸을 작성할 수 없습니다.</string>
 
     <string name="hello">안녕하세요~</string>
     <string name="prompt_email">이메일</string>
