@@ -34,7 +34,6 @@
             android:hint="@string/write_report_reason"
             android:inputType="text"
             android:padding="10dp"
-            android:text="@{presentComment}"
             android:textColor="@color/black"
             android:textColorHint="@color/red_orange"
             android:textSize="12sp"
