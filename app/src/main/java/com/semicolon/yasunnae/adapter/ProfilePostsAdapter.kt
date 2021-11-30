@@ -26,7 +26,7 @@ class ProfilePostsAdapter(
 
     override fun onBindViewHolder(holder: ProfilePostsAdapter.ViewHolder, position: Int) {
         val profilePost = profilePosts[position]
-        if (!profilePost.protectorNickname.isEmpty())
+        if (profilePost.protectorNickname.isNotEmpty())
             holder.binding.tvProtectorNickname.text = profilePost.protectorNickname
         holder.binding.profilePost = profilePost
     }
