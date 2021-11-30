@@ -47,6 +47,11 @@ object UseCaseModule {
     ) = SaveCoordinateUseCase(accountService)
 
     @Provides
+    fun provideHasInterestedUseCase(
+        accountService: AccountService
+    ) = HasInterestedUseCase(accountService)
+
+    @Provides
     fun provideAcceptApplicationUseCase(
         applicationService: ApplicationService
     ) = AcceptApplicationUseCase(applicationService)
@@ -75,6 +80,11 @@ object UseCaseModule {
     fun provideTokenRefreshUseCase(
         authService: AuthService
     ) = TokenRefreshUseCase(authService)
+
+    @Provides
+    fun provideLogoutUseCase(
+        authService: AuthService
+    ) = LogoutUseCase(authService)
 
     @Provides
     fun provideCheckCertificationNumberUseCase(

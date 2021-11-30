@@ -10,5 +10,7 @@ data class ReviewEntity(
 
     val comment: String,
 
-    val createdAt: String
+    val createdAt: String,
+
+    val isMyReview: Boolean
 )

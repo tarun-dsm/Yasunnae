@@ -2,7 +2,9 @@ package com.semicolon.domain.service
 
 import com.semicolon.domain.base.ErrorHandler
 import com.semicolon.domain.base.Resource
+import com.semicolon.domain.base.toResource
 import com.semicolon.domain.base.toSingleResource
+import com.semicolon.domain.entity.InterestedEntity
 import com.semicolon.domain.param.CoordinateParam
 import com.semicolon.domain.param.RegisterAccountParam
 import com.semicolon.domain.param.ReportParam
@@ -28,4 +30,7 @@ class AccountServiceImpl(
 
     override fun reportUser(reportParam: ReportParam): Single<Resource<Unit>> =
         accountRepository.reportUser(reportParam).toSingleResource(errorHandler)
+
+    override fun hasInterested(id: Int): Single<Resource<InterestedEntity>> =
+        accountRepository.hasInterested(id).toResource(errorHandler)
 }

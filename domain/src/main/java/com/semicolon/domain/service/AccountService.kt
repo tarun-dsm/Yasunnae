@@ -1,6 +1,7 @@
 package com.semicolon.domain.service
 
 import com.semicolon.domain.base.Resource
+import com.semicolon.domain.entity.InterestedEntity
 import com.semicolon.domain.param.CoordinateParam
 import com.semicolon.domain.param.RegisterAccountParam
 import com.semicolon.domain.param.ReportParam
@@ -17,4 +18,6 @@ interface AccountService {
     fun saveCoordinate(coordinateParam: CoordinateParam): Single<Resource<Unit>>
 
     fun reportUser(reportParam: ReportParam): Single<Resource<Unit>>
+
+    fun hasInterested(id: Int): Single<Resource<InterestedEntity>>
 }
