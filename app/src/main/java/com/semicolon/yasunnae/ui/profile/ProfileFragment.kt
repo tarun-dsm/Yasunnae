@@ -87,16 +87,18 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 val myName = it.nickname + getString(R.string.respect)
                 binding.profile = it
                 binding.tvMyName.text = myName
-                if (it.experienceRaisingPet) binding.tvUserHasExperience.text =
-                    getString(R.string.have)
+                if (it.experienceRaisingPet)
+                    binding.tvUserHasExperience.text = getString(R.string.have)
                 else binding.tvUserHasExperience.text = getString(R.string.none)
                 if (it.locationConfirm) {
                     binding.btnSetLocation.text = getString(R.string.change)
+                    binding.tvUserLocation.text = it.administrationDivision
                 } else {
                     binding.btnSetLocation.text = getString(R.string.register)
                     binding.tvUserLocation.text = getString(R.string.no_location)
                     binding.tvUserLocation.setTextColor(resources.getColor(R.color.red_orange))
                 }
+                binding.btnSetLocation.visibility = VISIBLE
             }
             reviewLiveData.observe(owner) {
                 reviewsAdapter.setReviews(it)
