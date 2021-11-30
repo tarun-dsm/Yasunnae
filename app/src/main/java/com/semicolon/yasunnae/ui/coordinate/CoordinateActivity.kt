@@ -26,6 +26,9 @@ class CoordinateActivity : BaseActivity<ActivityCoordinateBinding>() {
         binding.btnDoLocationCertificate.setOnClickListener {
             getLocation()
         }
+        binding.btnBackCoordinate.setOnClickListener {
+            finish()
+        }
     }
 
     override fun observe() {
@@ -33,22 +36,18 @@ class CoordinateActivity : BaseActivity<ActivityCoordinateBinding>() {
             makeToast(getString(R.string.verified_location))
             finish()
         }
-
         coordinateViewModel.badRequestEvent.observe(this) {
             makeToast(getString(R.string.bad_request))
         }
-
         coordinateViewModel.retryEvent.observe(this) {
             makeToast(getString(R.string.try_it_later))
             print("dd")
         }
-
         coordinateViewModel.needToLoginEvent.observe(this) {
             val intent = Intent(this, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
-
         coordinateViewModel.unknownErrorEvent.observe(this) {
             makeToast(getString(R.string.unknown_error))
         }
