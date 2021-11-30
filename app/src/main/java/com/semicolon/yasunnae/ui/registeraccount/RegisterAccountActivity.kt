@@ -89,7 +89,8 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
         }
 
         binding.ivBackArrowRegisterAccount.setOnClickListener {
-            finish()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
 
         // register
@@ -217,6 +218,11 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
     }
 
     private fun startLoginActivity() {
+        val loginIntent = Intent(this, LoginActivity::class.java)
+        startActivity(loginIntent)
+    }
+
+    override fun onBackPressed() {
         val loginIntent = Intent(this, LoginActivity::class.java)
         startActivity(loginIntent)
     }
