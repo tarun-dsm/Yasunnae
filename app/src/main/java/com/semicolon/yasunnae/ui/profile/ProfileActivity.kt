@@ -4,6 +4,7 @@ import androidx.activity.viewModels
 import com.semicolon.yasunnae.R
 import com.semicolon.yasunnae.base.BaseActivity
 import com.semicolon.yasunnae.base.IntentKeys.KEY_USER_ID
+import com.semicolon.yasunnae.base.IntentKeys.KEY_USER_NAME
 import com.semicolon.yasunnae.databinding.ActivityProfileBinding
 import com.semicolon.yasunnae.dialog.NotifyDialog
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,12 +20,15 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
     override fun init() {
         val fragment = ProfileFragment()
         val userId = intent.getIntExtra(KEY_USER_ID, 0)
+        val userNickname = intent.getStringExtra(KEY_USER_NAME)
+        val message = userNickname + getString(R.string.please_write_review)
+
         supportFragmentManager.beginTransaction().replace(
             binding.flProfile.id, fragment
         ).commit()
         ProfileFragment.IS_MINE = false
         ProfileFragment.USER_ID = userId
-
+        binding.tvPleaseWriteReview.text = message
         binding.btnWriteReview.setOnClickListener {
             profileViewModel.hasInterested(userId)
         }
