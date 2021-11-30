@@ -89,6 +89,11 @@
     <string name="login_empty">이메일이나 비밀번호를 입력해주세요.</string>
     <string name="non_existent_email">이메일이 존재하지 않습니다.</string>
     <string name="complete_login">로그인에 성공하였습니다!</string>
+    <string name="oops">어쩐담!</string>
+    <string name="cry">ㅠ</string>
+    <string name="you_are_blocked">이를 어째! 당신은 차단돼서</string>
+    <string name="you_are_blocked2">여기 들어올 수 없어욥</string>
+
 
     <string name="title_write_post">게시글 작성</string>
     <string name="title_edit_post">게시글 수정</string>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="262dp"
+        android:layout_height="318dp"
+        android:background="@drawable/shape_radius_dialog"
+        android:backgroundTint="@color/white">
+
+        <TextView
+            android:id="@+id/tv_oops"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="250dp"
+            android:text="@string/oops"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextContrastCheck" />
+
+        <ImageView
+            android:id="@+id/iv_sad_cat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="37dp"
+            android:src="@drawable/image_sad_cat"
+            app:layout_constraintTop_toTopOf="@+id/tv_oops"
+            app:layout_goneMarginTop="37dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_sad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cry"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="53dp"
+            app:layout_constraintEnd_toStartOf="@+id/iv_sad_cat"
+            app:layout_constraintTop_toTopOf="@+id/tv_oops"
+            android:layout_marginTop="91dp"
+            android:layout_marginEnd="10dp"/>
+
+        <TextView
+            android:id="@+id/tv_sad2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="91dp"
+            android:text="@string/cry"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_sad"
+            android:layout_marginStart="60dp"
+            app:layout_constraintTop_toTopOf="@+id/tv_oops" />
+
+
+        <TextView
+            android:id="@+id/tv_you_are_blocked"
+            android:layout_width="158dp"
+            android:layout_height="17dp"
+            android:text="@string/you_are_blocked"
+            android:textColor="@color/disabled_gray"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@+id/iv_sad_cat"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_you_are_blocked2"
+            android:layout_width="127dp"
+            android:layout_height="17dp"
+            android:text="@string/you_are_blocked2"
+            android:textColor="@color/disabled_gray"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_you_are_blocked"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/btn_blocked_ok"
+            android:layout_width="22dp"
+            android:layout_height="15dp"
+            android:layout_margin="15dp"
+            android:gravity="center"
+            android:text="@string/ok"
+            android:textColor="@color/red_orange"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="TextContrastCheck"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -21,6 +21,7 @@ class LoginViewModel @Inject constructor(
     val successEvent = SingleLiveEvent<Unit>()
     val badRequestEvent = SingleLiveEvent<Unit>()
     val nonExistsEmailEvent = SingleLiveEvent<Unit>()
+    val blockedUserEvent = SingleLiveEvent<Unit>()
     val unknownErrorEvent = SingleLiveEvent<Unit>()
     val tokenRefreshSuccessEvent = SingleLiveEvent<Unit>()
 
@@ -34,6 +35,9 @@ class LoginViewModel @Inject constructor(
                     ResourceStatus.ERROR -> when (t.message) {
                         Error.BAD_REQUEST -> {
                             badRequestEvent.call()
+                        }
+                        Error.FORBIDDEN -> {
+                            blockedUserEvent.call()
                         }
                         Error.NOT_FOUND -> {
                             nonExistsEmailEvent.call()

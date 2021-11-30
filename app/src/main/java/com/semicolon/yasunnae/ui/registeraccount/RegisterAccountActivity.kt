@@ -155,6 +155,7 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
         }
 
         registerViewModel.certificationEmailSuccessEvent.observe(this) {      // 이메일 전송 성공
+            binding.tvDuplicateEmailWarning.visibility = View.INVISIBLE
             makeToast(getString(R.string.ok_send_email))
         }
 
@@ -202,7 +203,6 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
         registerViewModel.certificationNumberBadRequestEvent.observe(this) {
             binding.tvIncorrectVerifyNumberWarning.visibility = View.VISIBLE      // 인증번호 올바르지 않음
         }
-
 
         // nickname
 
