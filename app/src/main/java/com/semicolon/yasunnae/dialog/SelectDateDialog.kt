@@ -40,7 +40,13 @@ class SelectDateDialog(
         val dateFormat = "yyyy-MM-dd"
         var selectedDate: String = minDate?.format(dateFormat) ?: Date().format(dateFormat)
         binding.cvSelectDate.setOnDateChangeListener { _, year, month, dayOfMonth ->
-            selectedDate = "${year}-${month + 1}-${dayOfMonth}"
+            val selectedMonth =
+                if ((month + 1).toString().length == 1) "0" + (month + 1).toString()
+                else (month + 1).toString()
+            val selectedDay =
+                if (dayOfMonth.toString().length == 1) "0$dayOfMonth"
+                else dayOfMonth.toString()
+            selectedDate = "${year}-$selectedMonth-$selectedDay"
         }
         binding.btnOkSelectDate.setOnClickListener {
             onOkClick(selectedDate)
