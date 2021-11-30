@@ -15,4 +15,5 @@ object IntentKeys {
     const val KEY_PET_NAME = "KeyPetName"
     const val KEY_PET_SPECIES = "KeyPetSpecies"
     const val KEY_PET_SEX = "KeyPetSex"
+    const val KEY_USER_ID = "KeyUserId"
 }
