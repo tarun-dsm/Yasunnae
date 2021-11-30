@@ -101,7 +101,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                     binding.tvUserLocation.text = getString(R.string.no_location)
                     binding.tvUserLocation.setTextColor(resources.getColor(R.color.red_orange))
                 }
-                binding.btnSetLocation.visibility = VISIBLE
+                if(IS_MINE)binding.btnSetLocation.visibility = VISIBLE
             }
             reviewLiveData.observe(owner) {
                 reviewsAdapter.setReviews(it)
