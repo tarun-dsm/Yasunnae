@@ -25,7 +25,10 @@ class ProfilePostsAdapter(
     }
 
     override fun onBindViewHolder(holder: ProfilePostsAdapter.ViewHolder, position: Int) {
-        holder.binding.profilePost = profilePosts[position]
+        val profilePost = profilePosts[position]
+        if (!profilePost.protectorNickname.isEmpty())
+            holder.binding.tvProtectorNickname.text = profilePost.protectorNickname
+        holder.binding.profilePost = profilePost
     }
 
     override fun getItemCount(): Int =
