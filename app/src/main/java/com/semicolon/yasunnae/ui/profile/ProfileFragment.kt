@@ -121,6 +121,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             logoutSuccessEvent.observe(owner) {
                 goToLogin()
             }
+            retryEvent.observe(owner) {
+                makeToast(getString(R.string.try_it_later))
+            }
             needToLoginEvent.observe(owner) {
                 goToLogin()
             }
