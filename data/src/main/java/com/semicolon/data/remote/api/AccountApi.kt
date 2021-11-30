@@ -3,6 +3,7 @@ package com.semicolon.data.remote.api
 import com.semicolon.data.remote.request.CoordinateRequest
 import com.semicolon.data.remote.request.RegisterAccountRequest
 import com.semicolon.data.remote.request.ReportRequest
+import com.semicolon.data.remote.response.HasInterestedResponse
 import com.semicolon.data.remote.response.TokenResponse
 import io.reactivex.Completable
 import io.reactivex.Single
@@ -37,4 +38,10 @@ interface AccountApi {
         @Path("id") id: Int,
         @Body reportRequest: ReportRequest
     ): Completable
+
+    @GET("account/enterested")
+    fun hasInterested(
+        @Header("Authorization") token: String,
+        @Query("id") id: Int
+    ): Single<HasInterestedResponse>
 }
