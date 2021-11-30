@@ -61,10 +61,13 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             .addTab(postTab)
         binding.tlUserHistory.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
+                setNoContent(false)
                 if (tab == reviewTab) {
+                    profileViewModel.getReview(if (IS_MINE) null else USER_ID)
                     binding.rvUserPost.visibility = INVISIBLE
                     binding.rvUserReview.visibility = VISIBLE
                 } else if (tab == postTab) {
+                    profileViewModel.getProfilePost(if (IS_MINE) null else USER_ID)
                     binding.rvUserReview.visibility = INVISIBLE
                     binding.rvUserPost.visibility = VISIBLE
                 }
@@ -102,9 +105,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
             }
             reviewLiveData.observe(owner) {
                 reviewsAdapter.setReviews(it)
+                setNoContent(it.isEmpty(), getString(R.string.no_review))
             }
             profilePostLiveData.observe(owner) {
                 profilePostsAdapter.setProfilePosts(it)
+                setNoContent(it.isEmpty(), getString(R.string.no_post))
             }
             reportSuccessEvent.observe(owner) {
                 makeToast(getString(R.string.complete_report))
@@ -129,7 +134,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         profileViewModel.run {
             getProfile(null)
             getReview(null)
-            getProfilePost(null)
         }
         binding.clMyProfile.visibility = VISIBLE
     }
@@ -138,7 +142,6 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         profileViewModel.run {
             getProfile(id)
             getReview(id)
-            getProfilePost(id)
         }
         binding.clOthersProfile.visibility = INVISIBLE
     }
@@ -148,6 +151,17 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(intent)
+    }
+
+    private fun setNoContent(isNoContent: Boolean, message: String = "") {
+        if (isNoContent) {
+            binding.tvNoContent.text = message
+            binding.ivNoContent.visibility = VISIBLE
+            binding.tvNoContent.visibility = VISIBLE
+        } else {
+            binding.ivNoContent.visibility = INVISIBLE
+            binding.tvNoContent.visibility = INVISIBLE
+        }
     }
 
     companion object IsMine {
