@@ -13,7 +13,7 @@ import com.semicolon.yasunnae.base.BaseFragment
 import com.semicolon.yasunnae.base.IntentKeys.KEY_COMMENT_POST
 import com.semicolon.yasunnae.base.IntentKeys.KEY_IS_EDIT_MODE
 import com.semicolon.yasunnae.base.IntentKeys.KEY_POST_ID
-import com.semicolon.yasunnae.base.IntentKeys.KEY_USER_ID
+import com.semicolon.yasunnae.base.IntentKeys.KEY_REVIEW_ID
 import com.semicolon.yasunnae.databinding.FragmentProfileBinding
 import com.semicolon.yasunnae.dialog.AskDialog
 import com.semicolon.yasunnae.dialog.ReportDialog
@@ -34,7 +34,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         onEditClick = {
             val intent = Intent(context, WriteReviewActivity::class.java)
             intent.putExtra(KEY_IS_EDIT_MODE, true)
-            intent.putExtra(KEY_USER_ID, it.id)
+            intent.putExtra(KEY_REVIEW_ID, it.id)
             intent.putExtra(KEY_COMMENT_POST, it.comment)
             startActivity(intent)
         }, onDeleteClick = {
