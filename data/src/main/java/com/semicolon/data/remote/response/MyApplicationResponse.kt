@@ -37,7 +37,6 @@ data class Application(
 
     @SerializedName("end")
     val isEnd: Boolean,
-
 )
 
 fun Application.toEntity() = ApplicationEntity(
