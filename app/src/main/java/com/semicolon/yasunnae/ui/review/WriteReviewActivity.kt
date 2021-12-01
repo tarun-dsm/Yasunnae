@@ -9,13 +9,15 @@ import com.semicolon.yasunnae.base.IntentKeys
 import dagger.hilt.android.AndroidEntryPoint
 import com.semicolon.domain.param.ReviewParam
 import com.semicolon.yasunnae.base.IntentKeys.KEY_APPLICATION_ID
+import com.semicolon.yasunnae.base.IntentKeys.KEY_REVIEW_ID
 import com.semicolon.yasunnae.databinding.ActivityWriteReviewBinding
 import com.semicolon.yasunnae.ui.login.LoginActivity
 
 @AndroidEntryPoint
 class WriteReviewActivity : BaseActivity<ActivityWriteReviewBinding>() {
     private var isEditMode: Boolean = false
-    private var userId = 0
+    private var applicationId = 0
+    private var reviewId = 0
     private var curRating: Float = 0F
 
     override val layoutResId: Int
@@ -25,7 +27,8 @@ class WriteReviewActivity : BaseActivity<ActivityWriteReviewBinding>() {
 
 
     override fun init() {
-        userId = intent.getIntExtra(KEY_APPLICATION_ID, 0)
+        applicationId = intent.getIntExtra(KEY_APPLICATION_ID, 0)
+        reviewId = intent.getIntExtra(KEY_REVIEW_ID, 0)
         getIsEditMode()
         setUpView()
         binding.btnBackWritePost.setOnClickListener { finish() }
@@ -65,13 +68,20 @@ class WriteReviewActivity : BaseActivity<ActivityWriteReviewBinding>() {
 
     private fun writePost() {
         if (!isCompletable()) return
-        val reviewParam = ReviewParam(
-            id = userId,
-            grade = curRating.toDouble(),
-            comment = binding.etComentWritePost.text.toString()
+        if (isEditMode) writeReviewViewModel.fixReview(
+            ReviewParam(
+                id = reviewId,
+                grade = curRating.toDouble(),
+                comment = binding.etComentWritePost.text.toString()
+            )
         )
-        if (isEditMode) writeReviewViewModel.fixReview(reviewParam)
-        else writeReviewViewModel.writeReview(reviewParam)
+        else writeReviewViewModel.writeReview(
+            ReviewParam(
+                id = applicationId,
+                grade = curRating.toDouble(),
+                comment = binding.etComentWritePost.text.toString()
+            )
+        )
         binding.btnWritePost.isEnabled = false
     }
 
