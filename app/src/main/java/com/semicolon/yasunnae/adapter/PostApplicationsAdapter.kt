@@ -34,7 +34,7 @@ class PostApplicationsAdapter(
         holder.itemPostApplication.context = context
         holder.itemPostApplication.application = postApplications[position]
         if (!isDecided) holder.itemPostApplication.btnAcceptApplication.isEnabled = true
-        if (postApplications[position].applicationId == acceptedApplicationId)
+        if (postApplications[position].applicationId == acceptedApplicationId && !postApplications[position].isWrittenReview)
             holder.itemPostApplication.btnWriteReviewPostApplication.visibility = VISIBLE
     }
 
