@@ -46,9 +46,11 @@
         <entry key="app/src/main/res/layout/dialog_notify.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/dialog_report.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/dialog_select_date.xml" value="0.2619010053687587" />
+        <entry key="app/src/main/res/layout/fragment_myapplications_list.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/fragment_post_list.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.22757318224740322" />
         <entry key="app/src/main/res/layout/fragment_user_info.xml" value="0.2341485507246377" />
+        <entry key="app/src/main/res/layout/item_applications_post.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/item_comment.xml" value="0.335" />
         <entry key="app/src/main/res/layout/item_post.xml" value="0.375" />
         <entry key="app/src/main/res/layout/item_post_application.xml" value="0.2587786259541985" />

@@ -5,7 +5,7 @@ import com.semicolon.domain.entity.ApplicationEntity
 
 data class MyApplicationResponse(
 
-    @SerializedName("my_application")
+    @SerializedName("my_applications")
     val myApplication: List<Application>
 )
 
@@ -26,8 +26,17 @@ data class Application(
     @SerializedName("is_end")
     val isEnd: Boolean,
 
-    @SerializedName("application_date")
-    val applicationDate: String
+    @SerializedName("first_image_path")
+    val firstImagePath: String,
+
+    @SerializedName("start_date")
+    val startDate:String,
+
+    @SerializedName("end_date")
+    val endDate: String,
+
+    @SerializedName("administration_division")
+    val administrationDivision: String
 )
 
 fun Application.toEntity() = ApplicationEntity(
@@ -36,5 +45,8 @@ fun Application.toEntity() = ApplicationEntity(
     postId = this.postId,
     isAccepted = this.isAccepted,
     isEnd = this.isEnd,
-    applicationDate = this.applicationDate
+    firstImagePath = firstImagePath,
+    protectionStartDate = startDate,
+    protectionEndDate = endDate,
+    administrationDivision = administrationDivision
 )
