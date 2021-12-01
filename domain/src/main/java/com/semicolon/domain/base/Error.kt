@@ -6,6 +6,7 @@ enum class Error {
     FORBIDDEN,
     NOT_FOUND,
     CONFLICT,
+    NO_EXPERIENCE,
     SERVER_ERROR,
     NETWORK_ERROR
 }

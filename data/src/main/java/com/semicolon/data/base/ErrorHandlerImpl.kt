@@ -14,6 +14,7 @@ class ErrorHandlerImpl : ErrorHandler {
                 403 -> Error.FORBIDDEN
                 404 -> Error.NOT_FOUND
                 409 -> Error.CONFLICT
+                418 -> Error.NO_EXPERIENCE
                 500, 503 -> Error.SERVER_ERROR
                 else -> Error.NETWORK_ERROR
             }
