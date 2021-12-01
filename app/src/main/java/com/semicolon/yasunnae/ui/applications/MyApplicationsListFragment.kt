@@ -9,6 +9,7 @@ import com.semicolon.yasunnae.base.BaseFragment
 import com.semicolon.yasunnae.base.IntentKeys
 import com.semicolon.yasunnae.databinding.FragmentMyapplicationsListBinding
 import com.semicolon.yasunnae.ui.coordinate.CoordinateActivity
+import com.semicolon.yasunnae.ui.login.LoginActivity
 import com.semicolon.yasunnae.ui.postdetail.PostDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -44,7 +45,10 @@ class MyApplicationsListFragment : BaseFragment<FragmentMyapplicationsListBindin
             makeToast(getString(R.string.try_it_later))
         }
         myapplicationsViewModel.needToLoginEvent.observe(this) {
-            TODO("로그인 창으로 이동")
+            val intent = Intent(context, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
         }
         myapplicationsViewModel.unknownErrorEvent.observe(this) {
             makeToast(getString(R.string.unknown_error))

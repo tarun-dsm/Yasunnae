@@ -34,7 +34,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         onEditClick = {
             val intent = Intent(context, WriteReviewActivity::class.java)
             intent.putExtra(KEY_IS_EDIT_MODE, true)
-            intent.putExtra(KEY_USER_ID, USER_ID)
+            intent.putExtra(KEY_USER_ID, it.id)
             intent.putExtra(KEY_COMMENT_POST, it.comment)
             startActivity(intent)
         }, onDeleteClick = {
