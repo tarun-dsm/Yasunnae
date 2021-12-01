@@ -25,7 +25,7 @@ interface ApplicationApi {
         @Path("id") id: Int
     ): Completable
 
-    @GET("application")
+    @GET("applications")
     fun getMyApplication(
         @Header("Authorization") token: String
     ): Single<MyApplicationResponse>
