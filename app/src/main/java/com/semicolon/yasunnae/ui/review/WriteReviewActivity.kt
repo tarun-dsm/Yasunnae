@@ -8,14 +8,13 @@ import com.semicolon.yasunnae.base.BaseActivity
 import com.semicolon.yasunnae.base.IntentKeys
 import dagger.hilt.android.AndroidEntryPoint
 import com.semicolon.domain.param.ReviewParam
-import com.semicolon.yasunnae.base.IntentKeys.KEY_USER_ID
+import com.semicolon.yasunnae.base.IntentKeys.KEY_APPLICATION_ID
 import com.semicolon.yasunnae.databinding.ActivityWriteReviewBinding
 import com.semicolon.yasunnae.ui.login.LoginActivity
 
 @AndroidEntryPoint
 class WriteReviewActivity : BaseActivity<ActivityWriteReviewBinding>() {
     private var isEditMode: Boolean = false
-    private var postId: Int = 0
     private var userId = 0
     private var curRating: Float = 0F
 
@@ -26,8 +25,7 @@ class WriteReviewActivity : BaseActivity<ActivityWriteReviewBinding>() {
 
 
     override fun init() {
-        postId = intent.getIntExtra(IntentKeys.KEY_POST_ID, 0)
-        userId = intent.getIntExtra(KEY_USER_ID, 0)
+        userId = intent.getIntExtra(KEY_APPLICATION_ID, 0)
         getIsEditMode()
         setUpView()
         binding.btnBackWritePost.setOnClickListener { finish() }
@@ -46,7 +44,6 @@ class WriteReviewActivity : BaseActivity<ActivityWriteReviewBinding>() {
 
     private fun getIsEditMode() {
         isEditMode = intent.getBooleanExtra(IntentKeys.KEY_IS_EDIT_MODE, false)
-        postId = intent.getIntExtra(IntentKeys.KEY_EDIT_POST_ID, 0)
     }
 
     private fun setUpView() {
@@ -71,7 +68,7 @@ class WriteReviewActivity : BaseActivity<ActivityWriteReviewBinding>() {
         val reviewParam = ReviewParam(
             id = userId,
             grade = curRating.toDouble(),
-            comment = binding . etComentWritePost . text . toString ()
+            comment = binding.etComentWritePost.text.toString()
         )
         if (isEditMode) writeReviewViewModel.fixReview(reviewParam)
         else writeReviewViewModel.writeReview(reviewParam)
@@ -79,6 +76,9 @@ class WriteReviewActivity : BaseActivity<ActivityWriteReviewBinding>() {
     }
 
     override fun observe() {
+        writeReviewViewModel.writeReviewSuccessEvent.observe(this) {
+            finish()
+        }
         writeReviewViewModel.badRequestEvent.observe(this) {
             makeToast(getString(R.string.bad_request))
         }
