@@ -95,7 +95,14 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
 
         // nickname
         binding.btnCheckDuplicateNickname.setOnClickListener {
-            registerViewModel.nicknameDuplication(binding.etNicknameRegisterAccount.text.toString())
+            if(binding.etNicknameRegisterAccount.text.length < 2) {
+                binding.tvDuplicateNicknameWarning.text = "닉네임은 두글자 이상으로 만들어주세요"
+                binding.tvDuplicateNicknameWarning.visibility = View.VISIBLE
+            }
+            else {
+                binding.tvDuplicateNicknameWarning.visibility = View.INVISIBLE
+                registerViewModel.nicknameDuplication(binding.etNicknameRegisterAccount.text.toString())
+            }
         }
 
         binding.ivBackArrowRegisterAccount.setOnClickListener {
