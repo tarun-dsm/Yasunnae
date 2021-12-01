@@ -16,5 +16,5 @@ data class RegisterAccountParam(
 
     val isExperienceRaisingPet: Boolean,
 
-    val experience: String
+    val experience: String?
 )

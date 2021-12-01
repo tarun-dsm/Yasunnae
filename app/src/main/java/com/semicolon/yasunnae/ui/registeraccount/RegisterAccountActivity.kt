@@ -161,7 +161,13 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
                 }
 
                 if(isVerified && isVerifiedNickname) {
-                    val registerData = RegisterAccountParam(email, password, nickname, age, sex, raised, experience)
+
+                    var registerData = RegisterAccountParam(email, password, nickname, age, sex, raised, experience)
+
+                    if(binding.etExperienceRegisterAccount.text.isEmpty()) {
+                        registerData = RegisterAccountParam(email, password, nickname, age, sex, raised, null)
+                    }
+
                     registerViewModel.register(registerData)
                 } else {
                     when {

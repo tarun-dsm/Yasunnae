@@ -24,7 +24,7 @@ data class RegisterAccountRequest(
     val isExperienceRaisingPet: Boolean,
 
     @SerializedName("experience")
-    val experience: String
+    val experience: String?
 )
 
 fun RegisterAccountParam.toRequestParam() = RegisterAccountRequest(
