@@ -16,10 +16,6 @@ class MyApplicationAdapter(
     private val onWriteReviewClick: (applicationId: Int) -> Unit
 ) : RecyclerView.Adapter<MyApplicationAdapter.ViewHolder>() {
 
-    interface OnItemClickListener {
-        fun onItemClick(postId: Int)
-    }
-
     private var applicationList = ArrayList<ApplicationEntity>()
 
     override fun onCreateViewHolder(
