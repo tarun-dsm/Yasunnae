@@ -169,4 +169,5 @@
     <string name="need_to_interested">서로 교류가 있어야 리뷰를 남길 수 있습니다</string>
     <string name="no_post">작성한 게시글이 없습니다</string>
     <string name="no_review">작성된 리뷰가 없습니다</string>
+    <string name="review_write">리뷰 작성</string>
 </resources>
