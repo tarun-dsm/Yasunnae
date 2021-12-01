@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="application"
+            type="com.semicolon.domain.entity.ApplicationEntity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp">
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_post_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_post_image"
+                imageURL="@{application.firstImagePath}"
+                android:layout_width="95dp"
+                android:layout_height="95dp"
+                android:background="@color/disabled_gray"
+                android:scaleType="centerCrop"
+                tools:ignore="ContentDescription" />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/tv_post_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="@{application.postName}"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintLeft_toRightOf="@id/cv_post_image"
+            app:layout_constraintTop_toTopOf="@id/cv_post_image" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="5dp"
+            android:text="@{application.administrationDivision}"
+            android:textColor="@color/gray_text"
+            android:textSize="10sp"
+            app:layout_constraintLeft_toRightOf="@id/cv_post_image"
+            app:layout_constraintTop_toBottomOf="@id/tv_post_title"
+            tools:ignore="SmallSp" />
+
+        <ImageView
+            android:id="@+id/iv_start_date_post"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginStart="15dp"
+            android:src="@drawable/ic_calendar"
+            app:layout_constraintBottom_toBottomOf="@id/cv_post_image"
+            app:layout_constraintLeft_toRightOf="@id/cv_post_image"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_start_date_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:text="@{application.protectionStartDate}"
+            android:textColor="@color/black"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@id/cv_post_image"
+            app:layout_constraintLeft_toRightOf="@id/iv_start_date_post" />
+
+        <TextView
+            android:id="@+id/tv_tilde_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:text="@string/tilde"
+            android:textColor="@color/black"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@id/cv_post_image"
+            app:layout_constraintLeft_toRightOf="@id/tv_start_date_post" />
+
+        <ImageView
+            android:id="@+id/iv_end_date_post"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginStart="3dp"
+            android:src="@drawable/ic_calendar"
+            app:layout_constraintBottom_toBottomOf="@id/cv_post_image"
+            app:layout_constraintLeft_toRightOf="@id/tv_tilde_post"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tv_end_date_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:text="@{application.protectionEndDate}"
+            android:textColor="@color/black"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@id/cv_post_image"
+            app:layout_constraintLeft_toRightOf="@id/iv_end_date_post" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/disabled_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
