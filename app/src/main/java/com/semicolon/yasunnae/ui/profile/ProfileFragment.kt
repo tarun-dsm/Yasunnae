@@ -10,13 +10,17 @@ import com.semicolon.yasunnae.R
 import com.semicolon.yasunnae.adapter.ProfilePostsAdapter
 import com.semicolon.yasunnae.adapter.ReviewsAdapter
 import com.semicolon.yasunnae.base.BaseFragment
+import com.semicolon.yasunnae.base.IntentKeys.KEY_COMMENT_POST
+import com.semicolon.yasunnae.base.IntentKeys.KEY_IS_EDIT_MODE
 import com.semicolon.yasunnae.base.IntentKeys.KEY_POST_ID
+import com.semicolon.yasunnae.base.IntentKeys.KEY_USER_ID
 import com.semicolon.yasunnae.databinding.FragmentProfileBinding
 import com.semicolon.yasunnae.dialog.AskDialog
 import com.semicolon.yasunnae.dialog.ReportDialog
 import com.semicolon.yasunnae.ui.coordinate.CoordinateActivity
 import com.semicolon.yasunnae.ui.login.LoginActivity
 import com.semicolon.yasunnae.ui.postdetail.PostDetailActivity
+import com.semicolon.yasunnae.ui.review.WriteReviewActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,7 +32,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     private val profileViewModel: ProfileViewModel by viewModels()
     private val reviewsAdapter = ReviewsAdapter(
         onEditClick = {
-            // TODO("리뷰 수정 페이지로 이동")
+            val intent = Intent(context, WriteReviewActivity::class.java)
+            intent.putExtra(KEY_IS_EDIT_MODE, true)
+            intent.putExtra(KEY_USER_ID, USER_ID)
+            intent.putExtra(KEY_COMMENT_POST, it.comment)
+            startActivity(intent)
         }, onDeleteClick = {
             AskDialog(requireContext(), getString(R.string.ask_delete_review), onYesClick = {
                 profileViewModel.deleteReview(it.id)
@@ -101,7 +109,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                     binding.tvUserLocation.text = getString(R.string.no_location)
                     binding.tvUserLocation.setTextColor(resources.getColor(R.color.red_orange))
                 }
-                if(IS_MINE)binding.btnSetLocation.visibility = VISIBLE
+                if (IS_MINE) binding.btnSetLocation.visibility = VISIBLE
             }
             reviewLiveData.observe(owner) {
                 reviewsAdapter.setReviews(it)
