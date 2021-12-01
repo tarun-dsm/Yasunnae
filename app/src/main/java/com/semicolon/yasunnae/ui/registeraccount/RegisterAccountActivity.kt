@@ -2,6 +2,7 @@ package com.semicolon.yasunnae.ui.registeraccount
 
 import android.content.Intent
 import android.text.Editable
+import android.text.InputType
 import android.text.TextWatcher
 import android.view.View
 import androidx.activity.viewModels
@@ -23,7 +24,6 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
     private val registerViewModel : RegisterAccountViewModel by viewModels()
 
     var isVerified = false
-    var isVerifiedPassword = false
     var isVerifiedNickname = false
 
     override fun init() {
@@ -47,6 +47,39 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
 
         })
 
+        // password 눈 표시
+        binding.btnShowPassword.setOnClickListener {
+            if(binding.btnShowPassword.tag.equals("1")) {
+                binding.btnShowPassword.tag = "0"
+                binding.btnShowPassword.setImageResource(R.drawable.ic_show_password)
+                binding.etPasswordRegisterAccount.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            }
+            else {
+                binding.btnShowPassword.tag = "1"
+                binding.btnShowPassword.setImageResource(R.drawable.ic_hide_password)
+                binding.etPasswordRegisterAccount.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+            }
+            // 커서 맨 뒤로
+            binding.etPasswordRegisterAccount.setSelection(binding.etPasswordRegisterAccount.text.length)
+        }
+
+        // check password 눈 표시
+        binding.btnShowPassword2.setOnClickListener {
+            if(binding.btnShowPassword2.tag.equals("1")) {
+                binding.btnShowPassword2.tag = "0"
+                binding.btnShowPassword2.setImageResource(R.drawable.ic_show_password)
+                binding.etCheckPasswordRegisterAccount.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            }
+            else {
+                binding.btnShowPassword2.tag = "1"
+                binding.btnShowPassword2.setImageResource(R.drawable.ic_hide_password)
+                binding.etCheckPasswordRegisterAccount.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+            }
+            // 커서 맨 뒤로
+            binding.etCheckPasswordRegisterAccount.setSelection(binding.etCheckPasswordRegisterAccount.text.length)
+        }
+
+
         // email 중복
         binding.btnSendEmail.setOnClickListener {
             val email = binding.etEmailRegisterAccount.text.toString().trim()  // 이메일 중복 확인
@@ -60,36 +93,14 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
             registerViewModel.certificationNumber(EmailCertificationParam(email, number))
         }
 
-        // password
-        binding.btnCheckPasswordRegisterAccount.setOnClickListener {
-
-            val checkPassword = binding.etCheckPasswordRegisterAccount.text.toString()
-            val password = binding.etPasswordRegisterAccount.text.toString()
-
-            if(Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{8,15}$", password)) {
-                binding.tvDifferentPasswordWarning.visibility = View.INVISIBLE
-                if (checkPassword == password) {
-                    isVerifiedPassword = true
-                    makeToast(getString(R.string.ok_ok))
-
-                } else {
-                    binding.tvDifferentPasswordWarning.text = getString(R.string.different_password)
-                    binding.tvDifferentPasswordWarning.visibility = View.VISIBLE
-                }
-            }
-            else {
-                binding.tvDifferentPasswordWarning.text = getString(R.string.wrong_password_format)
-                binding.tvDifferentPasswordWarning.visibility = View.VISIBLE
-            }
-        }
-
         // nickname
         binding.btnCheckDuplicateNickname.setOnClickListener {
             registerViewModel.nicknameDuplication(binding.etNicknameRegisterAccount.text.toString())
         }
 
         binding.ivBackArrowRegisterAccount.setOnClickListener {
-            finish()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
 
         // register
@@ -98,16 +109,28 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
             if(binding.etEmailRegisterAccount.text.isEmpty() || binding.etPasswordRegisterAccount.text.isEmpty() ||
                 binding.etNicknameRegisterAccount.text.isEmpty() || binding.etAgeRegisterAccount.text.isEmpty()) {
                 makeToast(getString(R.string.check_things))
-                if(binding.etAgeRegisterAccount.text.isEmpty()) {
-                    binding.tvPleaseInputAgeWarning.visibility = View.VISIBLE
-                } else {
-                    binding.tvPleaseInputAgeWarning.visibility = View.INVISIBLE
-                }
             }
 
+            // 안 비어있으면
             else {
-                val email = binding.etEmailRegisterAccount.text.toString().trim()
+                // 비밀번호 확인
+                val checkPassword = binding.etCheckPasswordRegisterAccount.text.toString()
                 val password = binding.etPasswordRegisterAccount.text.toString().trim()
+
+                if(Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{8,15}$", password)) {
+                    binding.tvDifferentPasswordWarning.visibility = View.INVISIBLE
+                    if (checkPassword != password) {
+                        binding.tvDifferentPasswordWarning.text = getString(R.string.different_password)
+                        binding.tvDifferentPasswordWarning.visibility = View.VISIBLE
+                    }
+                }
+                else {
+                    binding.tvDifferentPasswordWarning.text = getString(R.string.wrong_password_format)
+                    binding.tvDifferentPasswordWarning.visibility = View.VISIBLE
+                }
+
+                // email, nickname
+                val email = binding.etEmailRegisterAccount.text.toString().trim()
                 val nickname = binding.etNicknameRegisterAccount.text.toString()
 
                 val age = binding.etAgeRegisterAccount.text.toString().toInt()
@@ -124,13 +147,18 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
                     raised = false
                 }
 
-                if(isVerified && isVerifiedPassword && isVerifiedNickname) {
+                if(binding.etAgeRegisterAccount.text.isEmpty()) {
+                    binding.tvPleaseInputAgeWarning.visibility = View.VISIBLE
+                } else {
+                    binding.tvPleaseInputAgeWarning.visibility = View.INVISIBLE
+                }
+
+                if(isVerified && isVerifiedNickname) {
                     val registerData = RegisterAccountParam(email, password, nickname, age, sex, raised, experience)
                     registerViewModel.register(registerData)
                 } else {
                     when {
                         !isVerified -> makeToast(getString(R.string.need_to_verify_email))
-                        !isVerifiedPassword -> makeToast(getString(R.string.need_to_check_password))
                         !isVerifiedNickname -> makeToast(getString(R.string.need_to_check_nickname))
                     }
                 }
@@ -177,11 +205,16 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
 
         // register
         registerViewModel.badRequestEvent.observe(this) {
-            makeToast(getString(R.string.experience_false))
+            makeToast(getString(R.string.check_things))
+            //makeToast(getString(R.string.experience_false))
         }
 
         registerViewModel.needToVerifyEmailEvent.observe(this) {
             makeToast(getString(R.string.need_to_verify_email))     // 이메일 인증이 필요
+        }
+
+        registerViewModel.noExperienceEvent.observe(this) {
+            makeToast(getString(R.string.experience_false))
         }
 
         // email
@@ -217,6 +250,11 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
     }
 
     private fun startLoginActivity() {
+        val loginIntent = Intent(this, LoginActivity::class.java)
+        startActivity(loginIntent)
+    }
+
+    override fun onBackPressed() {
         val loginIntent = Intent(this, LoginActivity::class.java)
         startActivity(loginIntent)
     }

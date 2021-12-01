@@ -222,6 +222,18 @@
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_password_register_account" />
 
+                <ImageView
+                    android:id="@+id/btn_show_password"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_show_password"
+                    app:layout_constraintEnd_toEndOf="@id/et_password_register_account"
+                    app:layout_constraintTop_toTopOf="@id/et_password_register_account"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="7dp"
+                    android:tag="0"
+                    tools:ignore="ContentDescription" />
+
                 <TextView
                     android:id="@+id/tv_check_password_register_account"
                     android:layout_width="wrap_content"
@@ -233,50 +245,37 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/et_password_register_account" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cl_check_password_register_account"
+                <EditText
+                    android:id="@+id/et_check_password_register_account"
                     android:layout_width="0dp"
                     android:layout_height="38dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/shape_radius_dialog"
                     android:backgroundTint="@color/ivory"
+                    android:hint="@string/password"
+                    android:importantForAutofill="no"
+                    android:inputType="textPassword"
+                    android:maxLength="15"
+                    android:paddingHorizontal="15dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/red_orange"
+                    android:textSize="14sp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_check_password_register_account">
+                    app:layout_constraintTop_toBottomOf="@id/tv_check_password_register_account" />
 
-                    <EditText
-                        android:id="@+id/et_check_password_register_account"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/password"
-                        android:importantForAutofill="no"
-                        android:inputType="textPassword"
-                        android:maxLength="15"
-                        android:paddingHorizontal="15dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/red_orange"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toLeftOf="@id/btn_check_password_register_account"
-                        app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/btn_show_password2"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginEnd="25dp"
+                    android:src="@drawable/ic_show_password"
+                    android:tag="0"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/et_check_password_register_account"
+                    tools:ignore="ContentDescription" />
 
-                    <TextView
-                        android:id="@+id/btn_check_password_register_account"
-                        android:layout_width="42dp"
-                        android:layout_height="23dp"
-                        android:layout_marginEnd="15dp"
-                        android:background="@drawable/selector_radius_small_button"
-                        android:gravity="center"
-                        android:text="@string/ok"
-                        android:textColor="@color/white"
-                        android:textSize="12sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
                     android:id="@+id/tv_different_password_warning"
@@ -288,7 +287,7 @@
                     android:textSize="12sp"
                     android:visibility="invisible"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cl_check_password_register_account" />
+                    app:layout_constraintTop_toBottomOf="@id/et_check_password_register_account" />
 
                 <TextView
                     android:id="@+id/tv_nickname_register_account"
@@ -299,7 +298,7 @@
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cl_check_password_register_account" />
+                    app:layout_constraintTop_toBottomOf="@id/et_check_password_register_account" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cl_nickname_register_account"

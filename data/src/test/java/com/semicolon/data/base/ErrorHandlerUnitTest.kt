@@ -83,6 +83,17 @@ class ErrorHandlerUnitTest {
     }
 
     @Test
+    fun noExperienceTest() {
+        `when`(httpException.code())
+            .thenReturn(418)
+
+        Assert.assertEquals(
+            errorHandler.handle(httpException),
+            Error.NO_EXPERIENCE
+        )
+    }
+
+    @Test
     fun serverErrorTest() {
         `when`(httpException.code())
             .thenReturn(500)
