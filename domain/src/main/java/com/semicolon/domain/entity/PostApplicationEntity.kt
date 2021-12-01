@@ -12,5 +12,7 @@ data class PostApplicationEntity(
 
     val applicantNickname: String,
 
-    val administrationDivision: String
+    val administrationDivision: String,
+
+    val isWrittenReview: Boolean
 )
