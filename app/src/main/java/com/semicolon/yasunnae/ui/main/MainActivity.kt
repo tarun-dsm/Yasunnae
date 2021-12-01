@@ -7,6 +7,7 @@ import com.semicolon.yasunnae.base.BaseActivity
 import com.semicolon.yasunnae.databinding.ActivityMainBinding
 import com.semicolon.yasunnae.ui.applications.MyApplicationsListFragment
 import com.semicolon.yasunnae.ui.postlist.PostListFragment
+import com.semicolon.yasunnae.ui.profile.ProfileFragment
 import com.semicolon.yasunnae.ui.writepost.WritePostActivity
 import dagger.hilt.android.AndroidEntryPoint
 

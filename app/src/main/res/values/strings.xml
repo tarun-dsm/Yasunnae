@@ -144,4 +144,30 @@
     <string name="complete_delete_comment">댓글을 삭제했습니다</string>
     <string name="max_is_five">사진은 최대 5장 입니다</string>
     <string name="hyphen">-</string>
+
+    <string name="review">리뷰</string>
+    <string name="post">게시글</string>
+    <string name="greet_hello">안녕하세요~</string>
+    <string name="logout">로그아웃</string>
+    <string name="report">신고</string>
+    <string name="star">별점</string>
+    <string name="location">위치</string>
+    <string name="grade">등급</string>
+    <string name="has_experience">펫 키워본 적</string>
+    <string name="respect">님,</string>
+    <string name="have">있음</string>
+    <string name="none">없음</string>
+    <string name="ask_delete_review">리뷰를 삭제하시겠습니까?</string>
+    <string name="complete_report">사용자 신고가 접수되었습니다</string>
+    <string name="change">변경</string>
+    <string name="register">등록</string>
+    <string name="no_location">위치인증 안 함</string>
+    <string name="write_report_reason">신고 사유를 적어주세요</string>
+    <string name="user_report">사용자 신고</string>
+    <string name="write_review">리뷰 작성하기</string>
+    <string name="please_write_review">님에게 리뷰를 남겨주세요</string>
+    <string name="need_to_interested">서로 교류가 있어야 리뷰를 남길 수 있습니다</string>
+    <string name="no_post">작성한 게시글이 없습니다</string>
+    <string name="no_review">작성된 리뷰가 없습니다</string>
+    <string name="review_write">리뷰 작성</string>
 </resources>

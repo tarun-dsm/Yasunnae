@@ -12,6 +12,7 @@ import com.semicolon.yasunnae.base.IntentKeys.KEY_START_DATE
 import com.semicolon.yasunnae.base.IntentKeys.KEY_USER_ID
 import com.semicolon.yasunnae.databinding.ActivityPostApplicationsBinding
 import com.semicolon.yasunnae.ui.login.LoginActivity
+import com.semicolon.yasunnae.ui.profile.ProfileActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
