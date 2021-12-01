@@ -1,5 +1,6 @@
 package com.semicolon.yasunnae.ui.review
 
+import android.content.Intent
 import androidx.activity.viewModels
 import androidx.core.widget.doOnTextChanged
 import com.semicolon.yasunnae.R
@@ -9,6 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import com.semicolon.domain.param.ReviewParam
 import com.semicolon.yasunnae.base.IntentKeys.KEY_USER_ID
 import com.semicolon.yasunnae.databinding.ActivityWriteReviewBinding
+import com.semicolon.yasunnae.ui.login.LoginActivity
 
 @AndroidEntryPoint
 class WriteReviewActivity : BaseActivity<ActivityWriteReviewBinding>() {
@@ -38,6 +40,7 @@ class WriteReviewActivity : BaseActivity<ActivityWriteReviewBinding>() {
         }
         binding.ratingBar.setOnRatingBarChangeListener { _, rating, _ ->
             curRating = rating
+            binding.tvStarscore.text = rating.toString()
         }
     }
 
@@ -83,8 +86,10 @@ class WriteReviewActivity : BaseActivity<ActivityWriteReviewBinding>() {
             makeToast(getString(R.string.try_it_later))
         }
         writeReviewViewModel.needToLoginEvent.observe(this) {
-            finish()
-            TODO("로그인 창 열기")
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
         }
         writeReviewViewModel.notFoundEvent.observe(this) {
             makeToast(getString(R.string.post_not_found))
