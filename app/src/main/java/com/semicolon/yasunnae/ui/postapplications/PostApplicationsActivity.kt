@@ -6,6 +6,7 @@ import com.semicolon.domain.entity.PostApplicationEntity
 import com.semicolon.yasunnae.R
 import com.semicolon.yasunnae.adapter.PostApplicationsAdapter
 import com.semicolon.yasunnae.base.BaseActivity
+import com.semicolon.yasunnae.base.IntentKeys.KEY_APPLICATION_ID
 import com.semicolon.yasunnae.base.IntentKeys.KEY_END_DATE
 import com.semicolon.yasunnae.base.IntentKeys.KEY_POST_ID
 import com.semicolon.yasunnae.base.IntentKeys.KEY_START_DATE
@@ -101,7 +102,7 @@ class PostApplicationsActivity : BaseActivity<ActivityPostApplicationsBinding>()
             },
             onWriteReviewClick = {
                 val intent = Intent(this, WriteReviewActivity::class.java)
-                intent.putExtra(KEY_USER_ID, it)
+                intent.putExtra(KEY_APPLICATION_ID, it)
                 startActivity(intent)
             }
         )
