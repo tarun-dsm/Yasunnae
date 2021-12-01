@@ -5,11 +5,13 @@ import com.semicolon.domain.base.Error
 import com.semicolon.domain.base.Resource
 import com.semicolon.domain.base.ResourceStatus
 import com.semicolon.domain.entity.PostDetailEntity
+import com.semicolon.domain.entity.ProfileEntity
 import com.semicolon.domain.usecase.application.CancelApplicationUseCase
 import com.semicolon.domain.usecase.application.SendApplicationUseCase
 import com.semicolon.domain.usecase.auth.TokenRefreshUseCase
 import com.semicolon.domain.usecase.post.DeletePostUseCase
 import com.semicolon.domain.usecase.post.GetPostDetailUseCase
+import com.semicolon.domain.usecase.profile.GetProfileUseCase
 import com.semicolon.yasunnae.base.BaseViewModel
 import com.semicolon.yasunnae.base.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,12 +22,14 @@ import javax.inject.Inject
 class PostDetailViewModel @Inject constructor(
     private val getPostDetailUseCase: GetPostDetailUseCase,
     private val deletePostUseCase: DeletePostUseCase,
+    private val getProfileUseCase: GetProfileUseCase,
     private val sendApplicationUseCase: SendApplicationUseCase,
     private val cancelApplicationUseCase: CancelApplicationUseCase,
     private val tokenRefreshUseCase: TokenRefreshUseCase
 ) : BaseViewModel() {
 
     val postDetailLiveData = MutableLiveData<PostDetailEntity>()
+    val profileLiveData = MutableLiveData<ProfileEntity>()
     val deletePostSuccessEvent = SingleLiveEvent<Unit>()
     val sendApplicationSuccessEvent = SingleLiveEvent<Unit>()
     val cancelApplicationSuccessEvent = SingleLiveEvent<Unit>()
@@ -34,6 +38,7 @@ class PostDetailViewModel @Inject constructor(
     val retryEvent = SingleLiveEvent<Unit>()
     val needToLoginEvent = SingleLiveEvent<Unit>()
     val postNotFoundEvent = SingleLiveEvent<Unit>()
+    val profileNotFoundEvent = SingleLiveEvent<Unit>()
     val conflictEvent = SingleLiveEvent<Unit>()
     val applicationConflictEvent = SingleLiveEvent<Unit>()
     val unknownErrorEvent = SingleLiveEvent<Unit>()
@@ -83,6 +88,30 @@ class PostDetailViewModel @Inject constructor(
 
             override fun onError(e: Throwable) {
                 unknownErrorEvent.call()
+            }
+        }
+        observeSingle(result, observer)
+    }
+
+    fun getProfile(id: Int?) {
+        val result = getProfileUseCase.interact(id)
+        val observer = object : DisposableSingleObserver<Resource<ProfileEntity>>() {
+            override fun onSuccess(t: Resource<ProfileEntity>) {
+                when (t.status) {
+                    ResourceStatus.SUCCESS -> profileLiveData.value = t.data!!
+                    ResourceStatus.ERROR -> when (t.message) {
+                        Error.UNAUTHORIZED -> {
+                            tokenRefresh()
+                            retryEvent.call()
+                        }
+                        Error.NOT_FOUND -> profileNotFoundEvent.call()
+                        else -> unknownErrorEvent.call()
+                    }
+                }
+            }
+
+            override fun onError(e: Throwable) {
+                unknownErrorEvent
             }
         }
         observeSingle(result, observer)

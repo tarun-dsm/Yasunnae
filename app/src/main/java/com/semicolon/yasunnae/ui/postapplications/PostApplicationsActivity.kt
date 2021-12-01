@@ -1,5 +1,6 @@
 package com.semicolon.yasunnae.ui.postapplications
 
+import android.content.Intent
 import androidx.activity.viewModels
 import com.semicolon.domain.entity.PostApplicationEntity
 import com.semicolon.yasunnae.R
@@ -8,7 +9,9 @@ import com.semicolon.yasunnae.base.BaseActivity
 import com.semicolon.yasunnae.base.IntentKeys.KEY_END_DATE
 import com.semicolon.yasunnae.base.IntentKeys.KEY_POST_ID
 import com.semicolon.yasunnae.base.IntentKeys.KEY_START_DATE
+import com.semicolon.yasunnae.base.IntentKeys.KEY_USER_ID
 import com.semicolon.yasunnae.databinding.ActivityPostApplicationsBinding
+import com.semicolon.yasunnae.ui.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,7 +23,9 @@ class PostApplicationsActivity : BaseActivity<ActivityPostApplicationsBinding>()
     private val postApplicationsViewModel: PostApplicationsViewModel by viewModels()
     private val onItemClickListener = object : PostApplicationsAdapter.OnItemClickListener {
         override fun onItemClick(applicantId: Int) {
-//            TODO("프로필 페이지로 이동하는 코드 작성")
+            val intent = Intent(this@PostApplicationsActivity, ProfileActivity::class.java)
+            intent.putExtra(KEY_USER_ID, applicantId)
+            startActivity(intent)
         }
     }
     private val onAcceptClickListener = object : PostApplicationsAdapter.OnAcceptClickListener {
@@ -36,6 +41,9 @@ class PostApplicationsActivity : BaseActivity<ActivityPostApplicationsBinding>()
         val endDate = intent.getStringExtra(KEY_END_DATE)
         binding.tvStartDatePostApplication.text = startDate
         binding.tvEndDatePostApplication.text = endDate
+        binding.btnBackPostApplications.setOnClickListener {
+            finish()
+        }
         binding.btnGoToPost.setOnClickListener {
             finish()
         }
@@ -53,7 +61,9 @@ class PostApplicationsActivity : BaseActivity<ActivityPostApplicationsBinding>()
             finish()
         }
         postApplicationsViewModel.needToLoginEvent.observe(this) {
-            TODO("로그인 창 열기")
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
         postApplicationsViewModel.postNotFoundEvent.observe(this) {
             makeToast(getString(R.string.post_not_found))

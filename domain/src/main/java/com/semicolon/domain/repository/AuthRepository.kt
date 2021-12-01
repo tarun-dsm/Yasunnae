@@ -8,4 +8,6 @@ interface AuthRepository {
     fun login(loginParam: LoginParam): Completable
 
     fun tokenRefresh(): Completable
+
+    fun logout(): Completable
 }

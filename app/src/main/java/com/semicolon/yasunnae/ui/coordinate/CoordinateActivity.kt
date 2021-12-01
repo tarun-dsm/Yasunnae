@@ -2,6 +2,7 @@ package com.semicolon.yasunnae.ui.coordinate
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationManager
@@ -10,6 +11,7 @@ import androidx.core.app.ActivityCompat
 import com.semicolon.yasunnae.R
 import com.semicolon.yasunnae.base.BaseActivity
 import com.semicolon.yasunnae.databinding.ActivityCoordinateBinding
+import com.semicolon.yasunnae.ui.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,6 +26,9 @@ class CoordinateActivity : BaseActivity<ActivityCoordinateBinding>() {
         binding.btnDoLocationCertificate.setOnClickListener {
             getLocation()
         }
+        binding.btnBackCoordinate.setOnClickListener {
+            finish()
+        }
     }
 
     override fun observe() {
@@ -31,28 +36,25 @@ class CoordinateActivity : BaseActivity<ActivityCoordinateBinding>() {
             makeToast(getString(R.string.verified_location))
             finish()
         }
-
         coordinateViewModel.badRequestEvent.observe(this) {
             makeToast(getString(R.string.bad_request))
         }
-
         coordinateViewModel.retryEvent.observe(this) {
             makeToast(getString(R.string.try_it_later))
             print("dd")
         }
-
         coordinateViewModel.needToLoginEvent.observe(this) {
-            finish()
-            TODO("로그인 창 열기")
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
-
         coordinateViewModel.unknownErrorEvent.observe(this) {
             makeToast(getString(R.string.unknown_error))
         }
     }
 
     private fun getLocation() {
-        var curLocation: Location? = null
+        val curLocation: Location?
         val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
         if (ActivityCompat.checkSelfPermission(

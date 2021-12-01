@@ -1,12 +1,12 @@
 package com.semicolon.domain.enum
 
 enum class AnimalType {
-    MAMMAL, BIRD, REPTILES, AMPHIBIANS, FISH, ARTHROPODS, WRONG_TYPE
+    MAMMEL, BIRD, REPTILES, AMPHIBIANS, FISH, ARTHROPODS, WRONG_TYPE
 }
 
 fun String.toAnimalType() =
     when (this) {
-        "MAMMEL" -> AnimalType.MAMMAL
+        "MAMMEL" -> AnimalType.MAMMEL
         "BIRD" -> AnimalType.BIRD
         "REPTILES" -> AnimalType.REPTILES
         "AMPHIBIANS" -> AnimalType.AMPHIBIANS

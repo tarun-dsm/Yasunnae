@@ -4,6 +4,8 @@ import com.semicolon.domain.enum.AnimalType
 
 data class PostDetailEntity(
 
+    val writerId: Int,
+
     val nickname: String,
 
     val rating: String,

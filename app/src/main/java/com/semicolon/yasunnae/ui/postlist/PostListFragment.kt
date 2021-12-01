@@ -1,6 +1,7 @@
 package com.semicolon.yasunnae.ui.postlist
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.semicolon.domain.enum.AnimalType
@@ -11,6 +12,7 @@ import com.semicolon.yasunnae.base.IntentKeys.KEY_POST_ID
 import com.semicolon.yasunnae.databinding.FragmentPostListBinding
 import com.semicolon.yasunnae.ui.coordinate.CoordinateActivity
 import com.semicolon.yasunnae.dialog.NeedToVerifyLocationDialog
+import com.semicolon.yasunnae.ui.login.LoginActivity
 import com.semicolon.yasunnae.ui.postdetail.PostDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,7 +40,7 @@ class PostListFragment : BaseFragment<FragmentPostListBinding>() {
         binding.rgAnimalCategories.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.rb_all -> allCategory()
-                R.id.rb_mammal -> setCategory(AnimalType.MAMMAL)
+                R.id.rb_mammal -> setCategory(AnimalType.MAMMEL)
                 R.id.rb_bird -> setCategory(AnimalType.BIRD)
                 R.id.rb_reptiles -> setCategory(AnimalType.REPTILES)
                 R.id.rb_amphibians -> setCategory(AnimalType.AMPHIBIANS)
@@ -71,7 +73,9 @@ class PostListFragment : BaseFragment<FragmentPostListBinding>() {
             makeToast(getString(R.string.try_it_later))
         }
         postListViewModel.needToLoginEvent.observe(this) {
-            TODO("로그인 창으로 이동")
+            val intent = Intent(context, LoginActivity::class.java)
+            intent.flags = FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
         postListViewModel.unknownErrorEvent.observe(this) {
             makeToast(getString(R.string.unknown_error))

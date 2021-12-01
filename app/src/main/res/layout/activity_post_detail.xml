@@ -6,6 +6,12 @@
 
     <data>
 
+        <import type="com.semicolon.yasunnae.util.UtilExtFuncKt" />
+
+        <variable
+            name="profile"
+            type="com.semicolon.domain.entity.ProfileEntity" />
+
         <variable
             name="postDetail"
             type="com.semicolon.domain.entity.PostDetailEntity" />
@@ -56,6 +62,7 @@
                     app:dotsColor="@color/disabled_gray"
                     app:dotsSize="10dp"
                     app:dotsSpacing="3dp"
+                    app:dotsWidthFactor="1"
                     app:layout_constraintBottom_toBottomOf="@id/vp_image_post_detail"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -83,7 +90,7 @@
                     android:isIndicator="true"
                     android:numStars="5"
                     android:progressTint="@color/star_yellow"
-                    android:rating="3"
+                    android:rating="@{Math.round(profile.avgGrade)}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_writer_name"
                     app:layout_constraintLeft_toRightOf="@id/tv_writer_name"
                     app:layout_constraintTop_toTopOf="@id/tv_writer_name" />
@@ -106,7 +113,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:text="@{postDetail.post.createdAt}"
+                    android:text="@{UtilExtFuncKt.toPrettyDateWithoutTime(postDetail.post.createdAt)}"
                     android:textColor="@color/gray_text"
                     android:textSize="9sp"
                     app:layout_constraintBottom_toBottomOf="@id/tv_writer_name"
@@ -119,6 +126,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
+                    android:text="@{profile.administrationDivision}"
                     android:textColor="@color/gray_text"
                     android:textSize="9sp"
                     app:layout_constraintBottom_toBottomOf="@id/tv_writer_name"
@@ -143,6 +151,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="120dp"
                     android:layout_marginEnd="20dp"
+                    android:text="@string/updated"
                     android:textColor="@color/gray_text"
                     android:textSize="9sp"
                     android:visibility="gone"
@@ -293,7 +302,6 @@
                         android:layout_marginHorizontal="25dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="20dp"
-                        android:text="@{postDetail.pet.petSex}"
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"

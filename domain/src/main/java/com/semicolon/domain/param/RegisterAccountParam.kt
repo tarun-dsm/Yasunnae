@@ -1,5 +1,7 @@
 package com.semicolon.domain.param
 
+import com.semicolon.domain.enum.Sex
+
 data class RegisterAccountParam(
 
     val email: String,
@@ -16,8 +18,3 @@ data class RegisterAccountParam(
 
     val experience: String
 )
-
-enum class Sex{
-    MALE,
-    FEMALE
-}

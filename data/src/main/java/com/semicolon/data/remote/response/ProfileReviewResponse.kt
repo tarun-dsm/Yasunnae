@@ -24,7 +24,10 @@ data class ProfileReview(
     val comment: String,
 
     @SerializedName("created_at")
-    val createdAt: String
+    val createdAt: String,
+
+    @SerializedName("is_my_review")
+    val isMyReview: Boolean
 )
 
 fun ProfileReview.toEntity() = ReviewEntity(
@@ -32,5 +35,6 @@ fun ProfileReview.toEntity() = ReviewEntity(
     nickname = this.nickname,
     grade = this.grade,
     comment = this.comment,
-    createdAt = this.createdAt
+    createdAt = this.createdAt,
+    isMyReview = this.isMyReview
 )

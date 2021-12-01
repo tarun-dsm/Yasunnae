@@ -4,10 +4,12 @@ import com.semicolon.data.local.TokenStorage
 import com.semicolon.data.remote.api.AccountApi
 import com.semicolon.data.remote.request.ReportRequest
 import com.semicolon.data.remote.request.toRequestParam
+import com.semicolon.data.remote.response.HasInterestedResponse
 import com.semicolon.domain.param.CoordinateParam
 import com.semicolon.domain.param.RegisterAccountParam
 import com.semicolon.domain.param.ReportParam
 import io.reactivex.Completable
+import io.reactivex.Single
 
 class AccountDataSourceImpl(
     private val tokenStorage: TokenStorage,
@@ -37,4 +39,7 @@ class AccountDataSourceImpl(
             reportParam.id,
             ReportRequest(reportParam.comment)
         )
+
+    override fun hasInterested(id: Int): Single<HasInterestedResponse> =
+        accountApi.hasInterested(tokenStorage.getAccessToken(), id)
 }

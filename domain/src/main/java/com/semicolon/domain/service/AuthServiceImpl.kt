@@ -18,4 +18,7 @@ class AuthServiceImpl(
 
     override fun tokenRefresh(): Single<Resource<Unit>> =
         authRepository.tokenRefresh().toSingleResource(errorHandler)
+
+    override fun logout(): Single<Resource<Unit>> =
+        authRepository.tokenRefresh().toSingleResource(errorHandler)
 }

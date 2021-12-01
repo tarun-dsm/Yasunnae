@@ -3,6 +3,7 @@ package com.semicolon.data.repository
 import com.semicolon.data.datasource.PostDataSource
 import com.semicolon.data.remote.response.*
 import com.semicolon.domain.enum.AnimalType
+import com.semicolon.domain.enum.Sex
 import com.semicolon.domain.param.FixedPostParam
 import com.semicolon.domain.param.PostImageParam
 import com.semicolon.domain.param.PostParam
@@ -70,8 +71,8 @@ class PostRepositoryUnitTest {
             "010-0000-0000",
             "Tom",
             "Cat",
-            "남",
-            AnimalType.MAMMAL
+            Sex.FEMALE,
+            AnimalType.MAMMEL
         )
 
         `when`(postDataSource.writePost(postParam))
@@ -92,8 +93,8 @@ class PostRepositoryUnitTest {
             "010-0000-0000",
             "Tom",
             "Cat",
-            "남",
-            AnimalType.MAMMAL
+            Sex.FEMALE,
+            AnimalType.MAMMEL
         )
         val exception = Exception()
 
@@ -142,8 +143,8 @@ class PostRepositoryUnitTest {
                 "010-0000-0000",
                 "Tom",
                 "Cat",
-                "여",
-                AnimalType.MAMMAL
+                Sex.FEMALE,
+                AnimalType.MAMMEL
             )
         )
 
@@ -167,8 +168,8 @@ class PostRepositoryUnitTest {
                 "010-0000-0000",
                 "Tom",
                 "Cat",
-                "여",
-                AnimalType.MAMMAL
+                Sex.FEMALE,
+                AnimalType.MAMMEL
             )
         )
         val exception = Exception()
@@ -207,6 +208,7 @@ class PostRepositoryUnitTest {
     fun getPostDetailSuccessTest() {
         val id = 1234
         val postDetail = PostDetailResponse(
+            1,
             "Shin",
             "Good",
             isMine = true,
@@ -225,9 +227,9 @@ class PostRepositoryUnitTest {
             pet = PetDetail(
                 "Tom",
                 "Cat",
-                "남",
+                "MALE",
                 ArrayList(),
-                "MAMMAL"
+                "MAMMEL"
             )
         )
 

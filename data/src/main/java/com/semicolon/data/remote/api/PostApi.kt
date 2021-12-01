@@ -13,7 +13,7 @@ import retrofit2.http.*
 interface PostApi {
 
     @Multipart
-    @POST("post/{id}")
+    @POST("file/post/{id}")
     fun sendPostImage(
         @Header("Authorization") token: String,
         @Path("id") id: Int,

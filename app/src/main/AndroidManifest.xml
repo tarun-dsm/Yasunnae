@@ -16,6 +16,14 @@
         android:theme="@style/Theme.Yasunnae"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.login.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ui.postdetail.PostDetailActivity"
             android:exported="true" />
         <activity
@@ -31,17 +39,11 @@
             android:name=".ui.coordinate.CoordinateActivity"
             android:exported="true" />
         <activity
-            android:name=".Profile.MyProfile"
+            android:name=".ui.main.MainActivity"
             android:exported="true" />
         <activity
             android:name=".ui.main.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -8,9 +8,15 @@ data class ApplicationEntity(
 
     val postId: Int,
 
+    val firstImagePath: String,
+
+    val protectionStartDate: String,
+
+    val protectionEndDate: String,
+
+    val administrationDivision: String,
+
     val isAccepted: Boolean,
 
-    val isEnd: Boolean,
-
-    val applicationDate: String
+    val isEnd: Boolean
 )

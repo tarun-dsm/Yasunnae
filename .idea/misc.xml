@@ -3,50 +3,30 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../../../layout/custom_preview.xml" value="0.2722222222222222" />
-        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.28055555555555556" />
-        <entry key="app/src/main/res/drawable/ic_add_image.xml" value="0.24444444444444444" />
-        <entry key="app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.28055555555555556" />
-        <entry key="app/src/main/res/drawable/ic_arrow_back.xml" value="0.2833333333333333" />
-        <entry key="app/src/main/res/drawable/ic_calendar.xml" value="0.20925925925925926" />
-        <entry key="app/src/main/res/drawable/ic_comments.xml" value="0.24444444444444444" />
-        <entry key="app/src/main/res/drawable/ic_delete.xml" value="0.24444444444444444" />
-        <entry key="app/src/main/res/drawable/ic_edit.xml" value="0.3109375" />
-        <entry key="app/src/main/res/drawable/ic_home.xml" value="0.20925925925925926" />
-        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.24444444444444444" />
-        <entry key="app/src/main/res/drawable/ic_my_applications.xml" value="0.20925925925925926" />
-        <entry key="app/src/main/res/drawable/ic_my_profile.xml" value="0.20925925925925926" />
-        <entry key="app/src/main/res/drawable/ic_trash.xml" value="0.3109375" />
-        <entry key="app/src/main/res/drawable/ic_write_post.xml" value="0.24444444444444444" />
-        <entry key="app/src/main/res/drawable/selector_bnv_icon.xml" value="0.2574074074074074" />
-        <entry key="app/src/main/res/drawable/selector_radius_big_button.xml" value="0.2574074074074074" />
-        <entry key="app/src/main/res/drawable/selector_radius_small_button.xml" value="0.375" />
-        <entry key="app/src/main/res/drawable/shape_comment_input.xml" value="0.24444444444444444" />
-        <entry key="app/src/main/res/drawable/shape_radius_banner.xml" value="0.2574074074074074" />
-        <entry key="app/src/main/res/drawable/shape_radius_big_button.xml" value="0.30185185185185187" />
-        <entry key="app/src/main/res/drawable/shape_radius_category.xml" value="0.2574074074074074" />
-        <entry key="app/src/main/res/drawable/shape_radius_dialog.xml" value="0.2574074074074074" />
-        <entry key="app/src/main/res/drawable/shape_radius_small_button.xml" value="0.21851851851851853" />
-        <entry key="app/src/main/res/layout/activity_coordinate.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.26927502876869963" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_my_profile.xml" value="0.19927536231884058" />
-        <entry key="app/src/main/res/layout/activity_post_applications.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_post_detail.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/activity_register_account.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_write_post.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/dialog_ask.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/dialog_edit_comment.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/dialog_need_to_verify_location.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/dialog_select_date.xml" value="0.2619010053687587" />
-        <entry key="app/src/main/res/layout/fragment_post_list.xml" value="0.2947916666666667" />
-        <entry key="app/src/main/res/layout/fragment_user_info.xml" value="0.2341485507246377" />
-        <entry key="app/src/main/res/layout/item_comment.xml" value="0.22587268993839835" />
-        <entry key="app/src/main/res/layout/item_post.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/item_post_application.xml" value="0.2587786259541985" />
-        <entry key="app/src/main/res/layout/item_post_detail_image.xml" value="0.2441123188405797" />
-        <entry key="app/src/main/res/layout/item_post_image.xml" value="0.20833333333333334" />
-        <entry key="app/src/main/res/menu/menu_bnv.xml" value="0.2947916666666667" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/drawable/ic_dont_show_password.xml" value="0.38229166666666664" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/drawable/ic_footprint.xml" value="0.38229166666666664" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/drawable/ic_image.xml" value="0.38229166666666664" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/drawable/ic_show_password.xml" value="0.17777777777777778" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/drawable/selector_radius_big_button.xml" value="0.38229166666666664" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/drawable/selector_radius_dialog.xml" value="0.38229166666666664" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/drawable/shape_radius_dialog.xml" value="0.26614583333333336" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/layout/activity_coordinate.xml" value="0.36614583333333334" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/layout/activity_main.xml" value="0.17806484295845998" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/layout/activity_my_profile.xml" value="0.36614583333333334" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/layout/activity_post_applications.xml" value="0.36614583333333334" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/layout/activity_post_detail.xml" value="0.36614583333333334" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/layout/activity_register_account.xml" value="0.38004750593824227" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/layout/dialog_ask.xml" value="0.25" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/layout/dialog_blocked_user.xml" value="0.33" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/layout/dialog_edit_comment.xml" value="0.28854166666666664" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/layout/dialog_need_to_verify_location.xml" value="0.36614583333333334" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/layout/dialog_select_date.xml" value="0.25" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/layout/fragment_post_list.xml" value="0.36614583333333334" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/layout/fragment_user_info.xml" value="0.36614583333333334" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/layout/item_post.xml" value="0.36614583333333334" />
+        <entry key="..\:/Github/Repo/Yasunnae/app/src/main/res/layout/item_post_application.xml" value="0.36614583333333334" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1503623188405797" />
       </map>
     </option>
   </component>

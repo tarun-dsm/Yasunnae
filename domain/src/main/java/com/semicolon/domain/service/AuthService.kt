@@ -9,4 +9,6 @@ interface AuthService {
     fun login(loginParam: LoginParam): Single<Resource<Unit>>
 
     fun tokenRefresh(): Single<Resource<Unit>>
+
+    fun logout(): Single<Resource<Unit>>
 }

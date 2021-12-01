@@ -213,7 +213,6 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
         // register
         registerViewModel.badRequestEvent.observe(this) {
             makeToast(getString(R.string.check_things))
-            //makeToast(getString(R.string.experience_false))
         }
 
         registerViewModel.needToVerifyEmailEvent.observe(this) {

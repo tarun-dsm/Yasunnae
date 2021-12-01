@@ -3,6 +3,7 @@ package com.semicolon.data.usecase
 import com.semicolon.domain.base.Resource
 import com.semicolon.domain.entity.PostDetailEntity
 import com.semicolon.domain.enum.AnimalType
+import com.semicolon.domain.enum.Sex
 import com.semicolon.domain.param.FixedPostParam
 import com.semicolon.domain.param.PostImageParam
 import com.semicolon.domain.param.PostParam
@@ -65,8 +66,8 @@ class PostUseCasesUnitTest {
                 "010-0000-0000",
                 "Tom",
                 "Cat",
-                "여",
-                AnimalType.MAMMAL
+                Sex.FEMALE,
+                AnimalType.MAMMEL
             )
         )
 
@@ -92,6 +93,7 @@ class PostUseCasesUnitTest {
     fun getPostDetailTest() {
         val id = 1234
         val postDetail = PostDetailEntity(
+            1,
             "Shin",
             "Good",
             isMine = true,
@@ -112,7 +114,7 @@ class PostUseCasesUnitTest {
                 "Cat",
                 "남",
                 ArrayList(),
-                AnimalType.MAMMAL
+                AnimalType.MAMMEL
             )
         )
 
@@ -158,8 +160,8 @@ class PostUseCasesUnitTest {
             "010-0000-0000",
             "Tom",
             "Cat",
-            "남",
-            AnimalType.MAMMAL
+            Sex.MALE,
+            AnimalType.MAMMEL
         )
 
         `when`(postService.writePost(postParam))

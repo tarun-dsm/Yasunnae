@@ -60,7 +60,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     override fun observe() {
         loginViewModel.successEvent.observe(this) {
-            binding.tvLoginWarning.visibility = View.INVISIBLE
+
             makeToast(getString(R.string.complete_login))
             startMainActivity()
         }
@@ -74,6 +74,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         loginViewModel.unknownErrorEvent.observe(this) {
             binding.tvLoginWarning.text = getString(R.string.non_existent_email)
             binding.tvLoginWarning.visibility = View.VISIBLE
+        }
+        loginViewModel.tokenRefreshSuccessEvent.observe(this) {
+            startMainActivity()
         }
         loginViewModel.tokenRefreshSuccessEvent.observe(this) {
             startMainActivity()
