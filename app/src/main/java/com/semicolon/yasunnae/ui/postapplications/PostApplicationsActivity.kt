@@ -25,6 +25,11 @@ class PostApplicationsActivity : BaseActivity<ActivityPostApplicationsBinding>()
     private val postApplicationsViewModel: PostApplicationsViewModel by viewModels()
     private var postId = 0
 
+    override fun onResume() {
+        super.onResume()
+        postApplicationsViewModel.getPostApplication(postId)
+    }
+
     override fun init() {
         postId = intent.getIntExtra(KEY_POST_ID, 0)
         val startDate = intent.getStringExtra(KEY_START_DATE)
@@ -37,7 +42,6 @@ class PostApplicationsActivity : BaseActivity<ActivityPostApplicationsBinding>()
         binding.btnGoToPost.setOnClickListener {
             finish()
         }
-        postApplicationsViewModel.getPostApplication(postId)
     }
 
     override fun observe() {
