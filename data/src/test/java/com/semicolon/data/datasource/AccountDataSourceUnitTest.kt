@@ -8,7 +8,7 @@ import com.semicolon.data.remote.response.TokenResponse
 import com.semicolon.domain.param.CoordinateParam
 import com.semicolon.domain.param.RegisterAccountParam
 import com.semicolon.domain.param.ReportParam
-import com.semicolon.domain.param.Sex
+import com.semicolon.domain.enum.Sex
 import io.reactivex.Completable
 import io.reactivex.Single
 import org.junit.Before

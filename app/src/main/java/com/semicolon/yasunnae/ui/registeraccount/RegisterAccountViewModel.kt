@@ -30,6 +30,8 @@ class RegisterAccountViewModel @Inject constructor(
     val unknownErrorEvent = SingleLiveEvent<Unit>()
     val successEvent = SingleLiveEvent<Unit>()
 
+    val noExperienceEvent = SingleLiveEvent<Unit>()
+
     // email
     val checkEmailDuplicateSuccessEvent = SingleLiveEvent<Unit>()
     val checkEmailDuplicateBadRequestEvent = SingleLiveEvent<Unit>()
@@ -158,6 +160,9 @@ class RegisterAccountViewModel @Inject constructor(
                         }
                         Error.CONFLICT -> {
                             DuplicateEmailEvent.call()  // 이미 있는 이메일
+                        }
+                        Error.NO_EXPERIENCE -> {
+                            noExperienceEvent.call()
                         }
                         else -> unknownErrorEvent.call()
                     }
