@@ -6,6 +6,7 @@ import com.semicolon.domain.entity.PostApplicationEntity
 import com.semicolon.yasunnae.R
 import com.semicolon.yasunnae.adapter.PostApplicationsAdapter
 import com.semicolon.yasunnae.base.BaseActivity
+import com.semicolon.yasunnae.base.IntentKeys.KEY_APPLICATION_ID
 import com.semicolon.yasunnae.base.IntentKeys.KEY_END_DATE
 import com.semicolon.yasunnae.base.IntentKeys.KEY_POST_ID
 import com.semicolon.yasunnae.base.IntentKeys.KEY_START_DATE
@@ -13,6 +14,7 @@ import com.semicolon.yasunnae.base.IntentKeys.KEY_USER_ID
 import com.semicolon.yasunnae.databinding.ActivityPostApplicationsBinding
 import com.semicolon.yasunnae.ui.login.LoginActivity
 import com.semicolon.yasunnae.ui.profile.ProfileActivity
+import com.semicolon.yasunnae.ui.review.WriteReviewActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,19 +24,12 @@ class PostApplicationsActivity : BaseActivity<ActivityPostApplicationsBinding>()
         get() = R.layout.activity_post_applications
 
     private val postApplicationsViewModel: PostApplicationsViewModel by viewModels()
-    private val onItemClickListener = object : PostApplicationsAdapter.OnItemClickListener {
-        override fun onItemClick(applicantId: Int) {
-            val intent = Intent(this@PostApplicationsActivity, ProfileActivity::class.java)
-            intent.putExtra(KEY_USER_ID, applicantId)
-            startActivity(intent)
-        }
-    }
-    private val onAcceptClickListener = object : PostApplicationsAdapter.OnAcceptClickListener {
-        override fun onAcceptClick(applicationId: Int) {
-            postApplicationsViewModel.acceptApplication(applicationId)
-        }
-    }
     private var postId = 0
+
+    override fun onResume() {
+        super.onResume()
+        postApplicationsViewModel.getPostApplication(postId)
+    }
 
     override fun init() {
         postId = intent.getIntExtra(KEY_POST_ID, 0)
@@ -48,14 +43,19 @@ class PostApplicationsActivity : BaseActivity<ActivityPostApplicationsBinding>()
         binding.btnGoToPost.setOnClickListener {
             finish()
         }
-        postApplicationsViewModel.getPostApplication(postId)
     }
 
     override fun observe() {
         postApplicationsViewModel.postApplicationsLiveData.observe(this) {
             var isDecided = false
-            it.map { application -> if (application.isAccepted) isDecided = true }
-            setUpRecyclerView(isDecided, it)
+            var acceptedApplicationId = 0
+            it.map { application ->
+                if (application.isAccepted) {
+                    isDecided = true
+                    acceptedApplicationId = application.applicationId
+                }
+            }
+            setUpRecyclerView(isDecided, acceptedApplicationId, it)
         }
         postApplicationsViewModel.retryGetPostApplicationEvent.observe(this) {
             makeToast(getString(R.string.try_it_later))
@@ -87,12 +87,28 @@ class PostApplicationsActivity : BaseActivity<ActivityPostApplicationsBinding>()
 
     private fun setUpRecyclerView(
         isDecided: Boolean,
+        acceptedApplicationId: Int,
         data: List<PostApplicationEntity>
     ) {
         val postApplicationsAdapter = PostApplicationsAdapter(
-            this, isDecided, onItemClickListener, onAcceptClickListener
+            this, isDecided, acceptedApplicationId,
+            onItemClick = {
+                val intent = Intent(this@PostApplicationsActivity, ProfileActivity::class.java)
+                intent.putExtra(KEY_USER_ID, it)
+                startActivity(intent)
+            },
+            onAcceptClick = {
+                postApplicationsViewModel.acceptApplication(it)
+            },
+            onWriteReviewClick = {
+                val intent = Intent(this, WriteReviewActivity::class.java)
+                intent.putExtra(KEY_APPLICATION_ID, it)
+                startActivity(intent)
+            }
         )
+        val list = ArrayList(data.filter { it.isAccepted })
+        list.addAll(data.filter { !it.isAccepted })
         binding.rvPostApplicationList.adapter = postApplicationsAdapter
-        postApplicationsAdapter.postApplications = ArrayList(data)
+        postApplicationsAdapter.postApplications = list
     }
 }

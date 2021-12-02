@@ -50,6 +50,7 @@
             app:layout_constraintTop_toTopOf="@id/cv_post_image" />
 
         <TextView
+            android:id="@+id/tv_location_application"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -59,6 +60,22 @@
             android:textSize="10sp"
             app:layout_constraintLeft_toRightOf="@id/cv_post_image"
             app:layout_constraintTop_toBottomOf="@id/tv_post_title"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/btn_write_review_application"
+            android:layout_width="80dp"
+            android:layout_height="21dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/selector_radius_small_button"
+            android:gravity="center"
+            android:text="@string/write_review"
+            android:textColor="@color/white"
+            android:textSize="10sp"
+            android:visibility="gone"
+            app:layout_constraintLeft_toRightOf="@id/cv_post_image"
+            app:layout_constraintTop_toBottomOf="@id/tv_location_application"
             tools:ignore="SmallSp" />
 
         <ImageView

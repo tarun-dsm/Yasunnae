@@ -27,7 +27,10 @@ data class PostApplication(
     val applicantNickname: String,
 
     @SerializedName("administration_division")
-    val administrationDivision: String
+    val administrationDivision: String,
+
+    @SerializedName("is_written_review")
+    val isWrittenReview: Boolean
 )
 
 fun PostApplication.toEntity() = PostApplicationEntity(
@@ -36,5 +39,6 @@ fun PostApplication.toEntity() = PostApplicationEntity(
     applicationDate = this.applicationDate,
     isAccepted = this.isAccepted,
     applicantNickname = this.applicantNickname,
-    administrationDivision = this.administrationDivision
+    administrationDivision = this.administrationDivision,
+    isWrittenReview = isWrittenReview
 )
