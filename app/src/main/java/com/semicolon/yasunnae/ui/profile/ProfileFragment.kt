@@ -48,6 +48,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         startActivity(intent)
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (IS_MINE) getMyInfo()
+        else getUserInfo(USER_ID)
+    }
+
     override fun init() {
         val reviewTab = binding.tlUserHistory.newTab().setText(R.string.review)
         val postTab = binding.tlUserHistory.newTab().setText(R.string.post)
