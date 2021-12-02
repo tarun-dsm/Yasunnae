@@ -90,7 +90,7 @@
                     android:isIndicator="true"
                     android:numStars="5"
                     android:progressTint="@color/star_yellow"
-                    android:rating="@{Math.round(profile.avgGrade)}"
+                    android:rating="@{(float)profile.avgGrade}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_writer_name"
                     app:layout_constraintLeft_toRightOf="@id/tv_writer_name"
                     app:layout_constraintTop_toTopOf="@id/tv_writer_name" />
