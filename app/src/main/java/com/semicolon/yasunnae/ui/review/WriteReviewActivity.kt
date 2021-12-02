@@ -89,6 +89,9 @@ class WriteReviewActivity : BaseActivity<ActivityWriteReviewBinding>() {
         writeReviewViewModel.writeReviewSuccessEvent.observe(this) {
             finish()
         }
+        writeReviewViewModel.fixReviewSuccessEvent.observe(this) {
+            finish()
+        }
         writeReviewViewModel.badRequestEvent.observe(this) {
             makeToast(getString(R.string.bad_request))
         }
