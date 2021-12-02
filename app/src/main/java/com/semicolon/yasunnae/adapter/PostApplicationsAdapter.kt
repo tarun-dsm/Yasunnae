@@ -3,6 +3,7 @@ package com.semicolon.yasunnae.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -13,17 +14,11 @@ import com.semicolon.yasunnae.databinding.ItemPostApplicationBinding
 class PostApplicationsAdapter(
     private val context: Context,
     private val isDecided: Boolean,
-    private val onItemClickListener: OnItemClickListener,
-    private val onAcceptClickListener: OnAcceptClickListener
+    private val acceptedApplicationId: Int,
+    private val onItemClick: (applicantId: Int) -> Unit,
+    private val onAcceptClick: (applicationId: Int) -> Unit,
+    private val onWriteReviewClick: (applicationId: Int) -> Unit
 ) : RecyclerView.Adapter<PostApplicationsAdapter.ViewHolder>() {
-
-    interface OnItemClickListener {
-        fun onItemClick(applicantId: Int)
-    }
-
-    interface OnAcceptClickListener {
-        fun onAcceptClick(applicationId: Int)
-    }
 
     var postApplications = ArrayList<PostApplicationEntity>()
 
@@ -39,6 +34,8 @@ class PostApplicationsAdapter(
         holder.itemPostApplication.context = context
         holder.itemPostApplication.application = postApplications[position]
         if (!isDecided) holder.itemPostApplication.btnAcceptApplication.isEnabled = true
+        if (postApplications[position].applicationId == acceptedApplicationId && !postApplications[position].isWrittenReview)
+            holder.itemPostApplication.btnWriteReviewPostApplication.visibility = VISIBLE
     }
 
     override fun getItemCount(): Int =
@@ -49,11 +46,13 @@ class PostApplicationsAdapter(
 
         init {
             itemView.setOnClickListener {
-                onItemClickListener.onItemClick(postApplications[adapterPosition].applicantId)
+                onItemClick(postApplications[adapterPosition].applicantId)
             }
-
             itemPostApplication.btnAcceptApplication.setOnClickListener {
-                onAcceptClickListener.onAcceptClick(postApplications[adapterPosition].applicationId)
+                onAcceptClick(postApplications[adapterPosition].applicationId)
+            }
+            itemPostApplication.btnWriteReviewPostApplication.setOnClickListener {
+                onWriteReviewClick(postApplications[adapterPosition].applicationId)
             }
         }
     }

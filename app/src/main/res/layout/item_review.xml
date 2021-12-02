@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
-            android:rating="@{Math.round(review.grade)}"
+            android:rating="@{(float)review.grade}"
             app:layout_constraintBottom_toBottomOf="@id/tv_nickname_review"
             app:layout_constraintLeft_toRightOf="@id/tv_nickname_review"
             app:layout_constraintTop_toTopOf="@id/tv_nickname_review" />

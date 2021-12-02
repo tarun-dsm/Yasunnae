@@ -69,12 +69,6 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
         binding.vpImagePostDetail.adapter = postDetailImageAdapter
         binding.rvCommentsPostDetail.adapter = commentsAdapter
         binding.btnBack.setOnClickListener { finish() }
-        binding.tvWriterName.setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java)
-            intent.putExtra(IntentKeys.KEY_USER_ID, postDetail!!.writerId)
-            intent.putExtra(IntentKeys.KEY_USER_NAME, postDetail!!.nickname)
-            startActivity(intent)
-        }
         binding.btnEditPost.setOnClickListener {
             goToEditPost()
         }
@@ -101,8 +95,20 @@ class PostDetailActivity : BaseActivity<ActivityPostDetailBinding>() {
         val owner: LifecycleOwner = this
         postDetailViewModel.apply {
             postDetailLiveData.observe(owner) {
-                if (it.isMine) postDetailViewModel.getProfile(null)
-                else postDetailViewModel.getProfile(it.writerId)
+                if (it.isMine) {
+                    postDetailViewModel.getProfile(null)
+                } else {
+                    binding.tvWriterName.setOnClickListener {
+                        val intent = Intent(
+                            this@PostDetailActivity,
+                            ProfileActivity::class.java
+                        )
+                        intent.putExtra(IntentKeys.KEY_USER_ID, postDetail!!.writerId)
+                        intent.putExtra(IntentKeys.KEY_USER_NAME, postDetail!!.nickname)
+                        startActivity(intent)
+                    }
+                    postDetailViewModel.getProfile(it.writerId)
+                }
                 postDetail = it
                 val deadline = getString(R.string.deadline_colon) + " " + it.post.applicationEndDate
                 val contacts = getString(R.string.contacts_colon) + " " + it.post.contactInfo

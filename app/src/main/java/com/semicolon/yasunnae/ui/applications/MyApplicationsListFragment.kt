@@ -1,15 +1,15 @@
 package com.semicolon.yasunnae.ui.applications
 
 import android.content.Intent
-import android.view.View
 import androidx.fragment.app.viewModels
 import com.semicolon.yasunnae.R
 import com.semicolon.yasunnae.adapter.MyApplicationAdapter
 import com.semicolon.yasunnae.base.BaseFragment
 import com.semicolon.yasunnae.base.IntentKeys
 import com.semicolon.yasunnae.databinding.FragmentMyapplicationsListBinding
-import com.semicolon.yasunnae.ui.coordinate.CoordinateActivity
+import com.semicolon.yasunnae.ui.login.LoginActivity
 import com.semicolon.yasunnae.ui.postdetail.PostDetailActivity
+import com.semicolon.yasunnae.ui.review.WriteReviewActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,52 +18,45 @@ class MyApplicationsListFragment : BaseFragment<FragmentMyapplicationsListBindin
     override val layoutResId: Int
         get() = R.layout.fragment_myapplications_list
 
-    private val myapplicationsViewModel: MyApplicationsViewModel by viewModels()
-    private val applicationAdapter = MyApplicationAdapter(object : MyApplicationAdapter.OnItemClickListener {
-        override fun onItemClick(postId: Int) {
+    private val myApplicationsViewModel: MyApplicationsViewModel by viewModels()
+
+    private val applicationAdapter = MyApplicationAdapter(
+        onItemClick = {
             val intent = Intent(context, PostDetailActivity::class.java)
-            intent.putExtra(IntentKeys.KEY_POST_ID, postId)
+            intent.putExtra(IntentKeys.KEY_POST_ID, it)
             startActivity(intent)
-        }
-    })
+
+        },
+        onWriteReviewClick = {
+            val intent = Intent(context, WriteReviewActivity::class.java)
+            intent.putExtra(IntentKeys.KEY_APPLICATION_ID, it)
+            startActivity(intent)
+        })
 
     override fun init() {
-        binding.appliviewModel = myapplicationsViewModel
+        binding.appliviewModel = myApplicationsViewModel
         binding.rvPostList.adapter = applicationAdapter
-        myapplicationsViewModel.getPostList()
-        myapplicationsViewModel.isLocationVerified()
-        myapplicationsViewModel.getPostList()
+        myApplicationsViewModel.getPostList()
+        myApplicationsViewModel.isLocationVerified()
+        myApplicationsViewModel.getPostList()
     }
 
 
     override fun observe() {
-        myapplicationsViewModel.postListLiveDate.observe(this) {
+        myApplicationsViewModel.postListLiveDate.observe(this) {
             applicationAdapter.setList(it)
         }
-        myapplicationsViewModel.retryEvent.observe(this) {
+        myApplicationsViewModel.retryEvent.observe(this) {
             makeToast(getString(R.string.try_it_later))
         }
-        myapplicationsViewModel.needToLoginEvent.observe(this) {
-            TODO("로그인 창으로 이동")
+        myApplicationsViewModel.needToLoginEvent.observe(this) {
+            val intent = Intent(context, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
         }
-        myapplicationsViewModel.unknownErrorEvent.observe(this) {
+        myApplicationsViewModel.unknownErrorEvent.observe(this) {
             makeToast(getString(R.string.unknown_error))
         }
-    }
-
-
-    private fun isListEmpty(isEmpty: Boolean) {
-        if (isEmpty) {
-            binding.rvPostList.visibility = View.INVISIBLE
-            binding.clEmptyPostList.visibility = View.VISIBLE
-        } else {
-            binding.rvPostList.visibility = View.VISIBLE
-            binding.clEmptyPostList.visibility = View.INVISIBLE
-        }
-    }
-
-    private fun startVerifyLocationActivity() {
-        val intent = Intent(context, CoordinateActivity::class.java)
-        startActivity(intent)
     }
 }

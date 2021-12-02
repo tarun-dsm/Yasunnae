@@ -31,7 +31,6 @@ class ProfileViewModel @Inject constructor(
     private val reportUserUseCase: ReportUserUseCase,
     private val deleteReviewUseCase: DeleteReviewUseCase,
     private val logoutUseCase: LogoutUseCase,
-    private val hasInterestedUseCase: HasInterestedUseCase,
     private val tokenRefreshUseCase: TokenRefreshUseCase
 ) : BaseViewModel() {
 
@@ -41,7 +40,6 @@ class ProfileViewModel @Inject constructor(
     val reportSuccessEvent = SingleLiveEvent<Unit>()
     val deleteReviewSuccessEvent = SingleLiveEvent<Unit>()
     val logoutSuccessEvent = SingleLiveEvent<Unit>()
-    val hasInterestedEvent = SingleLiveEvent<Boolean>()
     val retryEvent = SingleLiveEvent<Unit>()
     val needToLoginEvent = SingleLiveEvent<Unit>()
     val unknownErrorEvent = SingleLiveEvent<Unit>()
@@ -146,25 +144,6 @@ class ProfileViewModel @Inject constructor(
         val observer = object : DisposableSingleObserver<Resource<Unit>>() {
             override fun onSuccess(t: Resource<Unit>) {
                 logoutSuccessEvent.call()
-            }
-
-            override fun onError(e: Throwable) {
-                unknownErrorEvent.call()
-            }
-        }
-        observeSingle(result, observer)
-    }
-
-    fun hasInterested(id: Int) {
-        val result = hasInterestedUseCase.interact(id)
-        val observer = object : DisposableSingleObserver<Resource<InterestedEntity>>() {
-            override fun onSuccess(t: Resource<InterestedEntity>) {
-                if (t.status == ResourceStatus.SUCCESS)
-                    hasInterestedEvent.setValue(t.data!!.isTrue)
-                else if (t.message == Error.UNAUTHORIZED) {
-                    retryEvent.call()
-                    tokenRefresh()
-                }
             }
 
             override fun onError(e: Throwable) {

@@ -18,4 +18,6 @@ object IntentKeys {
     const val KEY_USER_ID = "KeyUserId"
     const val KEY_USER_NAME = "KeyUserName"
     const val KEY_COMMENT_POST = "KeyCommentPost"
+    const val KEY_APPLICATION_ID = "KeyApplicationPost"
+    const val KEY_REVIEW_ID = "KeyReviewId"
 }

@@ -30,13 +30,16 @@ data class Application(
     val firstImagePath: String,
 
     @SerializedName("start_date")
-    val startDate:String,
+    val startDate: String,
 
     @SerializedName("end_date")
     val endDate: String,
 
     @SerializedName("administration_division")
-    val administrationDivision: String
+    val administrationDivision: String,
+
+    @SerializedName("is_written_review")
+    val isWrittenReview: Boolean
 )
 
 fun Application.toEntity() = ApplicationEntity(
@@ -48,5 +51,6 @@ fun Application.toEntity() = ApplicationEntity(
     firstImagePath = firstImagePath,
     protectionStartDate = startDate,
     protectionEndDate = endDate,
-    administrationDivision = administrationDivision
+    administrationDivision = administrationDivision,
+    isWrittenReview = isWrittenReview
 )
