@@ -95,7 +95,14 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
 
         // nickname
         binding.btnCheckDuplicateNickname.setOnClickListener {
-            registerViewModel.nicknameDuplication(binding.etNicknameRegisterAccount.text.toString())
+            if(binding.etNicknameRegisterAccount.text.length < 2) {
+                binding.tvDuplicateNicknameWarning.text = "닉네임은 두글자 이상으로 만들어주세요"
+                binding.tvDuplicateNicknameWarning.visibility = View.VISIBLE
+            }
+            else {
+                binding.tvDuplicateNicknameWarning.visibility = View.INVISIBLE
+                registerViewModel.nicknameDuplication(binding.etNicknameRegisterAccount.text.toString())
+            }
         }
 
         binding.ivBackArrowRegisterAccount.setOnClickListener {
@@ -116,18 +123,6 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
                 // 비밀번호 확인
                 val checkPassword = binding.etCheckPasswordRegisterAccount.text.toString()
                 val password = binding.etPasswordRegisterAccount.text.toString().trim()
-
-                if(Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{8,15}$", password)) {
-                    binding.tvDifferentPasswordWarning.visibility = View.INVISIBLE
-                    if (checkPassword != password) {
-                        binding.tvDifferentPasswordWarning.text = getString(R.string.different_password)
-                        binding.tvDifferentPasswordWarning.visibility = View.VISIBLE
-                    }
-                }
-                else {
-                    binding.tvDifferentPasswordWarning.text = getString(R.string.wrong_password_format)
-                    binding.tvDifferentPasswordWarning.visibility = View.VISIBLE
-                }
 
                 // email, nickname
                 val email = binding.etEmailRegisterAccount.text.toString().trim()
@@ -154,8 +149,27 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
                 }
 
                 if(isVerified && isVerifiedNickname) {
-                    val registerData = RegisterAccountParam(email, password, nickname, age, sex, raised, experience)
-                    registerViewModel.register(registerData)
+
+                    var registerData = RegisterAccountParam(email, password, nickname, age, sex, raised, experience)
+
+                    if(binding.etExperienceRegisterAccount.text.isEmpty()) {
+                        registerData = RegisterAccountParam(email, password, nickname, age, sex, raised, null)
+                    }
+
+                    if(Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{8,15}$", password)) {
+                        binding.tvDifferentPasswordWarning.visibility = View.INVISIBLE
+                        if (checkPassword != password) {
+                            binding.tvDifferentPasswordWarning.text = getString(R.string.different_password)
+                            binding.tvDifferentPasswordWarning.visibility = View.VISIBLE
+                        }
+                        else {
+                            registerViewModel.register(registerData)
+                        }
+                    }
+                    else {
+                        binding.tvDifferentPasswordWarning.text = getString(R.string.wrong_password_format)
+                        binding.tvDifferentPasswordWarning.visibility = View.VISIBLE
+                    }
                 } else {
                     when {
                         !isVerified -> makeToast(getString(R.string.need_to_verify_email))
@@ -206,7 +220,6 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
         // register
         registerViewModel.badRequestEvent.observe(this) {
             makeToast(getString(R.string.check_things))
-            //makeToast(getString(R.string.experience_false))
         }
 
         registerViewModel.needToVerifyEmailEvent.observe(this) {

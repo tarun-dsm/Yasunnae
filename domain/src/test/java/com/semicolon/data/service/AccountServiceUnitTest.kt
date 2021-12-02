@@ -6,7 +6,7 @@ import com.semicolon.domain.base.Resource
 import com.semicolon.domain.param.CoordinateParam
 import com.semicolon.domain.param.RegisterAccountParam
 import com.semicolon.domain.param.ReportParam
-import com.semicolon.domain.param.Sex
+import com.semicolon.domain.enum.Sex
 import com.semicolon.domain.repository.AccountRepository
 import com.semicolon.domain.service.AccountService
 import com.semicolon.domain.service.AccountServiceImpl
