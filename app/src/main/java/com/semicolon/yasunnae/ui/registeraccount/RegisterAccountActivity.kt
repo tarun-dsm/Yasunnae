@@ -124,18 +124,6 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
                 val checkPassword = binding.etCheckPasswordRegisterAccount.text.toString()
                 val password = binding.etPasswordRegisterAccount.text.toString().trim()
 
-                if(Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{8,15}$", password)) {
-                    binding.tvDifferentPasswordWarning.visibility = View.INVISIBLE
-                    if (checkPassword != password) {
-                        binding.tvDifferentPasswordWarning.text = getString(R.string.different_password)
-                        binding.tvDifferentPasswordWarning.visibility = View.VISIBLE
-                    }
-                }
-                else {
-                    binding.tvDifferentPasswordWarning.text = getString(R.string.wrong_password_format)
-                    binding.tvDifferentPasswordWarning.visibility = View.VISIBLE
-                }
-
                 // email, nickname
                 val email = binding.etEmailRegisterAccount.text.toString().trim()
                 val nickname = binding.etNicknameRegisterAccount.text.toString()
@@ -168,7 +156,20 @@ class RegisterAccountActivity : BaseActivity<ActivityRegisterAccountBinding>() {
                         registerData = RegisterAccountParam(email, password, nickname, age, sex, raised, null)
                     }
 
-                    registerViewModel.register(registerData)
+                    if(Pattern.matches("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{8,15}$", password)) {
+                        binding.tvDifferentPasswordWarning.visibility = View.INVISIBLE
+                        if (checkPassword != password) {
+                            binding.tvDifferentPasswordWarning.text = getString(R.string.different_password)
+                            binding.tvDifferentPasswordWarning.visibility = View.VISIBLE
+                        }
+                        else {
+                            registerViewModel.register(registerData)
+                        }
+                    }
+                    else {
+                        binding.tvDifferentPasswordWarning.text = getString(R.string.wrong_password_format)
+                        binding.tvDifferentPasswordWarning.visibility = View.VISIBLE
+                    }
                 } else {
                     when {
                         !isVerified -> makeToast(getString(R.string.need_to_verify_email))
