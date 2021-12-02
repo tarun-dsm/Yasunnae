@@ -45,6 +45,9 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true" />
+        <activity
+            android:name=".ui.review.WriteReviewActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

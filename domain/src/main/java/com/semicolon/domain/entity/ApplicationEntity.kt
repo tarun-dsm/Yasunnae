@@ -19,4 +19,6 @@ data class ApplicationEntity(
     val isAccepted: Boolean,
 
     val isEnd: Boolean
+
+    val isWrittenReview: Boolean
 )

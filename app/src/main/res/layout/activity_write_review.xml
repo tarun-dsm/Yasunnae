@@ -74,6 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
+                android:isIndicator="false"
                 android:max="5"
                 android:progressTint="@color/red_orange"
                 app:layout_constraintStart_toStartOf="parent"
@@ -113,7 +114,6 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ratingBar"
                 tools:ignore="DuplicateIds,RtlHardcoded,TextContrastCheck" />
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
